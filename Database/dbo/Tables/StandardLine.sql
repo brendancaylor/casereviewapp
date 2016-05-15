@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[StandardLine]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [Line] NVARCHAR(MAX) NOT NULL
+)

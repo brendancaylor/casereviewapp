@@ -1,0 +1,9 @@
+C:\BrensDevFiles\____________CaseReviewWorkSheet\CaseReview.BusinessLogic\bin\Debug\CaseReview.BusinessLogic.dll
+C:\BrensDevFiles\____________CaseReviewWorkSheet\CaseReview.BusinessLogic\bin\Debug\CaseReview.BusinessLogic.pdb
+C:\BrensDevFiles\____________CaseReviewWorkSheet\CaseReview.BusinessLogic\bin\Debug\CaseReview.DataLayer.dll
+C:\BrensDevFiles\____________CaseReviewWorkSheet\CaseReview.BusinessLogic\bin\Debug\EntityFramework.dll
+C:\BrensDevFiles\____________CaseReviewWorkSheet\CaseReview.BusinessLogic\bin\Debug\CaseReview.DataLayer.pdb
+C:\BrensDevFiles\____________CaseReviewWorkSheet\CaseReview.BusinessLogic\bin\Debug\EntityFramework.xml
+C:\BrensDevFiles\____________CaseReviewWorkSheet\CaseReview.BusinessLogic\obj\Debug\CaseReview.BusinessLogic.csprojResolveAssemblyReference.cache
+C:\BrensDevFiles\____________CaseReviewWorkSheet\CaseReview.BusinessLogic\obj\Debug\CaseReview.BusinessLogic.dll
+C:\BrensDevFiles\____________CaseReviewWorkSheet\CaseReview.BusinessLogic\obj\Debug\CaseReview.BusinessLogic.pdb

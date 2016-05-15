@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron" style="background-color: rgb(163, 199, 210); color: #fff; margin-top: 30px;">
+    <h1>Case Reviews</h1>
+    <p class="lead">
+        Manage the recording of compliance using the links below
+    </p>
+    <!--
+        <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+        -->
+</div>
+
+@*
+
+    <div class="clearfix">.</div>
+    <canvas id="myCanvas" height="250" style="background-color: rgb(163, 199, 210);">
+        Your browser does not support the canvas element.
+    </canvas>
+
+        
+*@
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Case Reviews</h2>
+        <p>
+            Use this to record case reviews - each case will have the full list of questions to detail comments and compliance.
+        </p>
+
+
+        <p><a class="btn btn-default" href="@Url.Content("~/CaseReviewWorkSheets")">Case Reviews &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Standard Lines</h2>
+        <p>
+            Manage this list of standard responses to speed the process of answering each question.
+        </p>
+        <p><a class="btn btn-default" href="@Url.Content("~/StandardLines")">Standard Lines &raquo;</a></p>
+    </div>
+    
+    <div class="col-md-4">
+        <h2>Non Compliant Answers</h2>
+        <p>
+            Aggregates non-compliant  questions in a report format
+        </p>
+        <p><a class="btn btn-default" href="@Url.Content("~/NonCompliantReport")">Report &raquo;</a></p>
+    </div>
+
+</div>
+
+@section Scripts {
+    
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @*
+    <script type="text/javascript">
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF'.split('');
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function CreateCanvas() {
+
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+            ctx.canvas.width = $("#divMainContent").width();
+
+            ctx.font = "3em Arial";
+            ctx.fillStyle = "#ffffff";
+            ctx.fillText("Case Reviews", 30, 105);
+
+            ctx.font = "2em Arial";
+            ctx.fillStyle = "#ffffff";
+            ctx.fillText("Manage the recording of compliance using the links below", 30, 180);
+
+            var offset = true;
+
+            for (var x = 50; x < 2000; x = x + 80) {
+
+
+                for (var y = 50; y < 300; y = y + 80) {
+
+                    if (offset) {
+                        x = x + 25;
+                        offset = false;
+                    } else {
+                        x = x - 25;
+                        offset = true;
+                    }
+
+                    ctx.beginPath();
+                    ctx.arc(x, y, 15, 0, 2 * Math.PI);
+
+                    ctx.fillStyle = getRandomColor();
+                    ctx.fill();
+
+                }
+
+            }
+
+
+        }
+
+        $(window).resize(function() {
+            CreateCanvas();
+        });
+
+        CreateCanvas();
+
+    </script>
+
+    *@
+}

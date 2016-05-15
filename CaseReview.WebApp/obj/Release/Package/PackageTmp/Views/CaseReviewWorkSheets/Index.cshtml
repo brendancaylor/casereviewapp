@@ -1,0 +1,164 @@
+﻿@model PagedList.IPagedList<CaseReview.DataLayer.Models.CaseReviewWorkSheet>
+@using System.Globalization
+@using CaseReview.WebApp.Models
+@using Microsoft.Ajax.Utilities
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "All Cases";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var search = ViewBag.Search;
+}
+
+<h2>All Cases</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+@using (Html.BeginForm("index", "CaseReviewWorkSheets", FormMethod.Get, new { id = "formNonCompliantReport", @class = "form-horizontal" }))
+{
+    <div class="form-group">
+
+        <label for="surname">search</label>
+
+        <div class="input-group">
+            <div class="input-group-addon">
+                <i class="glyphicon glyphicon-search"></i>
+            </div>
+            <input type="text" class="form-control" id="surname" name="surname" placeholder="Filter by surname" value="@search.Surname" onchange="$('#formNonCompliantReport').submit();">
+
+        </div>
+    </div>
+    <div class="form-group">
+
+        <div class="input-group">
+            <div class="input-group-addon">
+                <i class="glyphicon glyphicon-search"></i>
+            </div>
+
+            <select id="month" name="month" onchange="$('#formNonCompliantReport').submit();" class="form-control" style="width: 120px;">
+                <option value=""> - month - </option>
+
+                @{
+    var months = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames;
+    for (int i = 0; i < months.Length; i++)
+    {
+        <option value="@(i+1)">@months[i]</option>
+    }
+                }
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-addon">
+                <i class="glyphicon glyphicon-search"></i>
+            </div>
+            <select id="year" name="year" onchange="$('#formNonCompliantReport').submit();" class="form-control" style="width: 120px;">
+                <option value=""> - year - </option>
+
+                @{
+    for (int i = DateTime.Now.Year; i > DateTime.Now.AddYears(-5).Year; i--)
+    {
+        <option value="@i">@i</option>
+    }
+                }
+            </select>
+        </div>
+    </div>
+}
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            Staff
+        </th>
+        <th>
+            Client Ref
+        </th>
+        <th>
+            Reviewer
+        </th>
+        <th>
+            Reviewed Date
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Completed
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Staff.StaffFirstname)
+                @Html.DisplayFor(modelItem => item.Staff.StaffSurname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientRef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reviewer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReviewedDate)
+            </td>
+            <td>
+                @switch (item.Type)
+                {
+                    case 1:
+                        <span>General</span>
+                        break;
+                    case 2:
+                        <span>Client call</span>
+                        break;
+                    case 3:
+                        <span>Credit control</span>
+                        break;
+                }
+                
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsCompleted)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                | @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(
+Model, page => Url.Action("Index"
+    , new
+    {
+        page,
+        month = search.Month,
+        year = search.Year,
+        surname = search.Surname,
+        pageSize = search.PageSize
+    }))
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script type="text/javascript">
+            $("#month").val("@search.Month");
+            $("#year").val("@search.Year");
+        </script>
+    }

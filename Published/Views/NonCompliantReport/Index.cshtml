@@ -1,0 +1,190 @@
+﻿@model PagedList.IPagedList<NonCompliant>
+@using System.Globalization
+@using CaseReview.WebApp.Models
+@using Microsoft.Ajax.Utilities
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var search = ViewBag.Search;
+}
+
+<h2>Non compliant answers</h2>
+
+<div class="row">
+    <div class="col-sm-6">
+
+        @using (Html.BeginForm("index", "NonCompliantReport", FormMethod.Get, new { id = "formNonCompliantReport", @class = "form-horizontal" }))
+        {
+            <div class="form-group">
+
+                <label for="surname">search</label>
+
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </div>
+                    <input type="text" class="form-control" id="surname" name="surname" placeholder="Filter by surname" value="@search.Surname" onchange="$('#formNonCompliantReport').submit();">
+
+                </div>
+            </div>
+            <div class="form-group">
+
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </div>
+
+                    <select id="month" name="month" onchange="$('#formNonCompliantReport').submit();" class="form-control" style="width: 120px;">
+                        <option value=""> - month - </option>
+
+                        @{
+            var months = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames;
+                        for (int i = 0; i < months.Length; i++)
+                        {
+                    <option value="@(i+1)">@months[i]</option>
+                        }
+                        }
+                    </select>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </div>
+                    <select id="year" name="year" onchange="$('#formNonCompliantReport').submit();" class="form-control" style="width: 120px;">
+                        <option value=""> - year - </option>
+
+                        @{
+                        for (int i = DateTime.Now.Year; i > DateTime.Now.AddYears(-5).Year; i--)
+                        {
+                    <option value="@i">@i</option>
+                        }
+                        }
+                    </select>
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <div class="col-sm-6">
+         <canvas id="myChart"></canvas>
+     </div>
+</div>
+
+<br />
+
+<div class="row">
+    <div class="col-sm-12">
+
+        @Html.PagedListPager(
+Model, page => Url.Action("Index"
+    , new
+    {
+        page,
+        month = search.Month,
+        year = search.Year,
+        surname = search.Surname,
+        pageSize = search.PageSize
+    }))
+        <table class="table">
+            <tr>
+                <th>
+                    Staff
+                </th>
+                <th>
+                    Client Ref
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Section
+                </th>
+                <th>
+                    Question
+                </th>
+
+                <th>
+
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StaffSurname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClientRef)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Month)/@Html.DisplayFor(modelItem => item.Year)
+                    </td>
+                    <td>
+                        <small class="small">
+                            @Html.DisplayFor(modelItem => item.SectionName)
+                        </small>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuestionName)
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(
+Model, page => Url.Action("Index"
+    , new
+    {
+        page,
+        month = search.Month,
+        year = search.Year,
+        surname = search.Surname,
+        pageSize = search.PageSize
+    }))
+    </div>
+</div>
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $("#month").val("@search.Month");
+        $("#year").val("@search.Year");
+
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var data = {
+            labels: [ @Html.Raw(search.ChartLabel)],
+            datasets: [
+
+                {
+                    label: "Non compliant totals",
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: [@search.ChartData]
+                }
+            ]
+        };
+        var myNewChart = new Chart(ctx).Line(data);
+
+
+    </script>
+}

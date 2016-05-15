@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CaseReview.WebApp.Models.NonCompliant>
+
+@{
+    ViewBag.Title = "report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>report</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Month)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SectionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffSurname)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Month)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SectionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffSurname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SectionOrder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionOrder)
+        </td>
+    </tr>
+}
+
+</table>

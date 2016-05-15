@@ -1,0 +1,9 @@
+C:\BrensDevFiles\____________CaseReviewWorkSheet\Database\bin\Release\Database.dacpac
+C:\BrensDevFiles\____________CaseReviewWorkSheet\Database\bin\Release\Database.dll
+C:\BrensDevFiles\____________CaseReviewWorkSheet\Database\bin\Release\Database.pdb
+C:\BrensDevFiles\____________CaseReviewWorkSheet\Database\obj\Release\Database.dll
+C:\BrensDevFiles\____________CaseReviewWorkSheet\Database\obj\Release\Database.pdb
+C:\BrensDevFiles\____________CaseReviewWorkSheet\Database\obj\Release\Model.xml
+C:\BrensDevFiles\____________CaseReviewWorkSheet\Database\obj\Release\refactor.xml
+C:\BrensDevFiles\____________CaseReviewWorkSheet\Database\obj\Release\postdeploy.sql
+C:\BrensDevFiles\____________CaseReviewWorkSheet\Database\obj\Release\predeploy.sql

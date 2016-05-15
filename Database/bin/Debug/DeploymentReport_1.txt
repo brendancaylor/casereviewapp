@@ -1,0 +1,61 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[Answer]
+       [dbo].[CaseReviewWorkSheet]
+       [dbo].[Question]
+       [dbo].[Section]
+       [dbo].[Staff]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The type for column CaseReviewWorkSheetID in table [dbo].[Answer] is currently  INT NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+       The type for column ID in table [dbo].[Answer] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT
+         NULL. There is no implicit or explicit conversion.
+       The type for column QuestionID in table [dbo].[Answer] is currently  INT NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+       The type for column ID in table [dbo].[CaseReviewWorkSheet] is currently  INT IDENTITY (1, 1) NOT NULL but is being
+         changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+       The type for column StaffID in table [dbo].[CaseReviewWorkSheet] is currently  INT NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+       The type for column ID in table [dbo].[Question] is currently  INT IDENTITY (1, 1) NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+       The type for column SectionID in table [dbo].[Question] is currently  INT NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+       The type for column ID in table [dbo].[Section] is currently  INT IDENTITY (1, 1) NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+       The type for column ID in table [dbo].[Staff] is currently  INT IDENTITY (1, 1) NOT NULL but is being changed to 
+         UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+
+** User actions
+     Table rebuild
+       [dbo].[Answer] (Table)
+       [dbo].[CaseReviewWorkSheet] (Table)
+       [dbo].[Question] (Table)
+       [dbo].[Section] (Table)
+       [dbo].[Staff] (Table)
+
+** Supporting actions
+     Drop
+       [dbo].[FK_Answer_Question] (Foreign Key)
+       [dbo].[FK_Answer_CaseReviewWorkSheet] (Foreign Key)
+       [dbo].[FK_CaseReviewWorkSheet_Staff] (Foreign Key)
+       [dbo].[FK_Question_Section] (Foreign Key)
+     Create
+       [dbo].[FK_Answer_Question] (Foreign Key)
+       [dbo].[FK_Answer_CaseReviewWorkSheet] (Foreign Key)
+       [dbo].[FK_CaseReviewWorkSheet_Staff] (Foreign Key)
+       [dbo].[FK_Question_Section] (Foreign Key)
+
+The type for column CaseReviewWorkSheetID in table [dbo].[Answer] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column ID in table [dbo].[Answer] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column QuestionID in table [dbo].[Answer] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column ID in table [dbo].[CaseReviewWorkSheet] is currently  INT IDENTITY (1, 1) NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column StaffID in table [dbo].[CaseReviewWorkSheet] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column ID in table [dbo].[Question] is currently  INT IDENTITY (1, 1) NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column SectionID in table [dbo].[Question] is currently  INT NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column ID in table [dbo].[Section] is currently  INT IDENTITY (1, 1) NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+The type for column ID in table [dbo].[Staff] is currently  INT IDENTITY (1, 1) NOT NULL but is being changed to  UNIQUEIDENTIFIER NOT NULL. There is no implicit or explicit conversion.
+
