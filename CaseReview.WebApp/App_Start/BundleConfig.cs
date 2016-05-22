@@ -25,12 +25,16 @@ namespace CaseReview.WebApp
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/toastr.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/select2.css",
+                      "~/Content/select2-bootstrap.css",
+                      "~/Content/toastr.css"
+                      ));
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                       "~/Scripts/toastr-{version}.js",
-                      "~/Scripts/chart.js"
+                      "~/Scripts/chart.js",
+                      "~/Scripts/select2.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/app/sharedjs").Include(

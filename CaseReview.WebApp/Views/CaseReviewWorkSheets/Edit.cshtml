@@ -152,7 +152,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -177,7 +177,7 @@
                     <div class="form-group">
 
                         <div class="col-md-12">
-                            @Html.DropDownListFor(model => model.StandardID, Model.StandardLines, null, htmlAttributes: new { @class = "form-control", onchange = "addLine(this);" })
+                            @Html.DropDownListFor(model => model.StandardID, Model.StandardLines, null, htmlAttributes: new { @class = "form-control ", onchange = "addLine(this);", style = "width: 100%" })
                         </div>
                     </div>
 
@@ -222,7 +222,9 @@
 
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
-        @Scripts.Render("~/bundles/casereviewjs")
+        @Scripts.Render("~/bundles/casereviewjs")   
 
-        
+<script type="text/javascript">
+    $('#StandardID').select2();
+</script>
     }

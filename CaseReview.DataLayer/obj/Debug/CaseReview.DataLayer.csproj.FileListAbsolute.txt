@@ -7,3 +7,13 @@ C:\BrensDevFiles\____________CaseReviewWorkSheet\CaseReview.DataLayer\bin\Debug\
 C:\BrensDevFiles\____________CaseReviewWorkSheet\CaseReview.DataLayer\bin\Debug\EntityFramework.SqlServer.xml
 C:\BrensDevFiles\____________CaseReviewWorkSheet\CaseReview.DataLayer\obj\Debug\CaseReview.DataLayer.dll
 C:\BrensDevFiles\____________CaseReviewWorkSheet\CaseReview.DataLayer\obj\Debug\CaseReview.DataLayer.pdb
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\Debug\CaseReview.DataLayer.dll.config
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\Debug\CaseReview.DataLayer.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\Debug\CaseReview.DataLayer.pdb
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\Debug\EntityFramework.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\Debug\EntityFramework.xml
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\obj\Debug\CaseReview.DataLayer.csprojResolveAssemblyReference.cache
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\obj\Debug\CaseReview.DataLayer.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\obj\Debug\CaseReview.DataLayer.pdb
