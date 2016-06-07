@@ -1,154 +1,356 @@
 ﻿
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About </title>
-    <link href="/Content/bootstrap.css" rel="stylesheet" />
-    <link href="/Content/toastr.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Home Page </title>
+    <!-- Bootstrap -->
+    <link href="/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
     <link href="/Content/site.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="/Content/select2.css" rel="stylesheet" />
+    <link href="/Content/select2-bootstrap.css" rel="stylesheet" />
+    <link href="/Content/toastr.css" rel="stylesheet" />
+
+
     <script src="/Scripts/modernizr-2.6.2.js"></script>
 
-    <style>
-        @font-face {
-            font-family: 'nexa_lightregular';
-            src: url('./fonts/nexa_light-webfont.eot');
-            src: url('/fonts/nexa_light-webfont.eot?#iefix') format('embedded-opentype'),
-                    url('/fonts/nexa_light-webfont.woff') format('woff'),
-                    url('/fonts/nexa_light-webfont.ttf') format('truetype'),
-                    url('/fonts/nexa_light-webfont.svg#nexa_lightregular') format('svg');
-            font-weight: normal;
-            font-style: normal;
-        }
-    </style>
+
+
+    <!-- Font Awesome -->
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="/Content/custom.css" rel="stylesheet">
 </head>
-<body style="font-family: nexa_lightregular">
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="/" class="site_title"><i class="fa fa-pagelines"></i> <span>Case Review</span></a>
+                    </div>
+                    <div class="clearfix"></div>
 
-    <div class="container body-content">
-        <div class="row">
-            <div class="col-xs-8">
-                <div class="dataTables_length" id="dynamic-table_length"><label>Display <select name="dynamic-table_length" aria-controls="dynamic-table" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> records</label></div>
-            </div>
-            <div class="col-xs-4">
-                <div id="dynamic-table_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="dynamic-table"></label></div>
-            </div>
-        </div>
-        <br />
-        <table class="table table-striped table-bordered" style="width: 1000px; font-family: nexa_lightregular">
-            <thead>
-                <tr>
-                    <th style="width: 20px;"></th>
-                    <th>Ref <i style="float: right;" class="fa fa-caret-down"></i></th>
-                    <th>Status <i style="float: right;" class="fa fa-sort"></i></th>
-                    <th>First Name <i style="float: right;" class="fa fa-sort"></i></th>
-                    <th>Last Name <i style="float: right;" class="fa fa-sort"></i></th>
-                    <th>Date<i style="float: right;" class="fa fa-sort"></i></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
 
-                    <td>
-                        <div class="hidden-sm hidden-xs btn-group">
-                            <button class="btn btn-sm btn-default">
-                                <i class="fa fa-chevron-down"></i>
-                            </button>
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a><i class="fa fa-home"></i> Home<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="/">Welcome</a>
+                                        </li>
+                                        <li>
+                                            <a href="/CaseReviewWorkSheets">Case Reviews</a>
+                                        </li>
+                                        <li><a href="/test.html">test</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-edit"></i> Admin <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li>
+                                            <a href="/Sections">Sections</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Questions">Questions</a>
+                                        </li>
+                                        <li><a href="/StandardLines">Standard Lines</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-bar-chart-o"></i> Reports <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="/NonCompliantReport">Non Compliant Answers</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
+                    </div>
+                    <!-- /sidebar menu -->
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <!--
+                        <a title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
 
-                    </td>
-                    <td>12345</td>
-                    <td>
-                        <span class="glyphicon glyphicon-flag" aria-hidden="true" style="color: #ff0000; font-size: 1.5em;"></span>
-                        Not completed
-                    </td>
-                    <td>Brendan</td>
-                    <td>Caylor</td>
-                    <td>01/09/2015</td>
-                </tr>
+                        <a title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                            -->
 
-                <tr>
 
-                    <td>
-                        <div class="hidden-sm hidden-xs btn-group">
-                            <button class="btn btn-sm btn-default">
-                                <i class="fa fa-chevron-down"></i>
-                            </button>
-                        </div>
 
-                    </td>
-                    <td>12345</td>
-                    <td>
-                        <span class="glyphicon glyphicon-flag" aria-hidden="true" style="color: #ffa500; font-size: 1.5em;"></span>
-                        Completed
-                    </td>
-                    <td>Joe</td>
-                    <td>Bloggs</td>
-                    <td>01/09/2015</td>
-                </tr>
-                
-                <tr>
 
-                    <td>
-
-                    </td>
-                    <td>12345</td>
-                    <td>
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: #008000; font-size: 1.5em;"></span>
-                        Submitted
-                    </td>
-                    <td>Sarah</td>
-                    <td>Jane</td>
-                    <td>01/09/2015</td>
-                </tr>
-
-            </tbody>
-        </table>
-
-        <div class="row">
-            <div class="col-xs-8">
-                <div class="dataTables_info" id="dynamic-table_info" role="status" aria-live="polite">Showing 1 to 10 of 23 entries</div>
-            </div>
-            <div class="col-xs-4">
-                <div class="dataTables_paginate paging_simple_numbers" id="dynamic-table_paginate">
-                    <ul class="pagination"><li class="paginate_button previous disabled" aria-controls="dynamic-table" tabindex="0" id="dynamic-table_previous"><a href="#">Previous</a></li><li class="paginate_button active" aria-controls="dynamic-table" tabindex="0"><a href="#">1</a></li><li class="paginate_button " aria-controls="dynamic-table" tabindex="0"><a href="#">2</a></li><li class="paginate_button " aria-controls="dynamic-table" tabindex="0"><a href="#">3</a></li><li class="paginate_button next" aria-controls="dynamic-table" tabindex="0" id="dynamic-table_next"><a href="#">Next</a></li></ul>
+                        <a title="Logout" href="javascript:document.getElementById('logoutForm').submit()">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
                 </div>
             </div>
-        </div>
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav class="" role="navigation">
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
 
-        <footer></footer>
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span>karenmitrueimage@gmail.com</span>
+                                    <span class="fa fa-angle-down"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+
+                                    <li>
+                                        <a href="/Manage/ChangePassword">Change password</a>
+
+                                    </li>
+                                    <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-power-off pull-right"></i> Log Out</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+
+
+
+
+                <p>
+                    <a href="/Sections/Create">Create New</a>
+                </p>
+
+                <table class="table">
+                    <tr>
+                        <th>
+                            SectionName
+                        </th>
+                        <th>
+                            DisplayOrder
+                        </th>
+                        <th>
+                            IsActive
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    </table>
+                    <!--
+
+        <table class="table">
+            <tr>
+                <th>
+                    SectionName
+                </th>
+                <th>
+                    DisplayOrder
+                </th>
+                <th>
+                    IsActive
+                </th>
+                <th></th>
+            </tr>
+
+            <tr>
+                <td>
+                    Customer Contact: You must maintain regular and profeesional contact with our customers
+                </td>
+                <td>
+                    1
+                </td>
+                <td>
+                    <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+                </td>
+                <td>
+                    <a href="/Sections/Edit/ffb346e9-a070-4441-825b-5e01d18c7fa0">Edit</a> |
+                    <a href="/Sections/Details/ffb346e9-a070-4441-825b-5e01d18c7fa0">Details</a> |
+                    <a href="/Sections/Delete/ffb346e9-a070-4441-825b-5e01d18c7fa0">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Financial Statements and Debt Repayment Offers: You must ensure that a financial statement you send to the creditor on behalf of the customer
+                </td>
+                <td>
+                    2
+                </td>
+                <td>
+                    <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+                </td>
+                <td>
+                    <a href="/Sections/Edit/5df6f54d-c4a3-41aa-a37c-0924fa622ffa">Edit</a> |
+                    <a href="/Sections/Details/5df6f54d-c4a3-41aa-a37c-0924fa622ffa">Details</a> |
+                    <a href="/Sections/Delete/5df6f54d-c4a3-41aa-a37c-0924fa622ffa">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Review or advised by customer: If you advise a customer not to make a contractual payment or to cancel a payment before a debt solution is entered into, you must:
+                </td>
+                <td>
+                    3
+                </td>
+                <td>
+                    <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+                </td>
+                <td>
+                    <a href="/Sections/Edit/ae8b5fab-b3d6-4d28-810f-65a032599649">Edit</a> |
+                    <a href="/Sections/Details/ae8b5fab-b3d6-4d28-810f-65a032599649">Details</a> |
+                    <a href="/Sections/Delete/ae8b5fab-b3d6-4d28-810f-65a032599649">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Creditor Contact: We must
+                </td>
+                <td>
+                    4
+                </td>
+                <td>
+                    <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+                </td>
+                <td>
+                    <a href="/Sections/Edit/41067cb6-33e0-42bd-b590-028e9efd0c50">Edit</a> |
+                    <a href="/Sections/Details/41067cb6-33e0-42bd-b590-028e9efd0c50">Details</a> |
+                    <a href="/Sections/Delete/41067cb6-33e0-42bd-b590-028e9efd0c50">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Debt Management Plans: Where you have entered into a debt management plan with a customer, you must:
+                </td>
+                <td>
+                    5
+                </td>
+                <td>
+                    <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+                </td>
+                <td>
+                    <a href="/Sections/Edit/f9ab78a7-fe29-4b0e-8248-2caee04abc8c">Edit</a> |
+                    <a href="/Sections/Details/f9ab78a7-fe29-4b0e-8248-2caee04abc8c">Details</a> |
+                    <a href="/Sections/Delete/f9ab78a7-fe29-4b0e-8248-2caee04abc8c">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Credit Control: Where a customer stops paying we must:
+                </td>
+                <td>
+                    6
+                </td>
+                <td>
+                    <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+                </td>
+                <td>
+                    <a href="/Sections/Edit/9d9ea0dd-f162-42f1-b613-740a0729d055">Edit</a> |
+                    <a href="/Sections/Details/9d9ea0dd-f162-42f1-b613-740a0729d055">Details</a> |
+                    <a href="/Sections/Delete/9d9ea0dd-f162-42f1-b613-740a0729d055">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Vulnerability and other advice triggers: We must
+                </td>
+                <td>
+                    7
+                </td>
+                <td>
+                    <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+                </td>
+                <td>
+                    <a href="/Sections/Edit/0cd9c6c7-78ab-4f82-a9fb-a9b03e0d8d61">Edit</a> |
+                    <a href="/Sections/Details/0cd9c6c7-78ab-4f82-a9fb-a9b03e0d8d61">Details</a> |
+                    <a href="/Sections/Delete/0cd9c6c7-78ab-4f82-a9fb-a9b03e0d8d61">Delete</a>
+                </td>
+            </tr>
+
+        </table>
+
+            -->
+
+</div>
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    build it LOVE IT
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
     </div>
 
     <script src="/Scripts/jquery-1.10.2.js"></script>
 
-    <script src="/Scripts/bootstrap.js"></script>
-    <script src="/Scripts/respond.js"></script>
+    <script src="/vendors/bootstrap/js/bootstrap.min.js"></script>
 
-
+    <!-- bootstrap-daterangepicker -->
+    <script src="/scripts/moment.min.js"></script>
+    <script src="/Scripts/datepicker.js"></script>
     <script src="/Scripts/app/_app.js"></script>
     <script src="/Scripts/app/app.helpers.js"></script>
 
     <script src="/Scripts/toastr-2.1.0.js"></script>
+    <script src="/Scripts/chart.js"></script>
+    <script src="/Scripts/select2.js"></script>
+    <script src="/Scripts/custom.js"></script>
+
+
+
+    <script src="/Scripts/jquery.validate.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
 
 
 
     <script type="text/javascript">
 
         $(function () {
+            //$('[data-toggle="tooltip"]').tooltip();
             app.initialisePage();
             app.helpers.pathToRoot = '/';
+
         });
 
     </script>
 
 
+
+    <div style="display:none;">
+        <form action="/Account/LogOff" class="navbar-right" id="logoutForm" method="post"><input name="__RequestVerificationToken" type="hidden" value="Pe3BZk_rcs5kRA7fivlExy_QS5HZoSov3yOjY_l8rni70WMByyFplwMSVzB6KsPloUZvyUP688RkPI-PZ_THbo-CdsqzPJYSdvhTsV_Gwz2FkSJc0VRaQv_cofZuAr1SJMjFbj11zHMnLRdx844l9g2" /></form>
+    </div>
+
+
     <!-- Visual Studio Browser Link -->
     <script type="application/json" id="__browserLink_initializationData">
-        {"appName":"Chrome","requestId":"04c60085e3394395b30a2e59bb9178a0"}
+        {"appName":"Chrome","requestId":"f3bbd3f3ffe347b48202d0c652eb99aa"}
     </script>
-    <script type="text/javascript" src="http://localhost:61648/f70080d983d44566af13de66c0e21654/browserLink" async="async"></script>
+    <script type="text/javascript" src="http://localhost:51740/feb3906e661b4d1cb18d07d8f2ef4687/browserLink" async="async"></script>
     <!-- End Browser Link -->
 
 </body>

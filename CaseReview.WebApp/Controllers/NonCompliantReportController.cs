@@ -87,5 +87,6 @@ namespace CaseReview.WebApp.Controllers
 
             return View(model.ToPagedList(s.Page, s.PageSize));
         }
+
     }
 }

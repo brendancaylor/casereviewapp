@@ -24,7 +24,7 @@ namespace CaseReview.WebApp
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      //"~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/select2.css",
                       "~/Content/select2-bootstrap.css",
@@ -33,8 +33,10 @@ namespace CaseReview.WebApp
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                       "~/Scripts/toastr-{version}.js",
+                      "~/Scripts/jquery-ui.js",
                       "~/Scripts/chart.js",
-                      "~/Scripts/select2.js"
+                      "~/Scripts/select2.js",
+                      "~/Scripts/custom.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/app/sharedjs").Include(

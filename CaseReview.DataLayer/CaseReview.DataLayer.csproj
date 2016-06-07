@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseService.cs" />
+    <Compile Include="Extended\BaseDomainModel.cs" />
+    <Compile Include="Extended\CaseReviewType.cs" />
     <Compile Include="GeneralDa.cs" />
     <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\AspNetRole.cs" />
@@ -54,20 +56,24 @@
     <Compile Include="Models\AspNetUserClaim.cs" />
     <Compile Include="Models\AspNetUserLogin.cs" />
     <Compile Include="Models\CaseReviewsContext.cs" />
+    <Compile Include="Models\CaseReviewType.cs" />
     <Compile Include="Models\CaseReviewWorkSheet.cs" />
     <Compile Include="Models\Mapping\AnswerMap.cs" />
     <Compile Include="Models\Mapping\AspNetRoleMap.cs" />
     <Compile Include="Models\Mapping\AspNetUserClaimMap.cs" />
     <Compile Include="Models\Mapping\AspNetUserLoginMap.cs" />
     <Compile Include="Models\Mapping\AspNetUserMap.cs" />
+    <Compile Include="Models\Mapping\CaseReviewTypeMap.cs" />
     <Compile Include="Models\Mapping\CaseReviewWorkSheetMap.cs" />
     <Compile Include="Models\Mapping\QuestionMap.cs" />
+    <Compile Include="Models\Mapping\SectionCaseReviewTypeMap.cs" />
     <Compile Include="Models\Mapping\SectionMap.cs" />
     <Compile Include="Models\Mapping\StaffMap.cs" />
     <Compile Include="Models\Mapping\StandardLineMap.cs" />
     <Compile Include="Models\Mapping\vwNonCompliantMap.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Section.cs" />
+    <Compile Include="Models\SectionCaseReviewType.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\StandardLine.cs" />
     <Compile Include="Models\vwNonCompliant.cs" />

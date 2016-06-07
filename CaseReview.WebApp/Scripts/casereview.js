@@ -57,7 +57,7 @@ function save() {
         comments: $("#Comments").val(),
         compliant: compliant
     };
-    app.api.callApi(data, "api/saveanswer", false,
+    app.api.callApi(data, "api/saveanswer/save", false,
         function(callback) {
             app.helpers.showSavedNotification("Saved :-)");
         }, null);

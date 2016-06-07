@@ -21,9 +21,11 @@ namespace CaseReview.DataLayer.Models
         public DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public DbSet<AspNetUser> AspNetUsers { get; set; }
+        public DbSet<CaseReviewType> CaseReviewTypes { get; set; }
         public DbSet<CaseReviewWorkSheet> CaseReviewWorkSheets { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Section> Sections { get; set; }
+        public DbSet<SectionCaseReviewType> SectionCaseReviewTypes { get; set; }
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<StandardLine> StandardLines { get; set; }
         public DbSet<vwNonCompliant> vwNonCompliants { get; set; }
@@ -35,9 +37,11 @@ namespace CaseReview.DataLayer.Models
             modelBuilder.Configurations.Add(new AspNetUserClaimMap());
             modelBuilder.Configurations.Add(new AspNetUserLoginMap());
             modelBuilder.Configurations.Add(new AspNetUserMap());
+            modelBuilder.Configurations.Add(new CaseReviewTypeMap());
             modelBuilder.Configurations.Add(new CaseReviewWorkSheetMap());
             modelBuilder.Configurations.Add(new QuestionMap());
             modelBuilder.Configurations.Add(new SectionMap());
+            modelBuilder.Configurations.Add(new SectionCaseReviewTypeMap());
             modelBuilder.Configurations.Add(new StaffMap());
             modelBuilder.Configurations.Add(new StandardLineMap());
             modelBuilder.Configurations.Add(new vwNonCompliantMap());

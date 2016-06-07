@@ -14,13 +14,16 @@ namespace CaseReview.WebApp
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
 
             config.Services.RemoveAll(
                 typeof(System.Web.Http.Validation.ModelValidatorProvider),
                 v => v is InvalidModelValidatorProvider);
+
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
         }
     }
 }

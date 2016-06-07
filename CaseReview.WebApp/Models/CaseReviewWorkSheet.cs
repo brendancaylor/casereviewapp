@@ -10,17 +10,19 @@ namespace CaseReview.WebApp.Models
     {
         public CaseReviewWorkSheet()
         {
-            this.Answers = new List<Answer>();
+            this.SectionAnswers = new List<SectionAnswer>();
             this.StaffMembers = new List<SelectListItem>();
             this.StandardLines = new Collection<SelectListItem>();
             this.Types = new List<SelectListItem>();
             ReviewedDate = DateTime.Now;
             Reviewer = "Karen Jones";
+            CaseReviewTypeID = 1;
         }
 
         public System.Guid ID { get; set; }
         public System.Guid StaffID { get; set; }
         public System.Guid StandardID { get; set; }
+        public int CaseReviewTypeID { get; set; }
 
         [Required(ErrorMessage = "Client Ref is required.")]
         public string ClientRef { get; set; }
@@ -32,7 +34,7 @@ namespace CaseReview.WebApp.Models
         public int Type { get; set; }
         public bool IsCompleted { get; set; }
 
-        public virtual ICollection<Answer> Answers { get; set; }
+        public virtual ICollection<SectionAnswer> SectionAnswers { get; set; }
         public virtual Staff Staff { get; set; }
 
         public virtual ICollection<System.Web.Mvc.SelectListItem> StaffMembers { get; set; }

@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\BrensDevFiles\$CaseReviewWorkSheet\Published</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\Published</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="appOffline.htm">
@@ -22,7 +22,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/13/2016 18:16:59</publishTime>
     </File>
     <File Include="bin/CaseReview.WebApp.dll">
-      <publishTime>05/13/2016 18:17:04</publishTime>
+      <publishTime>05/23/2016 15:13:39</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>09/13/2015 11:44:30</publishTime>
@@ -123,8 +123,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/PagedList.css">
       <publishTime>09/18/2015 14:55:00</publishTime>
     </File>
+    <File Include="Content/select2-bootstrap.css">
+      <publishTime>05/22/2016 14:05:50</publishTime>
+    </File>
+    <File Include="Content/select2.css">
+      <publishTime>03/08/2016 16:33:38</publishTime>
+    </File>
     <File Include="Content/Site.css">
-      <publishTime>09/29/2015 07:40:36</publishTime>
+      <publishTime>05/22/2016 14:26:46</publishTime>
     </File>
     <File Include="Content/toastr.css">
       <publishTime>09/16/2015 09:11:48</publishTime>
@@ -201,11 +207,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/respond.min.js">
       <publishTime>09/13/2015 11:44:28</publishTime>
     </File>
+    <File Include="Scripts/select2.js">
+      <publishTime>03/08/2016 16:33:38</publishTime>
+    </File>
     <File Include="Scripts/toastr-2.1.0.js">
       <publishTime>11/24/2014 12:26:18</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>09/18/2015 19:57:26</publishTime>
+      <publishTime>05/22/2016 10:40:40</publishTime>
     </File>
     <File Include="test.html">
       <publishTime>09/21/2015 17:07:52</publishTime>
@@ -256,7 +265,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/14/2015 12:16:18</publishTime>
     </File>
     <File Include="Views/CaseReviewWorkSheets/Edit.cshtml">
-      <publishTime>09/23/2015 21:46:30</publishTime>
+      <publishTime>05/23/2016 10:28:11</publishTime>
     </File>
     <File Include="Views/CaseReviewWorkSheets/Index.cshtml">
       <publishTime>09/24/2015 10:29:36</publishTime>
@@ -367,7 +376,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/13/2015 11:44:24</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/13/2016 18:19:31</publishTime>
+      <publishTime>05/23/2016 15:13:43</publishTime>
     </File>
   </ItemGroup>
 </Project>

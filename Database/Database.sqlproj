@@ -71,8 +71,13 @@
     <Build Include="dbo\Tables\Answer.sql" />
     <Build Include="dbo\Tables\StandardLine.sql" />
     <Build Include="dbo\Views\vwNonCompliant.sql" />
+    <Build Include="dbo\Tables\CaseReviewType.sql" />
+    <Build Include="dbo\Tables\SectionCaseReviewType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Database.refactorlog" />
   </ItemGroup>
 </Project>

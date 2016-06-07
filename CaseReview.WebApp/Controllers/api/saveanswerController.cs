@@ -17,7 +17,7 @@ namespace CaseReview.WebApp.Controllers
 
         [System.Web.Http.HttpPost]
         [System.Web.Http.HttpGet]
-        public HttpResponseMessage Get(SaveAnswerReq model)
+        public HttpResponseMessage save(SaveAnswerReq model)
         {
             Answer answer = new Answer()
             {

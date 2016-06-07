@@ -8,6 +8,7 @@ namespace CaseReview.DataLayer.Models
         public Section()
         {
             this.Questions = new List<Question>();
+            this.SectionCaseReviewTypes = new List<SectionCaseReviewType>();
         }
 
         public System.Guid ID { get; set; }
@@ -15,5 +16,6 @@ namespace CaseReview.DataLayer.Models
         public int DisplayOrder { get; set; }
         public bool IsActive { get; set; }
         public virtual ICollection<Question> Questions { get; set; }
+        public virtual ICollection<SectionCaseReviewType> SectionCaseReviewTypes { get; set; }
     }
 }

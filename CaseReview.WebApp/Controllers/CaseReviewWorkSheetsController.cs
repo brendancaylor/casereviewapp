@@ -54,27 +54,48 @@ namespace CaseReview.WebApp.Controllers
             return View(CaseReviewWorkSheet);
         }
 
-        private void LoadDds(CaseReviewWorkSheet caseReviewWorkSheet)
+        private void LoadDds(CaseReviewWorkSheet model)
         {
-            foreach (var staff in new StaffLogic().GetAllStaff())
+            var caseReviewTypeLogic = new GenericLogic<DataLayer.Models.CaseReviewType>();
+            var staffs = new StaffLogic().GetAllStaff();
+            var caseReviewTypes = caseReviewTypeLogic.GetAll();
+            if(model.StaffID == null)
             {
-                caseReviewWorkSheet.StaffMembers.Add(new SelectListItem()
+                model.StaffID = staffs.First().ID;
+            }
+            foreach (var staff in staffs)
+            {
+                model.StaffMembers.Add(new SelectListItem()
                 {
                     Text = staff.StaffFirstname + " " + staff.StaffSurname,
-                    Value = staff.ID.ToString()
+                    Value = staff.ID.ToString(),
+                    Selected = model.StaffID == staff.ID
                 });
             }
+            foreach (var caseReviewType in caseReviewTypes)
+            {
+                model.Types.Add(new SelectListItem() {
+                    Text = caseReviewType.TypeName,
+                    Value = caseReviewType.ID.ToString(),
+                    Selected = model.CaseReviewTypeID == caseReviewType.ID
+                    });
+            }
+            
+            //model.Types.Add(new SelectListItem() { Text = "Client call", Value = "2" });
+            //model.Types.Add(new SelectListItem() { Text = "Credit control", Value = "3" });
+
+
         }
 
         // GET: CaseReviewWorkSheets/Create
         public ActionResult Create()
         {
-            Models.CaseReviewWorkSheet caseReviewWorkSheet = new CaseReviewWorkSheet()
+            Models.CaseReviewWorkSheet model = new CaseReviewWorkSheet()
             {
                 ID = Guid.NewGuid()
             };
-            LoadDds(caseReviewWorkSheet);
-            return View(caseReviewWorkSheet);
+            LoadDds(model);
+            return View(model);
         }
 
         // POST: CaseReviewWorkSheets/Create
@@ -94,6 +115,7 @@ namespace CaseReview.WebApp.Controllers
                     ReviewedDate = model.ReviewedDate,
                     Reviewer = model.Reviewer,
                     StaffID = model.StaffID,
+                    CaseReviewTypeID = model.CaseReviewTypeID,
                     Type = model.Type,
                     IsCompleted = model.IsCompleted
                 };
@@ -125,19 +147,16 @@ namespace CaseReview.WebApp.Controllers
         {
             Models.CaseReviewWorkSheet model = new CaseReviewWorkSheet();
             var dbObject = new CaseReviewWorkSheetLogic().Get(id);
+            model.ID = dbObject.ID;
+            model.ClientRef = dbObject.ClientRef;
+            model.ReviewedDate = dbObject.ReviewedDate;
+            model.Reviewer = dbObject.Reviewer;
+            model.StaffID = dbObject.StaffID;
+            model.Type = dbObject.Type;
+            model.CaseReviewTypeID = dbObject.CaseReviewTypeID;
+            model.IsCompleted = dbObject.IsCompleted;
 
-            foreach (var staff in new StaffLogic().GetAllStaff())
-            {
-                model.StaffMembers.Add(new SelectListItem()
-                {
-                    Text = staff.StaffFirstname + " " + staff.StaffSurname,
-                    Value = staff.ID.ToString(),
-                    Selected = dbObject.StaffID == staff.ID
-                });
-            }
-            model.Types.Add(new SelectListItem() { Text = "General", Value = "1" });
-            model.Types.Add(new SelectListItem() { Text = "Client call", Value = "2" });
-            model.Types.Add(new SelectListItem() { Text = "Credit control", Value = "3" });
+            LoadDds(model);
 
 
             model.StandardLines.Add(new SelectListItem(){Text = " - Select to add - "});
@@ -149,36 +168,52 @@ namespace CaseReview.WebApp.Controllers
                     Value = standardLine.Line,
                 });
             }
-            model.ID = dbObject.ID;
-            model.ClientRef = dbObject.ClientRef;
-            model.ReviewedDate = dbObject.ReviewedDate;
-            model.Reviewer = dbObject.Reviewer;
-            model.StaffID = dbObject.StaffID;
-            model.Type = dbObject.Type;
-            model.IsCompleted = dbObject.IsCompleted;
+            
 
             dbObject.Answers.OrderBy(o => o.Question.Section.DisplayOrder).ThenBy(o => o.Question.DisplayOrder);
+            var lastSectionId = Guid.Empty;
+
             foreach (var answer in dbObject.Answers.OrderBy(o => o.Question.Section.DisplayOrder).ThenBy(o => o.Question.DisplayOrder))
             {
-                model.Answers.Add(new Models.Answer()
+                var sectionAnswer = new SectionAnswer();
+
+                if (answer.Question.Section.ID != lastSectionId)
                 {
-                    ID = answer.ID,
-                    CaseReviewWorkSheetID = model.ID,
-                    Comments = answer.Comments,
-                    Compliant = answer.Compliant,
-                    Question = new Question()
+                    sectionAnswer = new SectionAnswer
                     {
-                        ID = answer.QuestionID,
-                        QuestionName = answer.Question.QuestionName,
-                        DisplayOrder = answer.Question.DisplayOrder,
-                        Section = new Section()
+                        DisplayOrder = answer.Question.Section.DisplayOrder,
+                        ID = answer.Question.Section.ID,
+                        SectionName = answer.Question.Section.SectionName
+                    };
+
+                    model.SectionAnswers.Add(sectionAnswer);
+                    lastSectionId = answer.Question.Section.ID;
+                }
+
+                model.SectionAnswers.FirstOrDefault(o => o.ID == lastSectionId).Answers.Add(
+                        new Models.Answer
                         {
-                            SectionName = answer.Question.Section.SectionName,
-                            DisplayOrder = answer.Question.Section.DisplayOrder
+                            ID = answer.ID,
+                            CaseReviewWorkSheetID = model.ID,
+                            Comments = answer.Comments,
+                            Compliant = answer.Compliant,
+                            
+                            Question = new Question()
+                            {
+                                ID = answer.QuestionID,
+                                QuestionName = answer.Question.QuestionName,
+                                DisplayOrder = answer.Question.DisplayOrder
+                                /*Section = new Section()
+                                {
+                                    SectionName = answer.Question.Section.SectionName,
+                                    DisplayOrder = answer.Question.Section.DisplayOrder
+
+                                }
+                                */
+                            }
 
                         }
-                    }
-                });
+                );
             }
             
             //.ThenBy(o => o.Question.DisplayOrder);
@@ -204,7 +239,8 @@ namespace CaseReview.WebApp.Controllers
                     Reviewer = model.Reviewer,
                     Type = model.Type,
                     IsCompleted = model.IsCompleted,
-                    StaffID = model.StaffID
+                    StaffID = model.StaffID,
+                    CaseReviewTypeID = model.CaseReviewTypeID
                 };
 
                 CaseReviewWorkSheet = new CaseReviewWorkSheetLogic().Update(CaseReviewWorkSheet);
