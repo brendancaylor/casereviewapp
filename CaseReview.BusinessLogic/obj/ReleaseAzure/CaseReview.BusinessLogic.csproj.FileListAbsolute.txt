@@ -1,0 +1,9 @@
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\bin\ReleaseAzure\CaseReview.BusinessLogic.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\bin\ReleaseAzure\CaseReview.BusinessLogic.pdb
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\bin\ReleaseAzure\CaseReview.DataLayer.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\bin\ReleaseAzure\EntityFramework.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\bin\ReleaseAzure\CaseReview.DataLayer.pdb
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\bin\ReleaseAzure\EntityFramework.xml
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\obj\ReleaseAzure\CaseReview.BusinessLogic.csprojResolveAssemblyReference.cache
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\obj\ReleaseAzure\CaseReview.BusinessLogic.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\obj\ReleaseAzure\CaseReview.BusinessLogic.pdb

@@ -1,57 +1,118 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Case Review App";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
 
-<div class="jumbotron" style="background-color: rgb(163, 199, 210); color: #fff; margin-top: 30px;">
-    <h1>Case Reviews</h1>
+    <div class="page-title">
+        <div class="title_left">
+            <h3>@ViewBag.Title</h3>
+        </div>
+    </div>
+
+
     <p class="lead">
-        Manage the recording of compliance using the links below
+        Manage the recording of compliance
     </p>
-    <!--
-        <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-        -->
+
+
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Overview</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <ul class="list-unstyled timeline">
+                <li>
+                    <div class="block">
+                        <div class="tags">
+                            <a class="tag">
+                                <span>Configure</span>
+                            </a>
+                        </div>
+                        <div class="block_content">
+                            <h2 class="title">
+                                You decide on what to ask.
+                            </h2>
+                            <p class="excerpt">
+                                Manage your 'review types' and the questions pertinent to your own needs
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="block">
+                        <div class="tags">
+                            <a href="" class="tag">
+                                <span>Record</span>
+                            </a>
+                        </div>
+                        <div class="block_content">
+                            <h2 class="title">
+                                Completing reviews couldn't be easier
+                            </h2>
+                            <p class="excerpt">
+                                Monitoring compliance and recording progress is made easy using maintainable 'Standardised
+                                Responses'.
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="block">
+                        <div class="tags">
+                            <a href="" class="tag">
+                                <span>Monitor</span>
+                            </a>
+                        </div>
+                        <div class="block_content">
+                            <h2 class="title">
+                                Review your overall performance
+                            </h2>
+                            <p class="excerpt">
+                                Report on problem areas and monitor overall progress across the board
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
 </div>
-
 @*
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Case Reviews</h2>
+            <p>
+                Use this to record case reviews - each case will have the full list of questions to detail comments and compliance.
+            </p>
 
-    <div class="clearfix">.</div>
-    <canvas id="myCanvas" height="250" style="background-color: rgb(163, 199, 210);">
-        Your browser does not support the canvas element.
-    </canvas>
 
-        
+            <p><a class="btn btn-default" href="@Url.Content("~/CaseReviewWorkSheets")">Case Reviews &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Standard Lines</h2>
+            <p>
+                Manage this list of standard responses to speed the process of answering each question.
+            </p>
+            <p><a class="btn btn-default" href="@Url.Content("~/StandardLines")">Standard Lines &raquo;</a></p>
+        </div>
+
+        <div class="col-md-4">
+            <h2>Non Compliant Answers</h2>
+            <p>
+                Aggregates non-compliant  questions in a report format
+            </p>
+            <p><a class="btn btn-default" href="@Url.Content("~/NonCompliantReport")">Report &raquo;</a></p>
+        </div>
+
+    </div>
 *@
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Case Reviews</h2>
-        <p>
-            Use this to record case reviews - each case will have the full list of questions to detail comments and compliance.
-        </p>
-
-
-        <p><a class="btn btn-default" href="@Url.Content("~/CaseReviewWorkSheets")">Case Reviews &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Standard Lines</h2>
-        <p>
-            Manage this list of standard responses to speed the process of answering each question.
-        </p>
-        <p><a class="btn btn-default" href="@Url.Content("~/StandardLines")">Standard Lines &raquo;</a></p>
-    </div>
-    
-    <div class="col-md-4">
-        <h2>Non Compliant Answers</h2>
-        <p>
-            Aggregates non-compliant  questions in a report format
-        </p>
-        <p><a class="btn btn-default" href="@Url.Content("~/NonCompliantReport")">Report &raquo;</a></p>
-    </div>
-
-</div>
-
 @section Scripts {
-    
+
     @Scripts.Render("~/bundles/jqueryval")
 
     @*

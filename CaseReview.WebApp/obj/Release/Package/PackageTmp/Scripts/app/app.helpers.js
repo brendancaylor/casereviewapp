@@ -25,7 +25,7 @@ app.helpers.showSavedNotification = function (message) {
 
     toastr.options = {
         "closeButton": true,
-        "positionClass": "toast-top-center",
+        "positionClass": "toast-bottom-right",
         "onclick": null,
         "showDuration": "300",
         "hideDuration": "1000",
@@ -42,10 +42,10 @@ app.helpers.showErrorNotification = function (message) {
 
     toastr.options = {
         "closeButton": true,
-        "positionClass": "toast-top-center",
+        "positionClass": "toast-bottom-right",
         "onclick": null,
         "showDuration": "300",
-        "hideDuration": "2000",
+        "hideDuration": "1000",
         "timeOut": "5000"
     };
 
@@ -59,10 +59,10 @@ app.helpers.showWarningNotification = function (message) {
 
     toastr.options = {
         "closeButton": true,
-        "positionClass": "toast-top-center",
+        "positionClass": "toast-bottom-right",
         "onclick": null,
         "showDuration": "300",
-        "hideDuration": "2000",
+        "hideDuration": "1000",
         "timeOut": "5000"
     };
 

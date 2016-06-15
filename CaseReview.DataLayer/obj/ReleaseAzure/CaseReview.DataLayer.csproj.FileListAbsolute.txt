@@ -1,0 +1,10 @@
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\ReleaseAzure\CaseReview.DataLayer.dll.config
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\ReleaseAzure\CaseReview.DataLayer.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\ReleaseAzure\CaseReview.DataLayer.pdb
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\ReleaseAzure\EntityFramework.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\ReleaseAzure\EntityFramework.SqlServer.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\ReleaseAzure\EntityFramework.xml
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\ReleaseAzure\EntityFramework.SqlServer.xml
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\obj\ReleaseAzure\CaseReview.DataLayer.csprojResolveAssemblyReference.cache
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\obj\ReleaseAzure\CaseReview.DataLayer.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\obj\ReleaseAzure\CaseReview.DataLayer.pdb

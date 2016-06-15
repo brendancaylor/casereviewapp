@@ -18,3 +18,13 @@ C:\BrensDevFiles\$CaseReviewWorkSheet\CaseReview.DataLayer\bin\Release\EntityFra
 C:\BrensDevFiles\$CaseReviewWorkSheet\CaseReview.DataLayer\obj\Release\CaseReview.DataLayer.csprojResolveAssemblyReference.cache
 C:\BrensDevFiles\$CaseReviewWorkSheet\CaseReview.DataLayer\obj\Release\CaseReview.DataLayer.dll
 C:\BrensDevFiles\$CaseReviewWorkSheet\CaseReview.DataLayer\obj\Release\CaseReview.DataLayer.pdb
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\Release\CaseReview.DataLayer.dll.config
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\Release\CaseReview.DataLayer.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\Release\CaseReview.DataLayer.pdb
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\Release\EntityFramework.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\Release\EntityFramework.SqlServer.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\Release\EntityFramework.xml
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\Release\EntityFramework.SqlServer.xml
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\obj\Release\CaseReview.DataLayer.csprojResolveAssemblyReference.cache
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\obj\Release\CaseReview.DataLayer.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\obj\Release\CaseReview.DataLayer.pdb

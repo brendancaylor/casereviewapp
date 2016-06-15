@@ -1,0 +1,56 @@
+﻿input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    /*max-width: 280px;*/
+}
+
+.table{
+    margin-bottom: 0 !important;
+}
+
+.sortableLi{
+    cursor: move;
+}
+
+.cursorPointer{
+    cursor: pointer;
+}
+
+.styledCheckBoxLabel {
+    color: #26B99A;
+    padding: 0;
+    margin: -10px 0 -10px 0;
+    cursor: pointer;
+}
+
+.styledCheckBoxLabel:before {
+    font-size: 2em;
+   font-family: FontAwesome;
+   content: "\f204";
+}
+
+.styledCheckBoxLabel.on:before {
+   font-size: 2em;
+    font-family: FontAwesome;
+   content: "\f205";
+}
+
+.styledCheckBoxLabel input {
+    opacity: 0;
+    width: 20px;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+

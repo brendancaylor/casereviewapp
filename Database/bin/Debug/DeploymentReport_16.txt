@@ -1,0 +1,39 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[CaseReviewWorkSheet]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Drop
+       unnamed constraint on [dbo].[CaseReviewWorkSheet] (Default Constraint)
+       unnamed constraint on [dbo].[CaseReviewWorkSheet] (Default Constraint)
+     Table rebuild
+       [dbo].[CaseReviewWorkSheet] (Table)
+     Create
+       [dbo].[CaseReviewType] (Table)
+       [dbo].[SectionCaseReviewType] (Table)
+       Default Constraint: unnamed constraint on [dbo].[CaseReviewType] (Default Constraint)
+       Default Constraint: unnamed constraint on [dbo].[SectionCaseReviewType] (Default Constraint)
+       Default Constraint: unnamed constraint on [dbo].[Answer] (Default Constraint)
+       Default Constraint: unnamed constraint on [dbo].[Question] (Default Constraint)
+       Default Constraint: unnamed constraint on [dbo].[Section] (Default Constraint)
+       Default Constraint: unnamed constraint on [dbo].[Staff] (Default Constraint)
+       Default Constraint: unnamed constraint on [dbo].[StandardLine] (Default Constraint)
+       [dbo].[FK_CaseReviewWorkSheet_CaseReviewType] (Foreign Key)
+       [dbo].[FK_SectionCaseReviewType_Section] (Foreign Key)
+       [dbo].[FK_SectionCaseReviewType_CaseReviewType] (Foreign Key)
+
+** Supporting actions
+     Drop
+       [dbo].[FK_Answer_CaseReviewWorkSheet] (Foreign Key)
+       [dbo].[FK_CaseReviewWorkSheet_Staff] (Foreign Key)
+     Create
+       [dbo].[FK_Answer_CaseReviewWorkSheet] (Foreign Key)
+       [dbo].[FK_CaseReviewWorkSheet_Staff] (Foreign Key)
+     Refresh
+       [dbo].[vwNonCompliant] (View)

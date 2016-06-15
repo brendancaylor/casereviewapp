@@ -1,0 +1,132 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Script.Serialization;
+using CaseReview.WebApp.Models;
+using CaseReview.BusinessLogic;
+using CaseReview.DataLayer.Models;
+
+namespace CaseReview.WebApp.Controllers.api
+{
+    public class AdminListController : ApiController
+    {
+        private JavaScriptSerializer jsonSerializer = new JavaScriptSerializer();
+
+        private GenericLogic<CaseReview.DataLayer.Models.CaseReviewType> crtLogic = new GenericLogic<CaseReview.DataLayer.Models.CaseReviewType>();
+        private GenericLogic<CaseReview.DataLayer.Models.Section> secLogic = new GenericLogic<CaseReview.DataLayer.Models.Section>();
+        private GeneralLogic genLogic = new GeneralLogic();
+
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Authorize]
+        public HttpResponseMessage updateCaseType(BaseModel model)
+        {
+            crtLogic.UpdateActive(new CaseReview.DataLayer.Models.CaseReviewType()
+            {
+                ID = model.ID,
+                IsActive = model.IsActive
+            });
+            var json = jsonSerializer.Serialize(model);
+            return Request.CreateResponse(HttpStatusCode.OK, json);
+        }
+        
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Authorize]
+        public HttpResponseMessage addCaseType(BaseModel model)
+        {
+            var newModel = crtLogic.Add(new CaseReview.DataLayer.Models.CaseReviewType()
+            {
+                ID = Guid.Empty,
+                IsActive = model.IsActive,
+                DisplayOrder = model.DisplayOrder,
+                TypeName = model.Name
+            });
+            model.ID = newModel.ID;
+            var json = jsonSerializer.Serialize(model);
+            return Request.CreateResponse(HttpStatusCode.OK, json);
+        }
+
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Authorize]
+        public HttpResponseMessage reorderCaseTypes([FromBody]string body)
+        {
+            var model = jsonSerializer.Deserialize<List<Guid>>(body);
+            List<CaseReview.DataLayer.Models.CaseReviewType> items = model.Select(o => new CaseReview.DataLayer.Models.CaseReviewType { ID = o}).ToList();
+            crtLogic.UpdateReorder(items);
+            var json = jsonSerializer.Serialize(model);
+            return Request.CreateResponse(HttpStatusCode.OK, json);
+        }
+
+        
+
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Authorize]
+        public HttpResponseMessage updateSection(BaseModel model)
+        {
+            secLogic.UpdateActive(new CaseReview.DataLayer.Models.Section()
+            {
+                ID = model.ID,
+                IsActive = model.IsActive
+            });
+            var json = jsonSerializer.Serialize(model);
+            return Request.CreateResponse(HttpStatusCode.OK, json);
+        }
+
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Authorize]
+        public HttpResponseMessage addSection(BaseModel model)
+        {
+            var newModel = secLogic.Add(new CaseReview.DataLayer.Models.Section()
+            {
+                ID = Guid.Empty,
+                IsActive = model.IsActive,
+                DisplayOrder = model.DisplayOrder,
+                SectionName = model.Name
+            });
+            model.ID = newModel.ID;
+            var json = jsonSerializer.Serialize(model);
+            return Request.CreateResponse(HttpStatusCode.OK, json);
+        }
+
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Authorize]
+        public HttpResponseMessage reorderSections([FromBody]string body)
+        {
+            var model = jsonSerializer.Deserialize<List<Guid>>(body);
+            List<CaseReview.DataLayer.Models.Section> items = model.Select(o => new CaseReview.DataLayer.Models.Section { ID = o }).ToList();
+            secLogic.UpdateReorder(items);
+            var json = jsonSerializer.Serialize(model);
+            return Request.CreateResponse(HttpStatusCode.OK, json);
+        }
+
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Authorize]
+        public HttpResponseMessage test([FromBody]string body)
+        {
+            List<int> items = new List<int>();
+            items.Add(1);
+            items.Add(2);
+            var json = jsonSerializer.Serialize(items);
+            return Request.CreateResponse(HttpStatusCode.OK, json);
+        }
+
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Authorize]
+        public HttpResponseMessage UpdateCaseReviewTypeSection(Models.Api.UpdateCaseReviewTypeSection model)
+        {
+            genLogic.UpdateCaseReviewTypeSection(model.CaseReviewTypeID, model.SectionID, model.IsIncluded);
+            var json = jsonSerializer.Serialize(model);
+            return Request.CreateResponse(HttpStatusCode.OK, json);
+        }
+    }
+}

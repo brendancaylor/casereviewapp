@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="CaseReviewsContext-Web.config Connection String" description="CaseReviewsContext Connection String used in web.config by the application to access the database." defaultValue="&#xD;&#xA;         Server=tcp:incontrol.database.windows.net,1433;Data Source=incontrol.database.windows.net;Initial Catalog=casereview;Persist Security Info=False;User ID=compliance;Password=INcontrol34;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\BrensDevFiles\\\$CaseReviewWorkSheet\\casereviewapp\\CaseReview\.WebApp\\obj\\ReleaseAzure\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CaseReviewsContext']/@connectionString" />
+  </parameter>
+</parameters>

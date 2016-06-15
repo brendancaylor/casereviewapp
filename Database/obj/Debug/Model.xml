@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<DataSchemaModel FileFormatVersion="1.2" SchemaVersion="2.4" DspName="Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider" CollationLcid="1033" CollationCaseSensitive="False" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+<DataSchemaModel FileFormatVersion="1.2" SchemaVersion="2.4" DspName="Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider" CollationLcid="1033" CollationCaseSensitive="False" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
 	<Header>
 		<CustomData Category="AnsiNulls">
 			<Metadata Name="AnsiNulls" Value="True" />
@@ -8,7 +8,7 @@
 			<Metadata Name="QuotedIdentifier" Value="True" />
 		</CustomData>
 		<CustomData Category="CompatibilityMode">
-			<Metadata Name="CompatibilityMode" Value="110" />
+			<Metadata Name="CompatibilityMode" Value="130" />
 		</CustomData>
 		<CustomData Category="Reference" Type="Assembly">
 			<Metadata Name="LogicalName" Value="Database.dll" />
@@ -34,14 +34,122 @@
 			<Property Name="IsConcatNullYieldsNullOn" Value="True" />
 			<Property Name="IsTornPageProtectionOn" Value="False" />
 			<Property Name="IsFullTextEnabled" Value="True" />
+			<Property Name="CompatibilityMode" Value="130" />
 			<Property Name="PageVerifyMode" Value="3" />
 			<Property Name="DefaultLanguage" Value="" />
 			<Property Name="DefaultFullTextLanguage" Value="" />
-			<Relationship Name="DefaultFilegroup">
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[newsequentialid()]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
 				<Entry>
-					<References ExternalSource="BuiltIns" Name="[PRIMARY]" />
+					<References Name="[dbo].[SectionCaseReviewType]" />
 				</Entry>
 			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[SectionCaseReviewType].[ID]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="3" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[newsequentialid()]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[CaseReviewType]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[CaseReviewType].[ID]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[newsequentialid()]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[StandardLine]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[StandardLine].[Id]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="5" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[newsequentialid()]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Answer]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[Answer].[ID]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="6" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[newsequentialid()]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Question]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[Question].[ID]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="7" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[newsequentialid()]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Section]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[Section].[ID]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="8" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[newsequentialid()]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[CaseReviewWorkSheet]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[CaseReviewWorkSheet].[ID]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="9" />
 		</Element>
 		<Element Type="SqlDefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -57,7 +165,7 @@
 					<References Name="[dbo].[CaseReviewWorkSheet].[Type]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="3" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="10" />
 		</Element>
 		<Element Type="SqlDefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -73,58 +181,23 @@
 					<References Name="[dbo].[CaseReviewWorkSheet].[IsCompleted]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="11" />
 		</Element>
 		<Element Type="SqlDefaultConstraint">
 			<Property Name="DefaultExpressionScript">
-				<Value><![CDATA[1]]></Value>
+				<Value><![CDATA[newsequentialid()]]></Value>
 			</Property>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[dbo].[CaseReviewType]" />
+					<References Name="[dbo].[Staff]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="ForColumn">
 				<Entry>
-					<References Name="[dbo].[CaseReviewType].[DisplayOrder]" />
+					<References Name="[dbo].[Staff].[ID]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="5" />
-		</Element>
-		<Element Type="SqlDefaultConstraint">
-			<Property Name="DefaultExpressionScript">
-				<Value><![CDATA[1]]></Value>
-			</Property>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[CaseReviewType]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForColumn">
-				<Entry>
-					<References Name="[dbo].[CaseReviewType].[IsActive]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="6" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[StandardLine].[Id]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[StandardLine]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="7" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="12" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -143,7 +216,7 @@
 					<References Name="[dbo].[SectionCaseReviewType]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="8" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="13" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -162,7 +235,26 @@
 					<References Name="[dbo].[CaseReviewType]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="9" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="14" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[StandardLine].[Id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[StandardLine]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="15" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Answer]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -181,6 +273,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
+						<AttachedAnnotation Disambiguator="6" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -253,9 +346,9 @@
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="10" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="11" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="12" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="16" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="17" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="18" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[CaseReviewType]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -263,19 +356,19 @@
 				<Entry>
 					<Element Type="SqlSimpleColumn" Name="[dbo].[CaseReviewType].[ID]">
 						<Property Name="IsNullable" Value="False" />
-						<Property Name="IsIdentity" Value="True" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[int]" />
+											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
 										</Entry>
 									</Relationship>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="9" />
+						<AttachedAnnotation Disambiguator="14" />
+						<AttachedAnnotation Disambiguator="4" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -309,7 +402,6 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="5" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -326,7 +418,6 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="6" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -353,6 +444,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
+						<AttachedAnnotation Disambiguator="9" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -373,13 +465,12 @@
 				</Entry>
 				<Entry>
 					<Element Type="SqlSimpleColumn" Name="[dbo].[CaseReviewWorkSheet].[CaseReviewTypeID]">
-						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[int]" />
+											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -451,7 +542,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="3" />
+						<AttachedAnnotation Disambiguator="10" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -468,7 +559,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="4" />
+						<AttachedAnnotation Disambiguator="11" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -477,9 +568,9 @@
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="13" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="14" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="15" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="19" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="20" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="21" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Answer_CaseReviewWorkSheet]">
 			<Relationship Name="Columns">
@@ -502,7 +593,7 @@
 					<References Name="[dbo].[CaseReviewWorkSheet]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="11" />
+			<AttachedAnnotation Disambiguator="17" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Answer_Question]">
 			<Relationship Name="Columns">
@@ -525,7 +616,7 @@
 					<References Name="[dbo].[Question]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="12" />
+			<AttachedAnnotation Disambiguator="18" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_CaseReviewWorkSheet_CaseReviewType]">
 			<Relationship Name="Columns">
@@ -548,7 +639,7 @@
 					<References Name="[dbo].[CaseReviewType]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="15" />
+			<AttachedAnnotation Disambiguator="21" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_CaseReviewWorkSheet_Staff]">
 			<Relationship Name="Columns">
@@ -571,7 +662,7 @@
 					<References Name="[dbo].[Staff]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="14" />
+			<AttachedAnnotation Disambiguator="20" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Question_Section]">
 			<Relationship Name="Columns">
@@ -594,7 +685,7 @@
 					<References Name="[dbo].[Section]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="16" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="22" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_SectionCaseReviewType_CaseReviewType]">
 			<Relationship Name="Columns">
@@ -617,7 +708,7 @@
 					<References Name="[dbo].[CaseReviewType]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="17" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="23" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_SectionCaseReviewType_Section]">
 			<Relationship Name="Columns">
@@ -640,7 +731,7 @@
 					<References Name="[dbo].[Section]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="18" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="24" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[dbo].[PK_Answer]">
 			<Relationship Name="ColumnSpecifications">
@@ -659,7 +750,7 @@
 					<References Name="[dbo].[Answer]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="10" />
+			<AttachedAnnotation Disambiguator="16" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[dbo].[PK_CaseReviewWorkSheet]">
 			<Relationship Name="ColumnSpecifications">
@@ -678,7 +769,7 @@
 					<References Name="[dbo].[CaseReviewWorkSheet]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="13" />
+			<AttachedAnnotation Disambiguator="19" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[dbo].[PK_Question]">
 			<Relationship Name="ColumnSpecifications">
@@ -697,7 +788,7 @@
 					<References Name="[dbo].[Question]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="19" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="25" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[dbo].[PK_Section]">
 			<Relationship Name="ColumnSpecifications">
@@ -716,7 +807,7 @@
 					<References Name="[dbo].[Section]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="20" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="26" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint" Name="[dbo].[PK_Staff]">
 			<Relationship Name="ColumnSpecifications">
@@ -735,7 +826,7 @@
 					<References Name="[dbo].[Staff]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="21" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="27" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Question]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -754,6 +845,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
+						<AttachedAnnotation Disambiguator="7" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -821,14 +913,44 @@
 						</Relationship>
 					</Element>
 				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Question].[IsMandatory]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Question].[Risk]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
 			</Relationship>
 			<Relationship Name="Schema">
 				<Entry>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="19" />
-			<AttachedAnnotation Disambiguator="16" />
+			<AttachedAnnotation Disambiguator="25" />
+			<AttachedAnnotation Disambiguator="22" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Section]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -847,6 +969,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
+						<AttachedAnnotation Disambiguator="8" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -904,7 +1027,7 @@
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="20" />
+			<AttachedAnnotation Disambiguator="26" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[SectionCaseReviewType]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -923,7 +1046,8 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="8" />
+						<AttachedAnnotation Disambiguator="13" />
+						<AttachedAnnotation Disambiguator="3" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -950,7 +1074,7 @@
 								<Element Type="SqlTypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[int]" />
+											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -964,8 +1088,8 @@
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="18" />
-			<AttachedAnnotation Disambiguator="17" />
+			<AttachedAnnotation Disambiguator="24" />
+			<AttachedAnnotation Disambiguator="23" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Staff]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -984,6 +1108,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
+						<AttachedAnnotation Disambiguator="12" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1026,7 +1151,7 @@
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="21" />
+			<AttachedAnnotation Disambiguator="27" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[StandardLine]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -1045,7 +1170,8 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="7" />
+						<AttachedAnnotation Disambiguator="15" />
+						<AttachedAnnotation Disambiguator="5" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1086,6 +1212,7 @@ SELECT
 	, Staff.StaffSurname
 	, Section.DisplayOrder AS SectionOrder
 	, Question.DisplayOrder AS QuestionOrder
+	, Comments
 	
 	FROM Answer
 	INNER JOIN Question ON Answer.QuestionID = Question.ID
@@ -1160,6 +1287,15 @@ SELECT
 						</Relationship>
 					</Element>
 				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vwNonCompliant].[Comments]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[Answer].[Comments]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
 			</Relationship>
 			<Relationship Name="QueryDependencies">
 				<Entry>
@@ -1223,6 +1359,9 @@ SELECT
 					<References Name="[dbo].[Question].[DisplayOrder]" />
 				</Entry>
 				<Entry>
+					<References Name="[dbo].[Answer].[Comments]" />
+				</Entry>
+				<Entry>
 					<References Name="[dbo].[Answer].[Compliant]" />
 				</Entry>
 			</Relationship>
@@ -1232,7 +1371,7 @@ SELECT
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="704" />
+				<Property Name="Length" Value="717" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE VIEW [dbo].[vwNonCompliant]&#xD;&#xA;&#x9;AS" />
