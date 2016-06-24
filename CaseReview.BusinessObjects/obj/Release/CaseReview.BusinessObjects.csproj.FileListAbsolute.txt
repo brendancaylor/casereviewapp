@@ -1,0 +1,5 @@
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessObjects\bin\Release\CaseReview.BusinessObjects.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessObjects\bin\Release\CaseReview.BusinessObjects.pdb
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessObjects\obj\Release\CaseReview.BusinessObjects.csprojResolveAssemblyReference.cache
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessObjects\obj\Release\CaseReview.BusinessObjects.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessObjects\obj\Release\CaseReview.BusinessObjects.pdb

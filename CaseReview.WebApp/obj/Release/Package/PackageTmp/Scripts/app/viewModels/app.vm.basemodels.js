@@ -6,15 +6,23 @@
     ) {
     var self = this;
     self.ID = ko.observable(id);
-    self.Name = ko.observable(name);
     self.DisplayOrder = ko.observable(displayOrder);
     self.IsActive = ko.observable(isActive);
+    self.Name = ko.observable(name).extend({
+        confirmable: {
+            message: "Are you really sure you want to update this? This will affect all existing answers related to this record!", callback:
+                function () {
+                    updateBaseModel(self);
+                }
+        }
+    });
 
     self.IsActive.subscribe(
         function (newValue) {
-            updateBaseModel(newValue, self);
+            updateBaseModel(self);
         }
     );
+
 
 }
 
@@ -25,6 +33,8 @@ $(function() {
     vm.forceUpdate = ko.observable("");
     vm.isEditMode = ko.observable(false);
     vm.BaseModels = ko.observableArray();
+    
+    vm.AddButtonDisabled = ko.observable(false);
 
     vm.SortedBaseModels = ko.computed(function () {
         var test = vm.forceUpdate();

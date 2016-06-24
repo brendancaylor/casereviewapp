@@ -47,7 +47,8 @@ $(function () {
     var ld = localData;
     var vm = app.viewmodel;
     vm.Sections = ko.mapping.fromJS(ld);
-
+    vm.AddButtonDisabled = ko.observable(false);
+    
     vm.Sections().forEach(function (section) {        
 
         section.Questions().forEach(function (question) {

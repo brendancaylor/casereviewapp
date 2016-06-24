@@ -33,6 +33,8 @@ $(function() {
     vm.forceUpdate = ko.observable("");
     vm.isEditMode = ko.observable(false);
     vm.BaseModels = ko.observableArray();
+    
+    vm.AddButtonDisabled = ko.observable(false);
 
     vm.SortedBaseModels = ko.computed(function () {
         var test = vm.forceUpdate();

@@ -205,3 +205,5 @@ C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\Micros
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\obj\Release\CaseReview.WebApp.csprojResolveAssemblyReference.cache
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\obj\Release\CaseReview.WebApp.dll
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\obj\Release\CaseReview.WebApp.pdb
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\CaseReview.BusinessObjects.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\CaseReview.BusinessObjects.pdb

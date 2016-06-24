@@ -48,7 +48,9 @@
 
     $('#inpAdd').keypress(function (event) {
         if (event.keyCode == 13) {
-            addNew();
+            if (!app.viewmodel.AddButtonDisabled()) {
+                addNew();
+            }
         }
     });
 
@@ -101,6 +103,8 @@ function update(obj, propBeingUpdated) {
 }
 
 function addNew() {
+    var vm = app.viewmodel;
+    vm.AddButtonDisabled(true);
     var newItem = $("#inpAdd").val();
     if (newItem == "") {
         return;
@@ -127,12 +131,13 @@ function addNew() {
             app.viewmodel.add(obj);
             app.helpers.showSavedNotification("Added :-)");
             $("#inpAdd").val("");
+            vm.AddButtonDisabled(false);
         },
 
         function (callback) {
             // error
-
             app.helpers.showErrorNotification("ooops :-(");
+            vm.AddButtonDisabled(false);
         }
 
     );

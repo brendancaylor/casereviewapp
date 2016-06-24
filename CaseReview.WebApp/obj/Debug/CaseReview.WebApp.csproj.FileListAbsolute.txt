@@ -72,6 +72,7 @@ C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\CaseRe
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\CaseReview.WebApp.pdb
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\Antlr3.Runtime.dll
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\CaseReview.BusinessLogic.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\CaseReview.BusinessObjects.dll
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\CaseReview.DataLayer.dll
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\EntityFramework.dll
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\EntityFramework.SqlServer.dll
@@ -104,7 +105,10 @@ C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\System
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\System.Web.WebPages.Razor.dll
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\WebGrease.dll
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\CaseReview.BusinessLogic.pdb
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\CaseReview.BusinessObjects.pdb
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\CaseReview.DataLayer.pdb
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\EntityFramework.xml
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\EntityFramework.SqlServer.xml
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\PagedList.xml
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\PagedList.Mvc.xml
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\System.Net.Http.Formatting.xml
@@ -119,8 +123,6 @@ C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\System
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\System.Web.WebPages.Razor.xml
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\Antlr3.Runtime.pdb
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\Newtonsoft.Json.xml
-C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\EntityFramework.xml
-C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\EntityFramework.SqlServer.xml
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\Microsoft.AspNet.Identity.Core.xml
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\Microsoft.AspNet.Identity.EntityFramework.xml

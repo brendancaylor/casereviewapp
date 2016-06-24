@@ -60,7 +60,7 @@
 
         <div style="margin: 5px 20px 20px 20px;" class="list-group" data-bind="foreach: Questions, visible: !$root.isEditMode()">
             <div class="row list-group-item " data-bind="css: {'disabled' : !IsActive() }">
-                <div class="col-xs-6" data-bind="text: QuestionName"></div>
+                <div class="col-xs-12" data-bind="text: QuestionName"></div>
             </div>
         </div>
 
@@ -96,9 +96,11 @@
         </div>
 
         <div class="input-group" data-bind="visible: $root.isEditMode">
-            <input class="form-control input-group" type="text" id="inpAdd" placeholder="Add a new question">
+            <input class="form-control input-group" type="text" id="inpAdd" placeholder="Add a new question"
+                   data-bind="disable : $root.AddButtonDisabled()"
+                   >
             <span class="input-group-btn">
-                <button type="button" class="btn btn-success" onclick="addNew();">
+                <button type="button" class="btn btn-success" onclick="addNew();" data-bind="disable : $root.AddButtonDisabled()">
                     <i class="fa fa-plus cursorPointer" aria-hidden="true"></i>
                 </button>
             </span>

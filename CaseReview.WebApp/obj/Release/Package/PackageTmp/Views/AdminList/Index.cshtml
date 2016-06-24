@@ -8,7 +8,7 @@
 
 <div style="display: none; " data-bind='visible: isBound'>
 
-    <div style="margin: 50px 0 20px 0;clear: both;">
+    <div style="margin: 20px 0 20px 0;clear: both;">
             <button type="button" class="btn btn-success"
                         data-bind='click: swapEditMode, visible: !isEditMode()'
                     >Edit this list</button>
@@ -35,7 +35,7 @@
 
             <div class="row" data-bind="visible: $root.isEditMode" style="padding: 3px 20px;">
                 
-                <div style="width: 65px; float: left;">Active</div>
+                <div style="width: 105px; float: left;">Active</div>
                 <div style="width: 100px; float: left;">Name</div>
                 <div style="width: auto; float: right; margin-right: 10px;">Sort</div>
 
@@ -55,7 +55,7 @@
                         </div>
 
                         <div class="col-xs-8">
-                            <span data-bind="text: Name"></span>
+                            <input type="text" data-bind="value: Name" class="form-control editInlineInput" />
                         </div>
                         <div class="col-xs-3">
                             <span class="pull-right">
@@ -70,9 +70,11 @@
             </div>
 
             <div class="input-group" data-bind="visible: isEditMode">
-                <input class="form-control input-group" type="text" id="inpAddBaseModel" placeholder="Add a new item .... (once added it cannot be renamed or removed)">
+                <input class="form-control input-group" type="text" id="inpAddBaseModel" placeholder="Add a new item"
+                        data-bind="disable : $root.AddButtonDisabled()"
+                       >
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-success" onclick="addNewBaseModel();">
+                    <button type="button" class="btn btn-success" onclick="addNewBaseModel();"  data-bind="disable : $root.AddButtonDisabled()">
                         <i class="fa fa-plus cursorPointer" aria-hidden="true"></i>
                     </button>
                 </span>

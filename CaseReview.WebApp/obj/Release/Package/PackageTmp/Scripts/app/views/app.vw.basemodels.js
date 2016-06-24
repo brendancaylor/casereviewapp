@@ -46,7 +46,9 @@
 
     $('#inpAddBaseModel').keypress(function (event) {
         if (event.keyCode == 13) {
-            addNewBaseModel();
+            if (!app.viewmodel.AddButtonDisabled()) {
+                addNewBaseModel();
+            }
         }
     });
 
@@ -69,11 +71,12 @@ function reorderBaseModels(ids) {
     );
 }
 
-function updateBaseModel(newvalue, obj) {
+function updateBaseModel(obj, propBeingUpdated) {
 
     var data = {
         ID: obj.ID(),
-        IsActive: newvalue
+        Name: obj.Name(),
+        IsActive: obj.IsActive()
     };
 
     app.api.callApi(data, urlApiUpdate, true,
@@ -102,6 +105,7 @@ function addNewBaseModel() {
         IsActive: true,
         DisplayOrder: app.viewmodel.BaseModels().length + 1
     };
+    app.viewmodel.AddButtonDisabled(true);
 
     app.api.callApi(data, urlApiAdd, true,
         function (callbackData) {
@@ -110,12 +114,13 @@ function addNewBaseModel() {
             app.viewmodel.add(obj);
             app.helpers.showSavedNotification("Added :-)");
             $("#inpAddBaseModel").val("");
+            app.viewmodel.AddButtonDisabled(false);
         }, 
         
         function (callback) {
             // error
-
             app.helpers.showErrorNotification("ooops :-(");
+            app.viewmodel.AddButtonDisabled(false);
         }
         
     );

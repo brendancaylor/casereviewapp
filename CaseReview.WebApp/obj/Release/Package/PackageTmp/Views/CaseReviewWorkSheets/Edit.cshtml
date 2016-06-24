@@ -121,7 +121,7 @@
         <table class="table table-bordered table-hover">
             <thead>
                 <tr class="success">
-                    <th style="width: 30%;">
+                    <th colspan="2" style="width: 30%;">
                         Question
                     </th>
                     <th style="width: 55%;">
@@ -139,6 +139,30 @@
                     <tr style="cursor: pointer;" data-toggle="modal" data-target="#myModal" onclick="loadModal(this)" id="@answer.ID">
                         <td>
                             @answer.Question.QuestionName
+                        </td>
+                        <td class="small" style="line-height: 14px;">
+                            @if (answer.Question.IsMandatory.HasValue)
+                            {
+                                <text>
+                                    @(answer.Question.IsMandatory.Value == true ? "Mandatory" : "NM")
+                                </text>
+                            }
+                            @if (answer.Question.Risk.HasValue)
+                            {
+                                <br />
+                                switch (answer.Question.Risk.Value)
+                                {
+                                    case 1:
+                                        <text>low risk</text>
+                                        break;
+                                    case 2:
+                                        <text>medium risk</text>
+                                        break;
+                                    case 3:
+                                        <text>high risk</text>
+                                        break;
+                                }
+                            }
                         </td>
                         <td>@Html.Raw(answer.Comments.Replace("\n", "<br />"))</td>
                         <td>
@@ -162,10 +186,12 @@
 
     </div>
 
-    
+
+
  }
-                    
-                    
+
+
+
                 </div>
             </div>
 
@@ -175,37 +201,6 @@
 
     </div>
 
-        @*
-                
-
-
-            @foreach (var sectionAnswer in Model.SectionAnswers)
-            {
-                iLoop++;
-                if (iLoop != 1)
-                {
-                    activeCss = "";
-                }
-                //expanded="true"
-
-                <div class="panel-group" id="sections" role="tablist" aria-multiselectable="true" style="margin-bottom: 20px;">
-
-                    <div class="panel panel-info">
-                        <div class="panel-heading cursorPointer" role="tab" data-toggle="collapse" data-parent="#sections" data-target="#@sectionAnswer.ID">
-                            @sectionAnswer.SectionName
-                        </div>
-
-                        <div id="@sectionAnswer.ID" class="panel-collapse collapse @activeCss" role="tabpanel">
-                            <div class="panel-body">
-
-                                
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            }
-        *@
         <div class="form-group">
             <div class="col-md-10">
                 <input type="submit" value="Save" class="btn btn-primary" />

@@ -1,0 +1,474 @@
+﻿@model CaseReview.WebApp.Models.ReportStaffSections
+
+@{
+    ViewBag.Title = "Compliance Stats";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row x_title">
+    <div class="col-xs-6">
+        <h3>Compliance Stats</h3>
+    </div>
+    <div class="col-xs-6">
+        
+
+    </div>
+</div>
+
+<div class="row">
+
+
+    <div class="col-xs-12 col-sm-12 col-xs-12">
+        <div class="x_panel fixed_height_320_">
+            <div class="x_title">
+                <h2>Filter data</h2>
+
+
+                <ul class="nav navbar-right panel_toolbox" style="min-width: 0;">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                <!-- Filter Line 1 -->
+                <div class="row">
+
+                    <div class="col-xs-6">
+                        <div class="row">
+                            <div class="col-xs-4">Date Range</div>
+
+                            <div class="col-xs-8">
+
+                                <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                    <span></span> <b class="caret"></b>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+
+                        <div class="col-xs-4">Display by</div>
+
+                        <div class="col-xs-8">
+                            <select class="form-control valid" data-val="true" data-val-required="The Display By field is required." id="DisplayBy" name="DisplayBy">
+                                <option>Staff and then Section</option>
+                                <option>Section and then Staff</option>
+                            </select>
+                            <span class="text-danger field-validation-valid" data-valmsg-for="DisplayBy" data-valmsg-replace="true"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- / Filter Line 1 -->
+
+                <div class="row" style="margin-top: 20px;">
+
+                    <!-- Staff -->
+                    <div class="col-xs-6">
+
+                        <!-- Staff filter  -->
+                        <div class="row">
+
+                            <div class="col-xs-4" style="font-size: 1.5em;">Staff</div>
+                            <div class="col-xs-8">
+                                <div class="pull-right">
+                                    <label>
+                                        <input type="radio" name="staffComb" checked value="Combine Data" />
+                                        Combine Data
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="staffComb" value="Separate Data" />
+                                        Separate Data
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Staff list -->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <ul class="list-group" data-bind="foreach: Staffs, visible: !$root.isEditMode()">
+
+                                    <li class="list-group-item " data-bind="css: {'disabled' : !IsActive() }">
+
+                                        <label class="styled2CheckBoxLabel" style="margin: -10px 0 -10px -20px;" data-bind="css: IsActive() ? 'on' : '' ">
+                                            <input type="checkbox"> &nbsp;&nbsp;All Staff Members
+                                        </label>
+
+
+                                        <i class="caret pull-right" style="margin-top: 7px;"></i>
+                                    </li>
+
+                                    @for (int i = 0; i < 8; i++)
+                                    {
+                                        var isChecked = "";
+                                        if(i >= 4 && i <= 5)
+                                        {
+                                            isChecked = "on";
+                                        }
+                                            <li class="list-group-item " data-bind="css: {'disabled' : !IsActive() }">
+
+                                                <label class="styled2CheckBoxLabel @isChecked" style="margin: -10px 0 -10px -20px;" data-bind="css: IsActive() ? 'on' : '' ">
+                                                    <input type="checkbox" > &nbsp;&nbsp;Some Staffperson-@i
+                                                </label>
+
+                                            </li>
+                                        
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /Staff list -->
+
+                    </div>
+                    <!-- / Staff -->
+                    <!-- Section -->
+                    <div class="col-xs-6">
+
+                        <!-- Section filter  -->
+                        <div class="row">
+
+                            <div class="col-xs-4" style="font-size: 1.5em;">Sections</div>
+                            <div class="col-xs-8">
+                                <div class="pull-right">
+                                    <label>
+                                        <input type="radio" name="SectionComb" checked value="Combine Data" />
+                                        Combine Data
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="SectionComb" value="Separate Data" />
+                                        Separate Data
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Section list -->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <ul class="list-group" data-bind="foreach: Sections, visible: !$root.isEditMode()">
+
+                                    <li class="list-group-item " data-bind="css: {'disabled' : !IsActive() }">
+
+                                        <label class="styled2CheckBoxLabel" style="margin: -10px 0 -10px -20px;" data-bind="css: IsActive() ? 'on' : '' ">
+                                            <input type="checkbox" checked> &nbsp;&nbsp;All Sections
+                                        </label>
+                                        <i class="caret pull-right" style="margin-top: 7px;"></i>
+                                    </li>
+
+                                    @for (int i = 0; i < 8; i++)
+                                    {
+                                        var isChecked = "";
+                                        if (i >= 2 && i <= 3)
+                                        {
+                                            isChecked = "on";
+                                        }
+                                        
+                                            <li class="list-group-item " data-bind="css: {'disabled' : !IsActive() }">
+
+                                                <label class="styled2CheckBoxLabel @isChecked" style="margin: -10px 0 -10px -20px;" data-bind="css: IsActive() ? 'on' : '' ">
+                                                    <input type="checkbox" checked> &nbsp;&nbsp;Some Section-@i
+                                                </label>
+
+                                            </li>
+
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /Section list -->
+
+                    </div>
+                    <!-- / Section -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    @foreach (CaseReview.WebApp.Models.ReportItem repItem in Model.ReportItems)
+    {
+        <div class="col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>
+                        @repItem.ReportItemTitle
+                    </h2>
+
+                    <ul class="nav navbar-right panel_toolbox" style="min-width: 0;">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+
+                </div>
+                <div class="x_content row">
+                    <div class="col-sm-12 col-md-4">
+                        <canvas id="@repItem.PieChart.CanvasId"  height="250"></canvas>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <canvas id="@repItem.LineChartPercNo.CanvasId" height="250"></canvas>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <canvas id="@repItem.LineChartNumberAnswered.CanvasId" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        var options = {
+        };
+
+        @foreach (var item in Model.ReportItems)
+        {
+<text>
+
+        /* START PIE */
+        var @item.PieChart.CanvasId = document.getElementById("@item.PieChart.CanvasId");
+
+        var data_@item.PieChart.CanvasId = {
+            labels: [
+
+                @foreach(var label in item.PieChart.Labels)
+                {
+                    <text>
+                        "@label",
+                    </text>
+                }
+            ],
+            datasets: [
+                {
+                    data: [
+                    @foreach (var data in item.PieChart.Data)
+                    {
+
+                        <text>
+                            @data,
+                        </text>
+                    }]
+                    , backgroundColor: ["#33a653","#d6463d"]
+                    , hoverBackgroundColor: ["#33a653","#d6463d"]
+                }]
+        };
+
+        var pieChart_@item.PieChart.CanvasId = new Chart(@item.PieChart.CanvasId, {
+            type: 'pie',
+            data: data_@item.PieChart.CanvasId,
+            options: options
+        });
+
+        /* END PIE */
+
+        /* START LineChartPercNo  */
+        var @item.LineChartPercNo.CanvasId = document.getElementById("@item.LineChartPercNo.CanvasId");
+
+        var data_@item.LineChartPercNo.CanvasId = {
+
+            labels: [
+
+                @foreach(var label in item.LineChartPercNo.Labels)
+                {
+                    <text>
+                        "@label",
+                    </text>
+                }
+            ],
+            datasets: [
+
+                {
+                    label: "Percentage Non Compliant",
+                    fill: true,
+                    backgroundColor: "rgba(214,70,61,0.4)",
+                    borderColor: "rgba(214,70,61,1)",
+                    pointBorderColor: "rgba(214,70,61,1)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 5,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(214,70,61,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 5,
+                    pointRadius: 2,
+                    pointHitRadius: 10,
+
+                    data: [
+                    @foreach (var data in item.LineChartPercNo.Data)
+                    {
+
+                        <text>
+                            @data,
+                        </text>
+                    }
+                    ]
+                }
+            ]
+        };
+
+        var lineChart_@item.LineChartPercNo.CanvasId = new Chart(@item.LineChartPercNo.CanvasId, {
+            type: 'line',
+            data: data_@item.LineChartPercNo.CanvasId,
+            options: options
+        });
+
+
+        /* END LineChartPercNo  */
+
+        /* START LineChartNumberAnswered  */
+        var @item.LineChartNumberAnswered.CanvasId = document.getElementById("@item.LineChartNumberAnswered.CanvasId");
+
+        var data_@item.LineChartNumberAnswered.CanvasId = {
+
+            labels: [
+
+                @foreach(var label in item.LineChartNumberAnswered.Labels)
+            {
+                    <text>
+                        "@label",
+                    </text>
+                }
+                ],
+                    datasets: [
+
+                        {
+                            label: "Number Answered",
+                            fill: true,
+                            backgroundColor: "rgba(51,166,83,0.4)",
+                            borderColor: "rgba(51,166,83,1)",
+                            pointBorderColor: "rgba(51,166,83,1)",
+                            pointBackgroundColor: "#fff",
+                            pointBorderWidth: 5,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(51,166,83,1)",
+                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                            pointHoverBorderWidth: 5,
+                            pointRadius: 2,
+                            pointHitRadius: 10,
+
+
+                            data: [
+                            @foreach (var data in item.LineChartNumberAnswered.Data)
+                            {
+
+                                <text>
+                                    @data,
+                                </text>
+                    }
+                    ]
+        }
+        ]
+        };
+
+        var lineChart_@item.LineChartNumberAnswered.CanvasId = new Chart(@item.LineChartNumberAnswered.CanvasId, {
+            type: 'line',
+            data: data_@item.LineChartNumberAnswered.CanvasId,
+            options: options
+        });
+
+
+        /* END LineChartNumberAnswered  */
+
+</text>
+}
+
+
+        //bootstrap-daterangepicker -->
+
+        $(document).ready(function() {
+
+            var cb = function(start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            };
+
+            var optionSet1 = {
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment(),
+                minDate: '01/01/2014',
+                maxDate: '31/12/2020',
+                //dateLimit: {days: 60},
+                showDropdowns: true,
+                showWeekNumbers: true,
+                timePicker: false,
+                timePickerIncrement: 1,
+                timePicker12Hour: true,
+                ranges: {
+                    //'Today': [moment(), moment()],
+                    //'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'All of time': [moment().subtract(99, 'years'), moment()],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                opens: 'left',
+                buttonClasses: ['btn btn-default'],
+                applyClass: 'btn-small btn-primary',
+                cancelClass: 'btn-small',
+                format: 'DD/MM/YYYY',
+                separator: ' to ',
+                locale: {
+                    applyLabel: 'Submit',
+                    cancelLabel: 'Clear',
+                    fromLabel: 'From',
+                    toLabel: 'To',
+                    customRangeLabel: 'Custom',
+                    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                    monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    firstDay: 1
+                }
+            };
+            $('#reportrange span').html(moment().subtract(29, 'days').format('D MMMM, YYYY') + ' - ' + moment().format('D MMMM, YYYY'));
+            $('#reportrange').daterangepicker(optionSet1, cb);
+            $('#reportrange').on('show.daterangepicker', function() {
+                console.log("show event fired");
+            });
+            $('#reportrange').on('hide.daterangepicker', function() {
+                console.log("hide event fired");
+            });
+            $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+                console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+            });
+            $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
+                console.log("cancel event fired");
+            });
+            $('#options1').click(function() {
+                $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+            });
+            $('#options2').click(function() {
+                $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+            });
+            $('#destroy').click(function() {
+                $('#reportrange').data('daterangepicker').remove();
+            });
+        });
+
+        //bootstrap-daterangepicker
+
+
+
+
+    </script>
+}

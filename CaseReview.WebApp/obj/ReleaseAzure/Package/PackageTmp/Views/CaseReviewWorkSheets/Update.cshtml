@@ -1,0 +1,314 @@
+﻿@using CaseReview.DataLayer.Models
+@model CaseReview.WebApp.Models.CaseReviewWorkSheet
+
+@{
+    ViewBag.Title = "Update Case Review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>
+    @Html.DisplayFor(model => model.CaseReviewTypeName)
+</h3>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            <label for="StaffID" class="control-label col-md-2">Staff</label>
+
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.StaffID, Model.StaffMembers, null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StaffID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ClientRef, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ClientRef, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ClientRef, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Reviewer, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Reviewer, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Reviewer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ReviewedDate">Reviewed Date</label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ReviewedDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ReviewedDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        @Html.HiddenFor(model => model.CaseReviewTypeID)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsCompleted, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.IsCompleted, new { htmlAttributes = new { @class = "form-control_" } })
+                @Html.ValidationMessageFor(model => model.IsCompleted, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+        <br />
+
+        <div class="x_panel">
+            <div class="x_content">
+
+                <div class="col-xs-3">
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs tabs-left" data-bind="foreach: Sections">
+                        <li data-bind="css: IsActive() == true ? 'active': ''">
+                            <a data-bind="attr: {'href': '#' + ID}, text: SectionName, click: $root.selectSection"
+                                data-toggle="tab"></a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="col-xs-9">
+                    
+                    <!-- Tab panes -->
+
+                    <!-- foreach sections -->
+                    <div class="tab-content" data-bind="foreach: Sections">
+                        
+                        <div class="tab-pane " data-bind="attr: {'id': ID}, css: IsActive() == true ? 'active': ''">
+                
+                            <div class="btn-group" style="margin: 10px 0;">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Select <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="javascript: app.view.selectAll();">Select all in this section</a></li>
+                                    <li><a href="javascript: app.view.selectUnanswered();">Select all unanswered in this section</a></li>
+                                    <li><a href="javascript: app.view.deselectAll();">Deselect all</a></li>
+                                </ul>
+
+                                <button type="button" class="btn btn-primary"
+                                        onclick="app.view.showModalForManyAnswers();"
+                                        >Answer</button>
+
+                            </div>
+                            
+                            
+
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr class="success">
+                                        <th>
+                    
+                                        </th>
+                                        <th colspan="2" style="width: 30%;">
+                                            Question
+                                        </th>
+                                        <th style="width: 55%;">
+                                            Comments
+                                        </th>
+                                        <th style="width: 10%;">
+                                            Compliant
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                            <!-- foreach : Answers -->
+                            <tbody data-bind="foreach : Answers">
+                                <tr data-bind="css: IsActive() ? 'active' : ''" >
+                                    <td>
+                                        <label class="styled2CheckBoxLabel"
+                                               data-bind="css: IsActive() ? 'on' : '' ">
+                                            <input type="checkbox" data-bind="checked: IsActive" />
+                                        </label>
+                                    </td>
+                                    <td style="cursor: pointer;"
+                                        data-bind="click: $root.showAnswerModal, text: QuestionName"
+                                        > </td>
+                                    <td
+                                        style="cursor: pointer;"
+                                        data-bind="click: $root.showAnswerModal"
+                                        >
+                                        <span data-bind="text: IsMandatory" style="line-height: 14px;">
+
+                                        </span>
+
+                                        <span data-bind="text: Risk" style="line-height: 14px;">
+
+                                        </span>
+                                    </td>
+                                    
+                                    <td 
+                                        style="cursor: pointer;"
+                                        data-bind="click: $root.showAnswerModal, html: CommentsFormatted"> </td>
+                                    <td data-bind="click: $root.showAnswerModal, text: CompliantText"> </td>
+                            @*
+
+    
+                            *@
+                                </tr>
+
+                            </tbody>
+
+                                <!-- / foreach : Answers -->
+
+                            </table>
+
+                        </div>
+
+
+                    </div>
+                    <!-- / foreach sections -->
+
+                </div>
+
+                <div class="clearfix"></div>
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+                    }
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Answer to question</h4>
+                <p data-bind="text: ModalAnswerQuestion"></p>
+
+            </div>
+            <div class="modal-body">
+
+                
+
+                <form>
+                    
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <textarea 
+                                          class="form-control" 
+                                          rows="7" 
+                                          style="max-width: 600px !important"
+                                          data-bind="value: ModalAnswerComments"
+                                          ></textarea>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.StandardID, Model.StandardLines, null, htmlAttributes: new { @class = "form-control ", onchange = "app.view.addLine(this);", style = "width: 100%" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group" style="margin-top:10px;">
+                        <strong>Compliant</strong>
+
+                        <div class="btn-group">
+                        
+                            <label id="lblNotset" class="btn btn-default" data-bind="css: ModalAnswerCompliant() == '' ? 'active': ''">
+
+                                <input name="compliant"
+                                       class="fakeHide"
+                                       type="radio"
+                                       value=""
+                                       autocomplete="off"
+                                       data-bind="checked: ModalAnswerCompliant"
+                                       >
+                                not answered
+                            </label>
+
+                            <label id="lblYes" class="btn btn-default" data-bind="css: ModalAnswerCompliant() == '1' ? 'active': ''">
+                                <input name="compliant"
+                                       class="fakeHide"
+                                       type="radio"
+                                       value="1"
+                                       autocomplete="off"
+                                       data-bind="checked: ModalAnswerCompliant">
+                                Yes
+                            </label>
+
+                            <label id="lblNo" class="btn btn-default" data-bind="css: ModalAnswerCompliant() == '0' ? 'active': ''">
+                                <input name="compliant"
+                                       class="fakeHide"
+                                       type="radio"
+                                       value="0"
+                                       autocomplete="off"
+                                       data-bind="checked: ModalAnswerCompliant">
+                                No
+                            </label>
+
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="margin:5px;">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" style="margin:5px;" onclick="app.view.save();">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+@Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        var localData = @Html.Raw(ViewBag.Json);
+
+        var urlApiUpdate = '@ViewBag.urlApiUpdate';
+        var urlApiUpdateAnswer = '@ViewBag.urlApiUpdateAnswer';
+
+    </script>
+
+    <script src="~/Scripts/app/viewModels/app.vm.updatecr.js"></script>
+    <script src="~/Scripts/app/views/app.vw.updatecr.js"></script>
+
+    
+}

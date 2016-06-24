@@ -73,13 +73,16 @@
                                     <a><i class="fa fa-edit"></i> Admin <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         
-                                        <li>@Html.ActionLink("Standard Lines", "Index", "StandardLines")</li>
+                                        
 @if (this.User.IsInRole("Admin"))
 {
-                                        <li>@Html.ActionLink("Sections", "Sections", "AdminList")</li>
                                         <li>@Html.ActionLink("Case Review Types", "CaseReviewTypes", "AdminList")</li>
+                                        <li>@Html.ActionLink("Sections", "Sections", "AdminList")</li>
                                         <li>@Html.ActionLink("Case Review Types Sections", "CaseReviewTypeSections", "AdminList")</li>
+                                        <li>@Html.ActionLink("Questions", "Questions", "AdminList")</li>
+                                        <li>@Html.ActionLink("Staffs", "Staffs", "AdminList")</li>
 }
+                                        <li>@Html.ActionLink("Standard Lines", "Index", "StandardLines")</li>
                                     </ul>
                                 </li>
 
@@ -90,9 +93,12 @@
                                 <li>
                                     <a><i class="fa fa-bar-chart-o"></i> Reports <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li>@Html.ActionLink("Non Compliant Answers", "Index", "NonCompliantReport")</li>
+                                        <li>@Html.ActionLink("Report Non Compliant Answers", "Index", "NonCompliantReport")</li>
+                                        <li>@Html.ActionLink("Report Staff Sections", "Index", "ReportStaffSections")</li>
                                     </ul>
                                 </li>
+                                
+    
 }
                             </ul>
                         </div>

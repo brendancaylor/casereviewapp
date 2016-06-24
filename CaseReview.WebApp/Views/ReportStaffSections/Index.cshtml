@@ -1,0 +1,508 @@
+﻿@model CaseReview.WebApp.Models.ReportStaffSections
+@{
+    ViewBag.Title = "Performance Stats";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row x_title">
+    <div class="col-xs-6">
+        <h3>Performance Stats</h3>
+    </div>
+    <div class="col-xs-6">
+
+
+    </div>
+</div>
+
+<div class="row">
+
+
+    <div class="col-xs-12 col-sm-12 col-xs-12">
+        <div class="x_panel fixed_height_320_">
+            <div class="x_title">
+                <h2>Filter data</h2>
+
+
+                <ul class="nav navbar-right panel_toolbox" style="min-width: 0;">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+@using (Html.BeginForm())
+{
+
+
+    <!--
+    <p data-utcdate="@Model.from.ToString("s", System.Globalization.CultureInfo.InvariantCulture)">
+
+    </p>
+        -->
+
+
+    @Html.HiddenFor(model => model.from)
+    @Html.HiddenFor(model => model.to)
+    
+                <!-- Filter Line 1 -->
+                <div class="row">
+
+                    <div class="col-xs-6">
+                        <div class="row">
+                            <div class="col-xs-4">Date Range</div>
+
+                            <div class="col-xs-8">
+
+                                <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                    <span></span> <b class="caret"></b>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+
+                        <div class="col-xs-4">Display by</div>
+
+                        <div class="col-xs-8" style="padding-right: 0 !important;">
+
+                            @Html.DropDownListFor(
+
+                            m => m.isDisplayByStaffFirst
+                            , new SelectList(
+                                    new[]
+                                    {
+                                        new { Value = "true", Text = "Staff and then Section" },
+                                        new { Value = "false", Text = "Section and then Staff" },
+                                    }
+                                    , "Value"
+                                    , "Text"
+                                )
+                            , new { @class = "form-control" }
+                            )
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- / Filter Line 1 -->
+
+                <div class="row" style="margin-top: 20px;">
+
+                    <!-- Staff -->
+                    <div class="col-xs-6">
+
+                        
+                        <!-- Staff list -->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <ul class="list-group cursorPointer" onclick="javascript: $('#ulStaffList').toggle();" >
+
+                                    <li class="list-group-item ">
+                                        
+                                        <span style="font-size: 1.5em;">Staff</span>
+
+                                        <div class="pull-right">
+                                            
+
+                                            <label>
+                                                @Html.RadioButtonFor(model => model.isStaffCombined, "True", Model.isStaffCombined == true ? new { Checked = "checked" } : null)
+                                                Combine Data
+                                            </label>
+                                            <label>
+                                                @Html.RadioButtonFor(model => model.isStaffCombined, "False", Model.isStaffCombined == false ? new { Checked = "checked" } : null)
+                                                Separate Data
+                                            </label>
+
+                                            
+                                            <i class="fa fa-chevron-down pull-right chevDown" aria-hidden="true"></i>
+                                        </div>
+
+                                        <div class="clearfix"></div>
+
+                                    </li>
+                                </ul>
+                                <ul class="list-group" id="ulStaffList" style="display: none;">
+                                    <li class="list-group-item ">
+
+                                        @{
+                                            var cssAllStaffClass = "";
+                                            if (Model.allStaff)
+                                            {
+                                                cssAllStaffClass = "on";
+                                            }
+                                        }
+                                        <label class="styled2CheckBoxLabel @cssAllStaffClass" style="margin: -10px 0 -10px -20px;">
+
+                                            @Html.CheckBoxFor(model => model.allStaff, new { onchange = "app.view.updateLabelClass(this); app.view.toggleStaff(this)" })
+
+                                            &nbsp;&nbsp;Select / Deselect all
+                                        </label>
+
+                                    </li>
+                                    @foreach (var staffMember in Model.staff)
+                                    {
+                                        var cssClass = "";
+                                        if (Model.staffIds.Contains(staffMember.value))
+                                        {
+                                            cssClass = "on";
+                                        }
+                                        <li class="list-group-item ">
+                                            <label class="styled2CheckBoxLabel @cssClass" style="margin: -10px 0 -10px -20px;">
+                                                <input 
+                                                       class="staffCheckBox"
+                                                       type="checkbox"
+                                                       onchange="app.view.updateLabelClass(this)"
+                                                       name="staffIds"
+                                                       value="@staffMember.value"
+                                                       id="staffIds"
+                                                       @{if (Model.staffIds.Contains(staffMember.value))
+                                                           { <text> checked='checked' </text>     } } />
+                                                &nbsp;&nbsp;@staffMember.text
+                                            </label>
+                                        </li>
+                                    }
+
+                                </ul>
+
+                            </div>
+                        </div>
+                        <!-- /Staff list -->
+
+                    </div>
+                    <!-- / Staff -->
+
+                    <!-- Section -->
+                    <div class="col-xs-6">
+
+
+
+                        <!-- Section list -->
+                        <div class="row">
+                            <div class="col-xs-12">
+
+                                <ul class="list-group cursorPointer" onclick="javascript: $('#ulSectionsList').toggle();">
+
+                                    <li class="list-group-item ">
+
+                                        <span style="font-size: 1.5em;">Sections</span>
+
+                                        <div class="pull-right">
+                                            
+
+                                            <label>
+                                                @Html.RadioButtonFor(model => model.isSectionsCombined, "True", Model.isSectionsCombined == true ? new { Checked = "checked" } : null)
+                                                Combine Data
+                                            </label>
+                                            <label>
+                                                @Html.RadioButtonFor(model => model.isSectionsCombined, "False", Model.isSectionsCombined == false ? new { Checked = "checked" } : null)
+                                                Separate Data
+                                            </label>
+                                                                                        
+                                            <i class="fa fa-chevron-down pull-right chevDown" aria-hidden="true"></i>
+                                        </div>
+
+                                        <div class="clearfix"></div>
+                                    </li>
+                                </ul>
+
+                                <ul class="list-group" id="ulSectionsList" style="display: none;">
+                                    
+                                    <li class="list-group-item ">
+
+                                        @{
+                                            var cssAllSectionClass = "";
+                                            if (Model.allSections)
+                                            {
+                                                cssAllSectionClass = "on";
+                                            }
+                                        }
+                                        <label class="styled2CheckBoxLabel @cssAllSectionClass" style="margin: -10px 0 -10px -20px;">
+
+                                            @Html.CheckBoxFor(model => model.allSections, new { onchange = "app.view.updateLabelClass(this); app.view.toggleSection(this)" })
+
+                                            &nbsp;&nbsp;Select / Deselect all
+                                        </label>
+
+                                    </li>
+
+                                    
+                                    @foreach (var sectionItem in Model.sections)
+                                    {
+                                        var cssClass = "";
+                                        if (Model.sectionIds.Contains(sectionItem.value))
+                                        {
+                                            cssClass = "on";
+                                        }
+                                        <li class="list-group-item ">
+                                            <label class="styled2CheckBoxLabel @cssClass" style="margin: -10px 0 -10px -20px;">
+                                                <input class="sectionCheckBox"
+                                                       type="checkbox"
+                                                       onchange="app.view.updateLabelClass(this)"
+                                                       name="sectionIds"
+                                                       value="@sectionItem.value"
+                                                       id="sectionIds"
+                                                       @{if (Model.sectionIds.Contains(sectionItem.value)) { <text> checked='checked' </text> } } />
+                                                
+                                                &nbsp;&nbsp; @TruncateAtWord(sectionItem.text, 40)
+                                            </label>
+                                        </li>
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /Section list -->
+
+                    </div>
+                    <!-- / Section -->
+
+                </div>
+
+                <input type="submit" value="Refresh Report" class="btn btn-primary" />
+                <input type="button" value="Export Data" class="btn btn-primary" onclick="app.view.exportReport();" />
+}
+            </div>
+        </div>
+    </div>
+
+
+    @foreach (var repItem in Model.ReportItems)
+    {
+        <div class="col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>
+                        @TruncateAtWord(repItem.ReportItemTitle, 100)
+                    </h2>
+
+                    <ul class="nav navbar-right panel_toolbox" style="min-width: 0;">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+
+                </div>
+                <div class="x_content row">
+                    <div class="col-sm-12 col-md-4">
+                        <canvas id="@repItem.PieChart.CanvasId" height="250"></canvas>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <canvas id="@repItem.LineChartPercNo.CanvasId" height="250"></canvas>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <canvas id="@repItem.LineChartNumberAnswered.CanvasId" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        var options = {
+        };
+
+        @foreach (var item in Model.ReportItems)
+        {
+            var dYes = Convert.ToDecimal(item.PieChart.Data[0]);
+            var dNo = Convert.ToDecimal(item.PieChart.Data[1]);
+            var yesPerc = (dYes / (dYes + dNo)).ToString("P2");
+            var noPerc = (dNo / (dYes + dNo)).ToString("P2");
+<text>
+
+        /* START PIE */
+        var @item.PieChart.CanvasId = document.getElementById("@item.PieChart.CanvasId");
+
+        var data_@item.PieChart.CanvasId = {
+            labels: [
+                "@item.PieChart.Labels[0] @yesPerc (@item.PieChart.Data[0])"
+                , "@item.PieChart.Labels[1] @noPerc (@item.PieChart.Data[1])"
+            ],
+            datasets: [
+                {
+                    data: [
+                        @item.PieChart.Data[0]
+                        , @item.PieChart.Data[1]
+                        ]
+
+                    , backgroundColor: ["#33a653","#d6463d"]
+                    , hoverBackgroundColor: ["#33a653","#d6463d"]
+                }]
+        };
+
+        var pieChart_@item.PieChart.CanvasId = new Chart(@item.PieChart.CanvasId, {
+            type: 'pie',
+            data: data_@item.PieChart.CanvasId,
+            options: options
+        });
+
+        /* END PIE */
+
+        /* START LineChartPercNo  */
+        var @item.LineChartPercNo.CanvasId = document.getElementById("@item.LineChartPercNo.CanvasId");
+
+        var data_@item.LineChartPercNo.CanvasId = {
+
+            labels: [
+
+                @foreach(var label in item.LineChartPercNo.Labels)
+                {
+                    <text>
+                        "@label",
+                    </text>
+                }
+            ],
+            datasets: [
+
+                {
+                    label: "Percentage Non Compliant",
+                    fill: true,
+                    backgroundColor: "rgba(214,70,61,0.4)",
+                    borderColor: "rgba(214,70,61,1)",
+                    pointBorderColor: "rgba(214,70,61,1)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 5,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(214,70,61,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 5,
+                    pointRadius: 2,
+                    pointHitRadius: 10,
+
+                    data: [
+                    @foreach (var data in item.LineChartPercNo.Data)
+                    {
+
+                        <text>
+                            @data,
+                        </text>
+                    }
+                    ]
+                }
+            ]
+        };
+
+        var lineChart_@item.LineChartPercNo.CanvasId = new Chart(@item.LineChartPercNo.CanvasId, {
+            type: 'line',
+            data: data_@item.LineChartPercNo.CanvasId,
+            options: options
+        });
+
+
+        /* END LineChartPercNo  */
+
+        /* START LineChartNumberAnswered  */
+        var @item.LineChartNumberAnswered.CanvasId = document.getElementById("@item.LineChartNumberAnswered.CanvasId");
+
+        var data_@item.LineChartNumberAnswered.CanvasId = {
+
+            labels: [
+
+                @foreach(var label in item.LineChartNumberAnswered.Labels)
+            {
+                    <text>
+                        "@label",
+                    </text>
+                }
+                ],
+                    datasets: [
+
+                        {
+                            label: "Number Answered",
+                            fill: true,
+                            backgroundColor: "rgba(51,166,83,0.4)",
+                            borderColor: "rgba(51,166,83,1)",
+                            pointBorderColor: "rgba(51,166,83,1)",
+                            pointBackgroundColor: "#fff",
+                            pointBorderWidth: 5,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(51,166,83,1)",
+                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                            pointHoverBorderWidth: 5,
+                            pointRadius: 2,
+                            pointHitRadius: 10,
+
+
+                            data: [
+                            @foreach (var data in item.LineChartNumberAnswered.Data)
+                            {
+
+                                <text>
+                                    @data,
+                                </text>
+                    }
+                    ]
+        }
+        ]
+        };
+
+        var lineChart_@item.LineChartNumberAnswered.CanvasId = new Chart(@item.LineChartNumberAnswered.CanvasId, {
+            type: 'line',
+            data: data_@item.LineChartNumberAnswered.CanvasId,
+            options: options
+        });
+
+
+        /* END LineChartNumberAnswered  */
+
+</text>
+}
+
+        var reDpStart = '@Model.from.ToString("yyyy-MM-dd")';
+        var reDpEnd = '@Model.to.ToString("yyyy-MM-dd")';
+
+    </script>
+
+    <script src="~/Scripts/app/views/app.vw.StaffSectionsReport.js"></script>
+    <script src="~/Scripts/FileSaver.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+    //$('#reportrange').data('daterangepicker').setStartDate();
+    //$('#reportrange').data('daterangepicker').setEndDate('@Model.to.ToString("yyyy-MM-dd")');
+    });
+
+</script>
+
+}
+
+@helper TruncateAtWord(string value, int length)
+{
+    var indexOfLastSpace = value.LastIndexOf(" ");
+    if (indexOfLastSpace == -1
+        || value.Length < length
+        )
+    {
+            <text>@value</text>
+    }
+
+else
+{
+    while (indexOfLastSpace > length)
+    {
+        indexOfLastSpace--;
+        indexOfLastSpace = value.LastIndexOf(" ", indexOfLastSpace);
+    }
+
+       
+    <text>@value.Substring(0, value.IndexOf(" ", indexOfLastSpace)) ... </text>
+        
+    }
+
+}

@@ -9,11 +9,11 @@
     $("#lblNotset").removeClass("active");
     $("#lblNo").removeClass("active");
 
-    if (tr.children()[2].innerHTML.indexOf("yes") != -1) {
+    if (tr.children()[3].innerHTML.indexOf("yes") != -1) {
         $("#yes").prop("checked", true);
         $("#lblYes").addClass("active");
     }
-    else if (tr.children()[2].innerHTML.indexOf("no") != -1) {
+    else if (tr.children()[3].innerHTML.indexOf("no") != -1) {
         $("#no").prop("checked", true);
         $("#lblNo").addClass("active");
     }
@@ -23,7 +23,7 @@
     }
     $("#StandardID").val("- Select to add -");
     $("#pQuestion").html(tr.children()[0].innerHTML);
-    var comments = tr.children()[1].innerHTML;
+    var comments = tr.children()[2].innerHTML;
     var formatedComments = replaceAll(comments, "\n<br>", "\n");
     formatedComments = replaceAll(formatedComments, "<br>", "\n");
     $("#Comments").val(formatedComments);
@@ -43,8 +43,8 @@ function addLine(ddElement) {
 function save() {
     var answerId = $("#answerId").val();
     var tr = $("#" + answerId);
-    var td1 = tr.children()[1];
-    var td2 = tr.children()[2];
+    var td1 = tr.children()[2];
+    var td2 = tr.children()[3];
     $(td1).html(replaceAll($("#Comments").val(), "\n", "<br>"));
 
     var compliantString = "-";

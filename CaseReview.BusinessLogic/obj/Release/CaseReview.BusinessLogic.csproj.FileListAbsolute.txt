@@ -25,3 +25,5 @@ C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\bin
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\obj\Release\CaseReview.BusinessLogic.csprojResolveAssemblyReference.cache
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\obj\Release\CaseReview.BusinessLogic.dll
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\obj\Release\CaseReview.BusinessLogic.pdb
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\bin\Release\CaseReview.BusinessObjects.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\bin\Release\CaseReview.BusinessObjects.pdb

@@ -16,4 +16,3 @@ C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\Deb
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\bin\Debug\EntityFramework.SqlServer.xml
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\obj\Debug\CaseReview.DataLayer.dll
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\obj\Debug\CaseReview.DataLayer.pdb
-C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.DataLayer\obj\Debug\CaseReview.DataLayer.csprojResolveAssemblyReference.cache

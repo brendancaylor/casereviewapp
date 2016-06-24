@@ -73,6 +73,37 @@ textarea {
     float: left;
 }
 
+/*style checkbox 2*/
+
+.styled2CheckBoxLabel {
+    color: #26B99A;
+    padding: 0;
+    margin: -10px 0 -10px 0;
+    cursor: pointer;
+}
+
+.styled2CheckBoxLabel:before {
+   font-size: 2em;
+   font-family: FontAwesome;
+   content: "\f096";
+}
+
+.styled2CheckBoxLabel.on:before {
+   font-size: 2em;
+    font-family: FontAwesome;
+   content: "\f14a";
+}
+
+.styled2CheckBoxLabel input {
+    opacity: 0;
+    width: 20px;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+/*style checkbox 2*/
+
 .editInlineInput{
     border: none !important;
     -webkit-box-shadow: none !important;
@@ -82,4 +113,8 @@ textarea {
 
 .editInlineInput:focus {
     border: 1px solid #ccc !important;
+}
+
+.fakeHide{
+    opacity: 0; position:absolute; top: -100px;
 }

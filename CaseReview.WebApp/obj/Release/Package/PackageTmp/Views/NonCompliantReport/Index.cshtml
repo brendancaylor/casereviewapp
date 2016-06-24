@@ -108,7 +108,9 @@ Model, page => Url.Action("Index"
                 <th>
                     Question
                 </th>
-
+                <th>
+                    Comments
+                </th>
                 <th>
 
                 </th>
@@ -135,7 +137,11 @@ Model, page => Url.Action("Index"
                     <td>
                         @Html.DisplayFor(modelItem => item.QuestionName)
                     </td>
-
+                    <td>
+                        <small class="small">
+                            @Html.DisplayFor(modelItem => item.Comments)
+                        </small>
+                    </td>
                 </tr>
             }
 

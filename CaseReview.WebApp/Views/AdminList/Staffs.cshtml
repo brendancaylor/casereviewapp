@@ -1,0 +1,99 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>@ViewBag.Title</h3>
+
+<div style="display: none; " data-bind='visible: isBound'>
+
+    <div style="margin: 20px 0 20px 0;clear: both;">
+        <button type="button" class="btn btn-success"
+                data-bind='click: swapEditMode, visible: !isEditMode()'>
+            Edit this list
+        </button>
+
+        <button type="button" class="btn btn-success"
+                data-bind='click: swapEditMode, visible: isEditMode'>
+            Done
+        </button>
+
+    </div>
+
+
+    <div class="row">
+
+
+        <div class="col-sm-8">
+
+            <ul class="list-group" data-bind="foreach: Staffs, visible: !$root.isEditMode()">
+                <li class="list-group-item " data-bind="css: {'disabled' : !IsActive() }">
+                    <span data-bind="text: StaffFirstname"></span>
+                    <span data-bind="text: StaffSurname"></span>
+                </li>
+            </ul>
+
+
+            <div class="row" data-bind="visible: $root.isEditMode" style="padding: 3px 20px;">
+                <div class="col-xs-2">Active</div>
+                <div class="col-xs-5">Firstname</div>
+                <div class="col-xs-5">Surname</div>
+            </div>
+
+            <div class="list-group" style="margin: 10px;" data-bind="visible: $root.isEditMode, foreach: Staffs">
+
+                <div class="list-group-item row">
+
+                    <div class="col-xs-2">
+                        <label class="styledCheckBoxLabel"
+                               data-bind="css: IsActive() ? 'on' : '' ">
+                            <input type="checkbox" data-bind="checked: IsActive" />
+                        </label>
+                    </div>
+
+                    <div class="col-xs-5">
+                        <input type="text" data-bind="value: StaffFirstname" class="form-control editInlineInput" />
+                    </div>
+
+                    <div class="col-xs-5">
+                        <input type="text" data-bind="value: StaffSurname" class="form-control editInlineInput" />
+                    </div>
+                    
+
+                </div>
+
+            </div>
+
+            <form class="form-inline">
+                
+                <div class="form-group" data-bind="visible: isEditMode">
+
+                    <input class="form-control " type="text" id="inpAddStaffFirstname" placeholder="Staff Firstname"
+                           data-bind="disable : $root.AddButtonDisabled()">
+
+                    <input class="form-control " type="text" id="inpAddStaffSurname" placeholder="Staff Surname"
+                           data-bind="disable : $root.AddButtonDisabled()">
+
+                        <button type="button" class="btn btn-success" onclick="app.view.addNew();" data-bind="disable : $root.AddButtonDisabled()">
+                            <i class="fa fa-plus cursorPointer" aria-hidden="true"></i>
+                        </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+    var localData = @Html.Raw(ViewBag.Json);
+
+    var urlApiAdd = '@ViewBag.UrlApiAdd';
+    var urlApiUpdate = '@ViewBag.UrlApiUpdate';
+
+    </script>
+
+    <script src="~/Scripts/app/viewModels/app.vm.staff.js"></script>
+    <script src="~/Scripts/app/views/app.vw.staff.js"></script>
+}

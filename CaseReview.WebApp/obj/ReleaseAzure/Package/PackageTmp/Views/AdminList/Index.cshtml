@@ -35,7 +35,7 @@
 
             <div class="row" data-bind="visible: $root.isEditMode" style="padding: 3px 20px;">
                 
-                <div style="width: 65px; float: left;">Active</div>
+                <div style="width: 105px; float: left;">Active</div>
                 <div style="width: 100px; float: left;">Name</div>
                 <div style="width: auto; float: right; margin-right: 10px;">Sort</div>
 
@@ -70,9 +70,11 @@
             </div>
 
             <div class="input-group" data-bind="visible: isEditMode">
-                <input class="form-control input-group" type="text" id="inpAddBaseModel" placeholder="Add a new item">
+                <input class="form-control input-group" type="text" id="inpAddBaseModel" placeholder="Add a new item"
+                        data-bind="disable : $root.AddButtonDisabled()"
+                       >
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-success" onclick="addNewBaseModel();">
+                    <button type="button" class="btn btn-success" onclick="addNewBaseModel();"  data-bind="disable : $root.AddButtonDisabled()">
                         <i class="fa fa-plus cursorPointer" aria-hidden="true"></i>
                     </button>
                 </span>
