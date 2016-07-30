@@ -47,7 +47,21 @@ namespace CaseReview.WebApp.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, "worked");
         }
 
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage savefeedback(SaveFbReq model)
+        {
+            Answer answer = new Answer()
+            {
+                ID = model.ID,
+                Feedback = model.Feedback,
+                FeedbackType = model.FeedbackType
+            };
+            new GeneralLogic().UpdateAnswerFeedback(answer);
+            return Request.CreateResponse(HttpStatusCode.OK, "worked");
+        }
 
+        
 
     }
 }

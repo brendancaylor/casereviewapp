@@ -30,6 +30,7 @@ namespace CaseReview.DataLayer.Models
         public DbSet<StandardLine> StandardLines { get; set; }
         public DbSet<vwNonCompliant> vwNonCompliants { get; set; }
         public DbSet<vwReportStaffSection> vwReportStaffSections { get; set; }
+        public DbSet<vwStaffNonCompliantTotal> vwStaffNonCompliantTotals { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -47,6 +48,7 @@ namespace CaseReview.DataLayer.Models
             modelBuilder.Configurations.Add(new StandardLineMap());
             modelBuilder.Configurations.Add(new vwNonCompliantMap());
             modelBuilder.Configurations.Add(new vwReportStaffSectionMap());
+            modelBuilder.Configurations.Add(new vwStaffNonCompliantTotalMap());
         }
     }
 }

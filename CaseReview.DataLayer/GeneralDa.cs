@@ -166,6 +166,17 @@ namespace CaseReview.DataLayer
             }
         }
 
+        public void UpdateAnswerFeedback(Answer answer)
+        {
+            using (CaseReviewsContext db = new CaseReviewsContext())
+            {
+                db.Answers.Attach(answer);
+                db.Entry(answer).Property(x => x.Feedback).IsModified = true;
+                db.Entry(answer).Property(x => x.FeedbackType).IsModified = true;
+                db.SaveChanges();
+            }
+        }
+
         public List<vwNonCompliant> SearchvwNonCompliant(DateTime? date, string surname)
         {
             using (CaseReviewsContext db = new CaseReviewsContext())

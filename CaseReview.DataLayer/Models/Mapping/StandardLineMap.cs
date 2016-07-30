@@ -18,6 +18,7 @@ namespace CaseReview.DataLayer.Models.Mapping
             this.ToTable("StandardLine");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Line).HasColumnName("Line");
+            this.Property(t => t.LineType).HasColumnName("LineType");
         }
     }
 }

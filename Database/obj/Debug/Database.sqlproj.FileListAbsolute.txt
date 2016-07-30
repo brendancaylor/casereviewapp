@@ -10,9 +10,9 @@ C:\BrensDevFiles\____________CaseReviewWorkSheet\Database\obj\Debug\Database.pdb
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\Database\bin\Debug\Database.dacpac
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\Database\bin\Debug\Database.dll
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\Database\bin\Debug\Database.pdb
-C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\Database\obj\Debug\Database.dll
-C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\Database\obj\Debug\Database.pdb
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\Database\obj\Debug\Model.xml
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\Database\obj\Debug\refactor.xml
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\Database\obj\Debug\postdeploy.sql
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\Database\obj\Debug\predeploy.sql
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\Database\obj\Debug\Database.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\Database\obj\Debug\Database.pdb

@@ -70,11 +70,18 @@ namespace CaseReview.BusinessLogic
             return bda.Update(o);
         }
 
-
         public List<StandardLine> GetAllStandardLine()
         {
             var bda = new BaseService<StandardLine>();
             var data = bda.GetAll();
+            data.OrderBy(o => o.Line);
+            return data.ToList();
+        }
+
+        public List<StandardLine> GetAllStandardLine(string lineType)
+        {
+            var bda = new BaseService<StandardLine>();
+            var data = bda.FindAll(o => o.LineType == lineType);
             data.OrderBy(o => o.Line);
             return data.ToList();
         }
@@ -97,6 +104,15 @@ namespace CaseReview.BusinessLogic
             return bda.Update(o);
         }
 
+        public void UpdateAnswerFeedback(Answer answer)
+        {
+            var da = new BaseService<Answer>();
+            var dmAnswer = da.Get(answer.ID);
+            dmAnswer.Feedback = answer.Feedback;
+            dmAnswer.FeedbackType = answer.FeedbackType;
+            new GeneralDa().UpdateAnswerFeedback(dmAnswer);
+        }
+        
         public void UpdateAnswer(Answer answer)
         {
             new GeneralDa().UpdateAnswer(answer);

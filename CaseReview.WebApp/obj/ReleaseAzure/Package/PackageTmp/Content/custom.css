@@ -67,7 +67,7 @@
 }
 .nav-sm .nav.side-menu li a i {
   font-size: 25px !important;
-  text-align: center;
+/*  text-align: center;*/
   width: 100% !important;
   margin-bottom: 5px;
 }
@@ -192,7 +192,7 @@
   padding: 0;
   position: absolute;
   display: flex;
-  z-index: 9999;
+  z-index: 2;
 }
 .nav-md .container.body .col-md-3.left_col.menu_fixed {
   height: 100%;
@@ -1381,7 +1381,7 @@ ul.msg_list li a .message {
   position: absolute;
   text-shadow: none;
   top: 100%;
-  z-index: 1000;
+  z-index: 99999;
   border: 1px solid #D9DEE4;
   border-top-left-radius: 0;
   border-top-right-radius: 0;

@@ -56,7 +56,8 @@ namespace CaseReview.WebApp.Controllers
                 CaseReview.DataLayer.Models.StandardLine StandardLine = new DataLayer.Models.StandardLine()
                 {
                     Id = Guid.NewGuid(),
-                    Line = model.Line
+                    Line = model.Line,
+                    LineType = model.LineType
                 };
                 StandardLine = new GeneralLogic().AddStandardLine(StandardLine);
                 return RedirectToAction("Index");
@@ -75,7 +76,8 @@ namespace CaseReview.WebApp.Controllers
             Models.StandardLine model = new StandardLine()
             {
                 ID = dbobject.Id,
-                Line= dbobject.Line
+                Line= dbobject.Line,
+                LineType = dbobject.LineType
             };
             return View(model);
         }
@@ -93,7 +95,8 @@ namespace CaseReview.WebApp.Controllers
                 CaseReview.DataLayer.Models.StandardLine StandardLine = new DataLayer.Models.StandardLine()
                 {
                     Id = model.ID,
-                    Line = model.Line
+                    Line = model.Line,
+                    LineType = model.LineType
                 };
                 StandardLine = new GeneralLogic().UpdateStandardLine(StandardLine);
 

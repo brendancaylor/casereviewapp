@@ -9,5 +9,6 @@ namespace CaseReview.WebApp.Models
     {
         public System.Guid ID { get; set; }
         public string Line { get; set; }
+        public string LineType { get; set; }
     }
 }

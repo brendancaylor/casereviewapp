@@ -1,8 +1,7 @@
-﻿using Microsoft.Owin;
-using Owin;
+﻿using Owin;
 
-[assembly: OwinStartupAttribute(typeof(CaseReview.WebApp.Startup))]
-namespace CaseReview.WebApp
+//[assembly: OwinStartupAttribute(typeof(CaseReview.WebApp.Startup))]
+namespace IdentitySample
 {
     public partial class Startup
     {

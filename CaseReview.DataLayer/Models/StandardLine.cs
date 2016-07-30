@@ -7,5 +7,6 @@ namespace CaseReview.DataLayer.Models
     {
         public System.Guid Id { get; set; }
         public string Line { get; set; }
+        public string LineType { get; set; }
     }
 }

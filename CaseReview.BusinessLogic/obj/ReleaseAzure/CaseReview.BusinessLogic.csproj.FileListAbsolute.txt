@@ -7,3 +7,5 @@ C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\bin
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\obj\ReleaseAzure\CaseReview.BusinessLogic.csprojResolveAssemblyReference.cache
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\obj\ReleaseAzure\CaseReview.BusinessLogic.dll
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\obj\ReleaseAzure\CaseReview.BusinessLogic.pdb
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\bin\ReleaseAzure\CaseReview.BusinessObjects.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessLogic\bin\ReleaseAzure\CaseReview.BusinessObjects.pdb

@@ -41,7 +41,9 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="@Url.Content("~")" class="site_title"><i class="fa fa-pagelines"></i> <span>Case Review</span></a>
+                        <a href="@Url.Content("~")" class="site_title">
+                        <!--<i class="fa fa-pagelines"></i> -->
+                        <span>In Control </span></a>
                     </div>
                     <div class="clearfix"></div>
                     
@@ -52,15 +54,25 @@
                             
                             <ul class="nav side-menu">
                                 <li>
-                                    <a><i class="fa fa-home"></i> Home<span class="fa fa-chevron-down"></span></a>
+                                    <a><i class="fa fa-home"></i> 
+                                        Case Review App
+                                    <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li>
-                                            @Html.ActionLink("Welcome", "Index", "Home")
+                                            <a href="@Url.Action("Index", "Home")">
+                                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                                About
+                                            </a>
                                         </li>
 @if (this.User.IsInRole("Admin") || User.IsInRole("CaseReviewer"))
 {
                                         <li>
-                                            @Html.ActionLink("Case Reviews", "Index", "CaseReviewWorkSheets")
+
+                                            <a href="@Url.Action("Index", "CaseReviewWorkSheets")">
+                                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                                Case Reviews
+                                            </a>
+
                                         </li>
 }
                                     </ul>
@@ -80,7 +92,7 @@
                                         <li>@Html.ActionLink("Sections", "Sections", "AdminList")</li>
                                         <li>@Html.ActionLink("Case Review Types Sections", "CaseReviewTypeSections", "AdminList")</li>
                                         <li>@Html.ActionLink("Questions", "Questions", "AdminList")</li>
-                                        <li>@Html.ActionLink("Staffs", "Staffs", "AdminList")</li>
+                                        <li>@Html.ActionLink("Staff Members", "Staffs", "AdminList")</li>
 }
                                         <li>@Html.ActionLink("Standard Lines", "Index", "StandardLines")</li>
                                     </ul>
@@ -91,9 +103,25 @@
 @if (this.User.IsInRole("Admin") || User.IsInRole("CaseReviewer") || this.User.IsInRole("Reporter"))
 {
                                 <li>
-                                    <a><i class="fa fa-bar-chart-o"></i> Reports <span class="fa fa-chevron-down"></span></a>
+                                    <a><i class="fa fa-bar-chart-o"></i> Reports<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li>@Html.ActionLink("Non Compliant Answers", "Index", "NonCompliantReport")</li>
+                                        <li>
+                                            <a href="@Url.Action("Index", "NonCompliantReport")">
+                                                <i class="fa fa-area-chart" aria-hidden="true"></i>
+                                                Non Compliant Answers
+                                            </a>
+                                        <li>
+                                            <a href="@Url.Action("Index", "ReportStaffSections")">
+                                                <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                                                Performance Stats
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Index", "DataExtract")">
+                                                <i class="fa fa-download" aria-hidden="true"></i>
+                                                Data Export 
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
 }

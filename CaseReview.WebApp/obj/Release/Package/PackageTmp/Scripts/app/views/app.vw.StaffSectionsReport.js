@@ -27,6 +27,69 @@ app.view.toggleSection = function (cbx) {
     });
 };
 
+app.view.exportReport = function () {
+
+    try {
+        var isFileSaverSupported = !!new Blob;
+    } catch (e) {
+        app.helpers.showErrorNotification("Feature not supported :-(");
+    }
+
+    var staffIds = [];
+    $('.staffCheckBox').each(function () {
+        var isChecked = $(this).prop("checked")
+        if (isChecked) {
+            staffIds.push($(this).val());
+        }
+    })
+    if (staffIds.length == 0) {
+        $('.staffCheckBox').each(function () {
+            staffIds.push($(this).val());
+        })
+    }
+
+    var sectionIds = [];
+    $('.sectionCheckBox').each(function () {
+        var isChecked = $(this).prop("checked")
+        if (isChecked) {
+            sectionIds.push($(this).val());
+        }
+    })
+
+    if (sectionIds.length == 0) {
+        $('.sectionCheckBox').each(function () {
+            sectionIds.push($(this).val());
+        })
+    }
+
+    var data = {
+        //ids: selectedAnswerIds,
+        
+        from: $("#from").val(),
+        to: $("#to").val(),
+        staffIds: staffIds,
+        sectionIds: sectionIds,
+        isDisplayByStaffFirst: $("#isDisplayByStaffFirst").val(),
+        isStaffCombined: $("#isStaffCombined").val(),
+        isSectionsCombined: $("#isSectionsCombined").val()
+    };
+
+    app.api.callApi(data, "/ReportStaffSections/GetCsv", true,
+        function (callbackData) {
+            var blob = new Blob([callbackData], { type: "text/plain;charset=utf-8" });
+            saveAs(blob, "ReportExport.csv");
+
+            // success
+        },
+        function (callback) {
+            // error
+            app.helpers.showErrorNotification("ooops :-(");
+        }
+
+    );
+
+};
+
 
 $(document).ready(function () {
 
@@ -49,11 +112,13 @@ $(document).ready(function () {
         ranges: {
             //'Today': [moment(), moment()],
             //'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'All of time': [moment().subtract(99, 'years'), moment()],
-            'Last selection': [moment(reDpStart), moment(reDpEnd)],
+            //'Last selection': [moment(reDpStart), moment(reDpEnd)],
             //'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            'This Month': [moment().startOf('month'), moment()],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+            'Last 3 Months': [moment().subtract(3, 'month').startOf('month'), moment()],
+            'Last 6 Months': [moment().subtract(6, 'month').startOf('month'), moment()],
+            'All of time': [moment().subtract(99, 'years'), moment()]
         },
         opens: 'left',
         buttonClasses: ['btn btn-default'],

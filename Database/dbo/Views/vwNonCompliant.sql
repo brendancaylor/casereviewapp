@@ -2,17 +2,28 @@
 	AS 
 	
 SELECT
-	NEWID() as ID
+	Answer.ID
 	, CaseReviewWorkSheet.ClientRef as ClientRef
 	, DATEPART(MM, CaseReviewWorkSheet.ReviewedDate) AS Month
 	, DATEPART(yy, CaseReviewWorkSheet.ReviewedDate) AS Year
-	, Section.SectionName
-	, Question.QuestionName
-	, Staff.StaffSurname
-	, Section.DisplayOrder AS SectionOrder
-	, Question.DisplayOrder AS QuestionOrder
-	, Comments
 	
+	, Section.SectionName
+	, Section.DisplayOrder AS SectionOrder
+	
+	, Question.ID AS QuestionID
+	, Question.QuestionName
+	, Question.DisplayOrder AS QuestionOrder
+	, Question.IsMandatory
+	, Question.Risk
+
+	, Staff.ID AS StaffID
+	, Staff.StaffSurname
+	
+	, Comments
+	, Feedback
+	, FeedbackType
+	, CASE WHEN Feedback IS NULL OR Feedback = '' THEN cast(0 AS BIT) ELSE cast(1 AS BIT) END AS HasFeedback
+
 	FROM Answer
 	INNER JOIN Question ON Answer.QuestionID = Question.ID
 	INNER JOIN CaseReviewWorkSheet ON Answer.CaseReviewWorkSheetID = CaseReviewWorkSheet.ID

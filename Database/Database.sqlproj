@@ -85,6 +85,7 @@
     <Build Include="dbo\Tables\CaseReviewType.sql" />
     <Build Include="dbo\Tables\SectionCaseReviewType.sql" />
     <Build Include="dbo\Views\vwReportStaffSections.sql" />
+    <Build Include="dbo\Views\vwStaffNonCompliantTotals.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database.publish.xml" />

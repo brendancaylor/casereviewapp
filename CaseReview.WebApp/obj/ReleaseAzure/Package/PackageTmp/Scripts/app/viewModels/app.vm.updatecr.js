@@ -69,7 +69,7 @@ var Section = function (data) {
     this.ID = data.ID;
     this.SectionName = data.SectionName;
     this.DisplayOrder = data.DisplayOrder;
-    this.IsActive = ko.observableArray(false);
+    this.IsActive = ko.observable(false);
     this.Answers = ko.observableArray();
     var arrAnswers = [];
     data.Answers.forEach(

@@ -67,3 +67,5 @@ C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\Micros
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\obj\ReleaseAzure\CaseReview.WebApp.csprojResolveAssemblyReference.cache
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\obj\ReleaseAzure\CaseReview.WebApp.dll
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\obj\ReleaseAzure\CaseReview.WebApp.pdb
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\CaseReview.BusinessObjects.dll
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.WebApp\bin\CaseReview.BusinessObjects.pdb

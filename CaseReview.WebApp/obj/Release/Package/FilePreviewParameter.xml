@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="IIS Web Application Name" description="" value="brensdev.com/myapp" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\BrensDevFiles\\____________CaseReviewWorkSheet\\CaseReview\.WebApp\\obj\\Release\\Package\\PackageTmp$" />
-    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\BrensDevFiles\\____________CaseReviewWorkSheet\\CaseReview\.WebApp\\obj\\Release\\Package\\PackageTmp$" />
+  <parameter name="IIS Web Application Name" description="" value="casereviewapp" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\BrensDevFiles\\\$CaseReviewWorkSheet\\casereviewapp\\CaseReview\.WebApp\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\BrensDevFiles\\\$CaseReviewWorkSheet\\casereviewapp\\CaseReview\.WebApp\\obj\\Release\\Package\\PackageTmp$" />
   </parameter>
-  <parameter name="CaseReviewsContext-Web.config Connection String" description="CaseReviewsContext Connection String used in web.config by the application to access the database." value="Data Source=tcp:s08.winhost.com;Initial Catalog=DB_93982_brensdev; uid=DB_93982_brensdev_user;pwd=hosting#73;Connect Timeout=300;MultipleActiveResultSets=True" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\BrensDevFiles\\____________CaseReviewWorkSheet\\CaseReview\.WebApp\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CaseReviewsContext']/@connectionString" />
+  <parameter name="CaseReviewsContext-Web.config Connection String" description="" value="Data Source=tcp:s08.winhost.com;Initial Catalog=DB_93982_brensdev; uid=DB_93982_brensdev_user;pwd=hosting#73;Connect Timeout=300;MultipleActiveResultSets=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\BrensDevFiles\\\$CaseReviewWorkSheet\\casereviewapp\\CaseReview\.WebApp\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CaseReviewsContext']/@connectionString" />
   </parameter>
 </parameters>

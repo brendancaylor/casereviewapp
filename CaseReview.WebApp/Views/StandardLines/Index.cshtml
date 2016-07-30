@@ -5,28 +5,55 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>@ViewBag.Title</h3>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Line)
-        </th>
-        <th></th>
-    </tr>
+<div class="row x_title">
+    <div class="col-xs-6">
+        <h3>@ViewBag.Title</h3>
+    </div>
+    <div class="col-xs-6">
 
-@foreach (var item in Model) {
+
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+
+
+
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Line)
+                </th>
+                <th>
+                    Line Type
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Line)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) 
+            @Html.DisplayFor(modelItem => item.LineType)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id })
         </td>
     </tr>
 }
 
-</table>
+        </table>
+
+
+
+    </div>
+</div>

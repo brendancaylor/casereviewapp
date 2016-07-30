@@ -31,7 +31,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ClientRef, htmlAttributes: new { @class = "control-label col-md-2" })
+            
+            <label class="control-label col-md-2" for="ClientRef">Client Reference</label>
+
             <div class="col-md-6">
                 @Html.EditorFor(model => model.ClientRef, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ClientRef, "", new { @class = "text-danger" })
@@ -54,12 +56,11 @@
             </div>
         </div>
 
-
         @Html.HiddenFor(model => model.CaseReviewTypeID)
 
-
         <div class="form-group">
-            @Html.LabelFor(model => model.IsCompleted, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="IsCompleted">Is Completed</label>
+
             <div class="col-md-6">
                 @Html.EditorFor(model => model.IsCompleted, new { htmlAttributes = new { @class = "form-control_" } })
                 @Html.ValidationMessageFor(model => model.IsCompleted, "", new { @class = "text-danger" })
@@ -138,6 +139,7 @@
                                 </thead>
 
                             <!-- foreach : Answers -->
+
                             <tbody data-bind="foreach : Answers">
                                 <tr data-bind="css: IsActive() ? 'active' : ''" >
                                     <td>
@@ -174,7 +176,7 @@
 
                             </tbody>
 
-                                <!-- / foreach : Answers -->
+                            <!-- / foreach : Answers -->
 
                             </table>
 
@@ -209,7 +211,9 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
+                <!--
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                -->
                 <h4 class="modal-title" id="myModalLabel">Answer to question</h4>
                 <p data-bind="text: ModalAnswerQuestion"></p>
 
@@ -239,7 +243,10 @@
                     <div class="form-group">
 
                         <div class="col-md-12">
-                            @Html.DropDownListFor(model => model.StandardID, Model.StandardLines, null, htmlAttributes: new { @class = "form-control ", onchange = "app.view.addLine(this);", style = "width: 100%" })
+                            <!--
+                            , onchange = "app.view.addLine(this);"    
+                            -->
+                            @Html.DropDownListFor(model => model.StandardID, Model.StandardLines, null, htmlAttributes: new { @class = "form-control ", style = "width: 100%" })
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -287,8 +294,10 @@
 
             </div>
             <div class="modal-footer">
+                <!--
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="margin:5px;">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" style="margin:5px;" onclick="app.view.save();">Save changes</button>
+                -->
+                <button id="saveButton" type="button" class="btn btn-primary" style="margin:5px;" onclick="app.view.save();">Save changes</button>
             </div>
         </div>
     </div>

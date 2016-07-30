@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Chart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chart</h2>
+
+
+
+@section Scripts {
+
+<script src="~/Scripts/chartData2.js"></script>
+
+
+
+    <script type="text/javascript">
+
+        @*
+        google.charts.load('current', { packages: ['corechart', 'line'] });
+        google.charts.setOnLoadCallback(drawBasic);
+
+        function drawBasic() {
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('number', 'X');
+            data.addColumn('number', 'Dogs');
+            data.addRows(rawData);
+            var options = {
+                hAxis: {
+                    title: 'Time'
+                },
+                vAxis: {
+                    title: 'Popularity'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+        }
+            *@
+
+    @*
+        var ctx = document.getElementById("myChart").getContext("2d");
+
+
+
+        var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: data
+        });
+
+    *@
+
+    </script>
+}

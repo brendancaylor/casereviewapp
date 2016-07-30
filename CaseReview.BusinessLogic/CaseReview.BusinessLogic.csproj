@@ -41,6 +41,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CaseReviewWorkSheetLogic.cs" />
+    <Compile Include="DataExtractLogic.cs" />
     <Compile Include="GenericLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GeneralLogic.cs" />

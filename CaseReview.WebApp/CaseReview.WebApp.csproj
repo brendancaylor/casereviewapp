@@ -183,9 +183,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminListController.cs" />
     <Compile Include="Controllers\api\AdminListController.cs" />
+    <Compile Include="Controllers\api\NonCompliantTotalsController.cs" />
     <Compile Include="Controllers\CaseReviewWorkSheetsController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\DataExtractController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NonCompliantReportController.cs" />
@@ -196,11 +198,14 @@
     <Compile Include="Controllers\SectionsController.cs" />
     <Compile Include="Controllers\StaffsController.cs" />
     <Compile Include="Controllers\api\saveanswerController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Answer.cs" />
+    <Compile Include="Models\Api\NonCompStaffTotal.cs" />
     <Compile Include="Models\Api\UpdateCaseReviewTypeSection.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\CaseReviewType.cs" />
@@ -209,18 +214,20 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NonComliantModel.cs" />
     <Compile Include="Models\NonCompliant.cs" />
     <Compile Include="Models\LineChartModel.cs" />
     <Compile Include="Models\PieChartModel.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\ReportStaffSections.cs" />
-    <Compile Include="Models\SaveAnswerReq.cs" />
+    <Compile Include="Models\ReqModels.cs" />
     <Compile Include="Models\Section.cs" />
     <Compile Include="Models\SectionAnswer.cs" />
     <Compile Include="Models\SectionCaseReviewType.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\StandardLine.cs" />
     <Compile Include="Models\GeneralSearch.cs" />
+    <Compile Include="Models\UserAdminModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -243,6 +250,7 @@
     <Content Include="Scripts\app\viewModels\app.vm.questions.js" />
     <Content Include="Scripts\app\viewModels\app.vm.casereviewtypesections.js" />
     <Content Include="Scripts\app\viewModels\app.vm.updatecr.js" />
+    <Content Include="Scripts\app\viewModels\app.vm.updatefb.js" />
     <Content Include="Scripts\app\views\app.vw.basemodels.js" />
     <Content Include="Scripts\app\views\app.vw.staff.js" />
     <Content Include="Scripts\app\views\app.vw.questions.js" />
@@ -254,16 +262,18 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\nexa_light-webfont.eot" />
     <Content Include="appOffline.htm" />
-    <None Include="Properties\PublishProfiles\BiLiCaseReviews.pubxml" />
     <None Include="Properties\PublishProfiles\brensdev.com - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\CaseReviewAzureLive.pubxml" />
     <None Include="Properties\PublishProfiles\casereviews.pubxml" />
-    <None Include="Properties\PublishProfiles\InContAzureRelease.pubxml" />
     <None Include="Properties\PublishProfiles\Release.pubxml" />
     <Content Include="Scripts\app\viewModels\app.vm.base.js" />
     <Content Include="Scripts\casereview.js" />
     <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\chartData.js" />
+    <Content Include="Scripts\chartData2.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\datepicker.js" />
+    <Content Include="Scripts\app\views\app.vw.updatefb.js" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\FileSaver.min.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
@@ -386,12 +396,20 @@
     <Content Include="Views\CaseReviewWorkSheets\Update.cshtml" />
     <Content Include="Views\Prototypes\StaffSectionsReport.cshtml" />
     <Content Include="Views\ReportStaffSections\Index.cshtml" />
+    <Content Include="Views\Test\Chart.cshtml" />
+    <Content Include="Views\UserAdmin\Index.cshtml" />
+    <Content Include="Views\UserAdmin\Create.cshtml" />
+    <Content Include="Views\UserAdmin\Delete.cshtml" />
+    <Content Include="Views\UserAdmin\Details.cshtml" />
+    <Content Include="Views\UserAdmin\Edit.cshtml" />
     <None Include="Web.ReleaseAzure.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\DataExtract\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

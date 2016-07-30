@@ -2,8 +2,6 @@
     $('#StandardID').select2();
 });
 
-
-
 app.view.selectAll = function () {
     app.view.deselectAll();
     app.viewmodel.Sections().forEach(
@@ -91,9 +89,7 @@ $("#StandardID").change(function (event, a, b) {
     debugger;
     var constSelect = "- Select to add -";
     var val = $("#StandardID").val();
-
     if (val && val != constSelect) {
-
         var existingComments = app.viewmodel.ModalAnswerComments();
         if (existingComments != "") {
             existingComments += '\n';
@@ -101,7 +97,6 @@ $("#StandardID").change(function (event, a, b) {
         app.viewmodel.ModalAnswerComments(existingComments + val);
         $("#StandardID").select2("val", "");
     }
-
 });
 
 app.view.addLine = function (ddElement) {
@@ -119,6 +114,9 @@ app.view.addLine = function (ddElement) {
 }
 
 app.view.save = function () {
+    
+    $("#saveButton").attr('disabled', 'disabled');
+    $("#saveButton").addClass("disabled");
     var selectedAnswerIds = [];
     app.viewmodel.Sections().forEach(
         function (section) {
@@ -145,11 +143,26 @@ app.view.save = function () {
         function (callbackData) {
             // success
             app.view.deselectAll();
-            app.helpers.showSavedNotification("Saved :-)");
+            if (callbackData == "worked") {
+                app.helpers.showSavedNotification("Saved :-)");
+            }
+            else {
+                app.helpers.showErrorNotification("ooops :-( " + callbackData);
+            }
+            
+            $("#saveButton").removeAttr('disabled');
+            $("#saveButton").removeClass("disabled");
+
+            $('#myModal').modal('hide');
         },
         function (callback) {
             // error
             app.helpers.showErrorNotification("ooops :-(");
+            
+            $("#saveButton").attr('disabled', 'false');
+            $("#saveButton").removeClass("disabled");
+
+            $('#myModal').modal('hide');
         }
 
     );

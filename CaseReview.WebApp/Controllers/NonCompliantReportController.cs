@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using CaseReview.BusinessLogic;
 using CaseReview.WebApp.Models;
 using PagedList;
+using System.Web.Script.Serialization;
+using CaseReview.DataLayer.Models;
 
 namespace CaseReview.WebApp.Controllers
 {
@@ -30,7 +32,7 @@ namespace CaseReview.WebApp.Controllers
             }
 
             var data = new GeneralLogic().SearchvwNonCompliant(date, surname);
-            var model = new List<NonCompliant>();
+            var model = new NonCompliantModel();
 
             s.ChartLabel = "";
             s.ChartData = "";
@@ -69,24 +71,59 @@ namespace CaseReview.WebApp.Controllers
                 s.ChartData = s.ChartData.Substring(1, s.ChartData.Length - 1);
             }
 
-            foreach (var o in data.OrderBy(o => o.Year).ThenBy(o => o.Month))
+            
+            var nonCompliants = new List<NonCompliant>();
+            foreach (var o in data.OrderBy(o => o.HasFeedback).ThenByDescending(o => o.Year).ThenByDescending(o => o.Month))
             {
-                model.Add(new NonCompliant()
+                nonCompliants.Add(new NonCompliant()
                 {
+                    Id = o.ID.Value,
                     StaffSurname = o.StaffSurname,
                     ClientRef = o.ClientRef,
                     Count = 1,
                     Month = o.Month,
                     Year = o.Year,
-                    QuestionName = o.QuestionName,
-                    QuestionOrder = o.QuestionOrder,
+                    
+                    StaffID = o.StaffID,
+
                     SectionName = o.SectionName,
                     SectionOrder = o.SectionOrder,
-                    Comments = o.Comments                   
+
+                    QuestionID = o.QuestionID,
+                    QuestionOrder = o.QuestionOrder,
+                    QuestionName = o.QuestionName,
+                    IsMandatory = o.IsMandatory,
+                    Risk = o.Risk,
+
+                    Comments = o.Comments,
+                    Feedback = o.Feedback,
+                    FeedbackType = o.FeedbackType
+                });
+            }
+            
+            model.NonCompliants = nonCompliants.ToPagedList(s.Page, s.PageSize);
+            
+
+            //GOT HERE !!!
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var json = jsonSerializer.Serialize(model.NonCompliants);
+            ViewBag.Json = json;
+
+            ViewBag.urlApiUpdate = "api/casereview/update";
+            ViewBag.urlApiUpdateAnswer = "api/casereview/saveanswer/savemany";
+
+            model.StandardLines.Add(new SelectListItem() {Value = "", Text = " - Select to add - " });
+            foreach (var standardLine in new GeneralLogic().GetAllStandardLine("Feedback").OrderBy(o => o.Line))
+            {
+                model.StandardLines.Add(new SelectListItem()
+                {
+                    Text = standardLine.Line,
+                    Value = standardLine.Line,
                 });
             }
 
-            return View(model.ToPagedList(s.Page, s.PageSize));
+            return View(model);
         }
 
     }

@@ -159,10 +159,14 @@ namespace CaseReview.WebApp.Controllers
             model.IsCompleted = dbObject.IsCompleted;
 
             LoadDds(model);
+            LoadAnswers(model, dbObject);
+            return View(model);
+        }
 
-
-            model.StandardLines.Add(new SelectListItem(){Text = " - Select to add - "});
-            foreach (var standardLine in new GeneralLogic().GetAllStandardLine().OrderBy(o => o.Line))
+        private void LoadAnswers(CaseReviewWorkSheet model, CaseReview.DataLayer.Models.CaseReviewWorkSheet dbObject)
+        {
+            model.StandardLines.Add(new SelectListItem() { Text = " - Select to add - " });
+            foreach (var standardLine in new GeneralLogic().GetAllStandardLine("Comment").OrderBy(o => o.Line))
             {
                 model.StandardLines.Add(new SelectListItem()
                 {
@@ -170,7 +174,7 @@ namespace CaseReview.WebApp.Controllers
                     Value = standardLine.Line,
                 });
             }
-            
+
 
             dbObject.Answers.OrderBy(o => o.Question.Section.DisplayOrder).ThenBy(o => o.Question.DisplayOrder);
             var lastSectionId = Guid.Empty;
@@ -199,7 +203,7 @@ namespace CaseReview.WebApp.Controllers
                             CaseReviewWorkSheetID = model.ID,
                             Comments = answer.Comments,
                             Compliant = answer.Compliant,
-                            
+
                             Question = new Question()
                             {
                                 ID = answer.QuestionID,
@@ -219,12 +223,7 @@ namespace CaseReview.WebApp.Controllers
                         }
                 );
             }
-            
-            //.ThenBy(o => o.Question.DisplayOrder);
-
-            return View(model);
         }
-
 
         // POST: CaseReviewWorkSheets/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -251,6 +250,8 @@ namespace CaseReview.WebApp.Controllers
 
                 return RedirectToAction("Index");
             }
+            var dbObject = new CaseReviewWorkSheetLogic().Get(model.ID);
+            LoadAnswers(model, dbObject);
             LoadDds(model);
             return View(model);
         }
@@ -291,7 +292,7 @@ namespace CaseReview.WebApp.Controllers
 
 
             model.StandardLines.Add(new SelectListItem() { Text = " - Select to add - " });
-            foreach (var standardLine in new GeneralLogic().GetAllStandardLine().OrderBy(o => o.Line))
+            foreach (var standardLine in new GeneralLogic().GetAllStandardLine("Comment").OrderBy(o => o.Line))
             {
                 model.StandardLines.Add(new SelectListItem()
                 {

@@ -118,3 +118,13 @@ textarea {
 .fakeHide{
     opacity: 0; position:absolute; top: -100px;
 }
+
+.chevDown {
+    font-size:1.2em;
+    padding:5px;
+    cursor: pointer;
+}
+
+.chevDown:hover {
+    background: #F5F7FA;
+}

@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<repositories>
-  <repository path="..\CaseReview.DataLayer\packages.config" />
-  <repository path="..\CaseReview.Site\DataAccess\packages.config" />
-  <repository path="..\CaseReview.Site\WebApplication\packages.config" />
-  <repository path="..\CaseReview.WebApp\packages.config" />
-</repositories>

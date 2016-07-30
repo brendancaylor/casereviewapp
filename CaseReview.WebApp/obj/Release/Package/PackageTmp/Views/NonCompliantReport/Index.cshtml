@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<NonCompliant>
+﻿@model NonCompliantModel
 @using System.Globalization
 @using CaseReview.WebApp.Models
 @using Microsoft.Ajax.Utilities
@@ -81,8 +81,7 @@
 <div class="row">
     <div class="col-sm-12">
 
-        @Html.PagedListPager(
-Model, page => Url.Action("Index"
+        @Html.PagedListPager(Model.NonCompliants, page => Url.Action("Index"
     , new
     {
         page,
@@ -112,45 +111,68 @@ Model, page => Url.Action("Index"
                     Comments
                 </th>
                 <th>
-
+                    Feedback
+                </th>
+                <th>
+                    Feedback type
                 </th>
             </tr>
 
-            @foreach (var item in Model)
-            {
-                <tr>
+            <!-- foreach : Answers -->
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StaffSurname)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ClientRef)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Month)/@Html.DisplayFor(modelItem => item.Year)
-                    </td>
-                    <td>
-                        <small class="small">
-                            @Html.DisplayFor(modelItem => item.SectionName)
-                        </small>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.QuestionName)
-                    </td>
-                    <td>
-                        <small class="small">
-                            @Html.DisplayFor(modelItem => item.Comments)
-                        </small>
-                    </td>
+            <tbody data-bind="foreach : Answers">
+                <tr style="cursor: pointer;"
+                    data-bind="css: IsActive() ? 'active' : '', click: $root.showAnswerModal">
+                    <td data-bind="text: StaffSurname"></td>
+                    <td data-bind="text: ClientRef"></td>
+                    <td data-bind="text: Date"></td>
+                    <td data-bind="text: SectionName"></td>
+                    <td data-bind="text: QuestionName"></td>                   
+                    <td data-bind="html: CommentsFormatted"></td>
+                    <td data-bind="html: FeedbackFormatted"></td>
+                    <td data-bind="html: FeedbackType"></td>
                 </tr>
-            }
 
+            </tbody>
+
+            <!-- / foreach : Answers -->
+ 
+            @*
+    @foreach (var item in Model)
+    {
+        <tr data-id="@item.Id">
+
+            <td>
+                @Html.DisplayFor(modelItem => item.StaffSurname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientRef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Month)/@Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                <small class="small">
+                    @Html.DisplayFor(modelItem => item.SectionName)
+                </small>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionName)
+            </td>
+            <td>
+                <small class="small">
+                    @Html.DisplayFor(modelItem => item.Comments)
+                </small>
+            </td>
+        </tr>
+    }
+            *@
         </table>
 
-        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        Page @(Model.NonCompliants.PageCount < Model.NonCompliants.PageNumber ? 0 : Model.NonCompliants.PageNumber) of @Model.NonCompliants.PageCount
 
         @Html.PagedListPager(
-Model, page => Url.Action("Index"
+Model.NonCompliants, page => Url.Action("Index"
     , new
     {
         page,
@@ -163,11 +185,377 @@ Model, page => Url.Action("Index"
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
+
+    <div class="modal-dialog" role="document">
+
+        <div class="modal-content">
+        
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="myModalLabel">
+                    Feedback
+
+                    <span class="pull-right" data-bind="visible: TotalsLoading">
+                        <span>Loading figures...</span>
+                        <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+                    </span>
+
+                </h4>
+            </div>
+            <div class="modal-body">
+                <strong>Question - </strong>
+                <span data-bind="text: ModalAnswerIsMandatory"></span>
+                
+                <span data-bind="text: ModalAnswerRisk"></span> :
+                <p data-bind="text: ModalAnswerQuestionName"></p>
+
+                <strong>Reviewer's comments:</strong>
+                <div style="height: 60px; overflow: auto;">
+                    <p data-bind="text: ModalAnswerComments"></p>
+                </div>
+                <table class="table table-bordered"  data-bind="visible: !TotalsLoading()">
+                    <tr>
+                        <th>
+                            Last 6 months
+                        </th>
+                        <th>
+                            Not set
+                        </th>
+                        <th>
+                            Init. Dev Notes
+                        </th>
+                        <th>
+                            Dev Plan
+                        </th>
+                        <th>
+                            Re-training
+                        </th>
+                        <th>
+                            Discp.
+                        </th>
+                        <th>
+                            Totals
+                        </th>
+
+                    </tr>
+                    <tr>
+                        <td>This question</td>
+
+                        <td>
+                            <!-- ko foreach: Totals -->
+                            <!-- ko if: IsThisQuestion && FeedbackType == '' -->
+
+                            <span class="badge" data-bind="text: Total, visible: IsMandatory, attr: {'title': FeedbackType}" style="background-color: #d9534f;"></span>
+                            <span class="badge" data-bind="text: Total, visible: !IsMandatory, attr: {'title': FeedbackType}" style="background-color: #f0ad4e;"></span>
+
+                            <!-- /ko -->
+                            <!-- /ko -->
+                        </td>
+
+                        <td>
+                            <!-- ko foreach: Totals -->
+                            <!-- ko if: IsThisQuestion && FeedbackType == 'Initial Development Notes' -->
+
+                            <span class="badge" data-bind="text: Total, visible: IsMandatory, attr: {'title': FeedbackType}" style="background-color: #d9534f;"></span>
+                            <span class="badge" data-bind="text: Total, visible: !IsMandatory, attr: {'title': FeedbackType}" style="background-color: #f0ad4e;"></span>
+
+                            <!-- /ko -->
+                            <!-- /ko -->
+                        </td>
+
+                        <td>
+                            <!-- ko foreach: Totals -->
+                            <!-- ko if: IsThisQuestion && FeedbackType == 'Development Plan' -->
+
+                            <span class="badge" data-bind="text: Total, visible: IsMandatory, attr: {'title': FeedbackType}" style="background-color: #d9534f;"></span>
+                            <span class="badge" data-bind="text: Total, visible: !IsMandatory, attr: {'title': FeedbackType}" style="background-color: #f0ad4e;"></span>
+
+                            <!-- /ko -->
+                            <!-- /ko -->
+                        </td>
+
+                        <td>
+                            <!-- ko foreach: Totals -->
+                            <!-- ko if: IsThisQuestion && FeedbackType == 'Re-training' -->
+
+                            <span class="badge" data-bind="text: Total, visible: IsMandatory, attr: {'title': FeedbackType}" style="background-color: #d9534f;"></span>
+                            <span class="badge" data-bind="text: Total, visible: !IsMandatory, attr: {'title': FeedbackType}" style="background-color: #f0ad4e;"></span>
+
+                            <!-- /ko -->
+                            <!-- /ko -->
+                        </td>
+
+                        <td>
+                            <!-- ko foreach: Totals -->
+                            <!-- ko if: IsThisQuestion && FeedbackType == 'Disciplinary' -->
+
+                            <span class="badge" data-bind="text: Total, visible: IsMandatory, attr: {'title': FeedbackType}" style="background-color: #d9534f;"></span>
+                            <span class="badge" data-bind="text: Total, visible: !IsMandatory, attr: {'title': FeedbackType}" style="background-color: #f0ad4e;"></span>
+
+                            <!-- /ko -->
+                            <!-- /ko -->
+                        </td>
+
+
+                        <td>
+                            <!-- ko foreach: Totals -->
+                            <!-- ko if: IsThisQuestion && FeedbackType == 'Total' -->
+
+                            <span class="badge" data-bind="text: Total, visible: IsMandatory, attr: {'title': FeedbackType}" style="background-color: #d9534f;"></span>
+                            <span class="badge" data-bind="text: Total, visible: !IsMandatory, attr: {'title': FeedbackType}" style="background-color: #f0ad4e;"></span>
+
+                            <!-- /ko -->
+                            <!-- /ko -->
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Everything</td>
+
+                        <td>
+                            <!-- ko foreach: Totals -->
+                            <!-- ko if: !IsThisQuestion && FeedbackType == '' -->
+
+                            <span class="badge" data-bind="text: Total, visible: IsMandatory, attr: {'title': FeedbackType}" style="background-color: #d9534f;"></span>
+                            <span class="badge" data-bind="text: Total, visible: !IsMandatory, attr: {'title': FeedbackType}" style="background-color: #f0ad4e;"></span>
+
+                            <!-- /ko -->
+                            <!-- /ko -->
+                        </td>
+
+                        <td>
+                            <!-- ko foreach: Totals -->
+                            <!-- ko if: !IsThisQuestion && FeedbackType == 'Initial Development Notes' -->
+
+                            <span class="badge" data-bind="text: Total, visible: IsMandatory, attr: {'title': FeedbackType}" style="background-color: #d9534f;"></span>
+                            <span class="badge" data-bind="text: Total, visible: !IsMandatory, attr: {'title': FeedbackType}" style="background-color: #f0ad4e;"></span>
+
+                            <!-- /ko -->
+                            <!-- /ko -->
+                        </td>
+
+                        <td>
+                            <!-- ko foreach: Totals -->
+                            <!-- ko if: !IsThisQuestion && FeedbackType == 'Development Plan' -->
+
+                            <span class="badge" data-bind="text: Total, visible: IsMandatory, attr: {'title': FeedbackType}" style="background-color: #d9534f;"></span>
+                            <span class="badge" data-bind="text: Total, visible: !IsMandatory, attr: {'title': FeedbackType}" style="background-color: #f0ad4e;"></span>
+
+                            <!-- /ko -->
+                            <!-- /ko -->
+                        </td>
+
+                        <td>
+                            <!-- ko foreach: Totals -->
+                            <!-- ko if: !IsThisQuestion && FeedbackType == 'Re-training' -->
+
+                            <span class="badge" data-bind="text: Total, visible: IsMandatory, attr: {'title': FeedbackType}" style="background-color: #d9534f;"></span>
+                            <span class="badge" data-bind="text: Total, visible: !IsMandatory, attr: {'title': FeedbackType}" style="background-color: #f0ad4e;"></span>
+
+                            <!-- /ko -->
+                            <!-- /ko -->
+                        </td>
+
+                        <td>
+                            <!-- ko foreach: Totals -->
+                            <!-- ko if: !IsThisQuestion && FeedbackType == 'Disciplinary' -->
+
+                            <span class="badge" data-bind="text: Total, visible: IsMandatory, attr: {'title': FeedbackType}" style="background-color: #d9534f;"></span>
+                            <span class="badge" data-bind="text: Total, visible: !IsMandatory, attr: {'title': FeedbackType}" style="background-color: #f0ad4e;"></span>
+
+                            <!-- /ko -->
+                            <!-- /ko -->
+                        </td>
+
+
+                        <td>
+                            <!-- ko foreach: Totals -->
+                            <!-- ko if: !IsThisQuestion && FeedbackType == 'Total' -->
+
+                            <span class="badge" data-bind="text: Total, visible: IsMandatory, attr: {'title': FeedbackType}" style="background-color: #d9534f;"></span>
+                            <span class="badge" data-bind="text: Total, visible: !IsMandatory, attr: {'title': FeedbackType}" style="background-color: #f0ad4e;"></span>
+
+                            <!-- /ko -->
+                            <!-- /ko -->
+                        </td>
+
+                    </tr>
+
+                        @*
+                        <td>
+                            <div data-bind="visible: !TotalsLoading()">
+                                
+                                <span class="badge" data-bind="text: '' + FbtTotalQuMan(), visible: ModalAnswerIsMandatory() != ''" style="background-color: #d9534f;"></span>
+                                <span class="badge" data-bind="text: '' + FbtTotalQuNonMan(), visible: ModalAnswerIsMandatory() == ''" style="background-color: #f0ad4e;"></span>
+                                
+                            </div>
+                        </td>
+                        
+                        <td>
+                            <div data-bind="visible: !TotalsLoading()">
+                                <span class="badge" data-bind="text: FbtNaTotalQuMan, visible: ModalAnswerIsMandatory() != ''" style="background-color: #d9534f;"></span>
+                                <span class="badge" data-bind="text: FbtNaTotalQuNonMan, visible: ModalAnswerIsMandatory() == ''" style="background-color: #f0ad4e;"></span>
+                            </div>
+                        </td>
+                        <td>
+                            <div data-bind="visible: !TotalsLoading()">
+                                <span class="badge danger" data-bind="text: FbtDevTotalQuMan, visible: ModalAnswerIsMandatory() != ''" style="background-color: #d9534f;"></span>
+                                <span class="badge warning" data-bind="text: FbtDevTotalQuNonMan, visible: ModalAnswerIsMandatory() == ''" style="background-color: #f0ad4e;"></span>
+                            </div>
+                        </td>
+                        <td>
+                            <div data-bind="visible: !TotalsLoading()">
+                                <span class="badge danger" data-bind="text: FbtReTrainTotalQuMan, visible: ModalAnswerIsMandatory() != ''" style="background-color: #d9534f;"></span>
+                                <span class="badge warning" data-bind="text: FbtReTrainTotalQuNonMan, visible: ModalAnswerIsMandatory() == ''" style="background-color: #f0ad4e;"></span>
+                            </div>
+                        </td>
+                        *@
+                    
+                    @*
+                    <tr>
+                        <td>All questions</td>
+                        <td>
+                            <div data-bind="visible: !TotalsLoading()">
+                                <span class="badge" data-bind="text: '' + FbtTotalAllMan()" style="background-color: #d9534f;"></span>
+                                <span class="badge" data-bind="text: '' + FbtTotalAllNonMan()" style="background-color: #f0ad4e;"></span>
+                            </div>
+                        </td>
+                        <td>
+                            <div data-bind="visible: !TotalsLoading()">
+                                <span class="badge danger" data-bind="text: FbtNaTotalAllMan" style="background-color: #d9534f;"></span>
+                                <span class="badge warning" data-bind="text: FbtNaTotalAllNonMan" style="background-color: #f0ad4e;"></span>
+                            </div>
+                        </td>
+                        <td>
+                            <div data-bind="visible: !TotalsLoading()">
+                                <span class="badge danger" data-bind="text: FbtDevTotalAllMan" style="background-color: #d9534f;"></span>
+                                <span class="badge warning" data-bind="text: FbtDevTotalAllNonMan" style="background-color: #f0ad4e;"></span>
+                            </div>
+                        </td>
+                        <td>
+                            <div data-bind="visible: !TotalsLoading()">
+                                <span class="badge danger" data-bind="text: FbtReTrainTotalAllMan" style="background-color: #d9534f;"></span>
+                                <span class="badge warning" data-bind="text: FbtReTrainTotalAllNonMan" style="background-color: #f0ad4e;"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    *@
+                </table>
+
+                <form>
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <textarea class="form-control"
+                                          rows="3"
+                                          style="max-width: 600px !important; margin: 10px 0 0 0;"
+                                          data-bind="value: ModalAnswerFeedback"
+                                          
+                                          ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Select the type of feedback</p>
+                    <div class="btn-group" style="padding: 0 0 10px 10px;">
+
+                        <label id="lblNotSet" class="btn btn-default" data-bind="css: ModalAnswerFeedbackType() == null || ModalAnswerFeedbackType() == '' ? 'active': ''">
+
+                            <input name="feedbackType"
+                                   class="fakeHide"
+                                   type="radio"
+                                   value=""
+                                   autocomplete="off"
+                                   data-bind="checked: ModalAnswerFeedbackType">
+                            Not Set
+                        </label>
+
+                        <label id="lblDevNotes" class="btn btn-default" data-bind="css: ModalAnswerFeedbackType() == 'Initial Development Notes' ? 'active': ''">
+
+                            <input name="feedbackType"
+                                   class="fakeHide"
+                                   type="radio"
+                                   value="Initial Development Notes"
+                                   autocomplete="off"
+                                   data-bind="checked: ModalAnswerFeedbackType">
+                            Init. Dev. Notes
+                        </label>
+
+                        <label id="lblDev" class="btn btn-default" data-bind="css: ModalAnswerFeedbackType() == 'Development Plan' ? 'active': ''">
+
+                            <input name="feedbackType"
+                                   class="fakeHide"
+                                   type="radio"
+                                   value="Development Plan"
+                                   autocomplete="off"
+                                   data-bind="checked: ModalAnswerFeedbackType">
+                            Dev. Plan
+                        </label>
+
+                        <label id="lblRetrain" class="btn btn-default" data-bind="css: ModalAnswerFeedbackType() == 'Re-training' ? 'active': ''">
+
+                            <input name="feedbackType"
+                                   class="fakeHide"
+                                   type="radio"
+                                   value="Re-training"
+                                   autocomplete="off"
+                                   data-bind="checked: ModalAnswerFeedbackType">
+                            Re-training
+                        </label>
+
+
+                        <label id="lblDisciplinary" class="btn btn-default" data-bind="css: ModalAnswerFeedbackType() == 'Disciplinary' ? 'active': ''">
+
+                            <input name="feedbackType"
+                                   class="fakeHide"
+                                   type="radio"
+                                   value="Disciplinary"
+                                   autocomplete="off"
+                                   data-bind="checked: ModalAnswerFeedbackType">
+                            Discp.
+                        </label>
+
+                        
+                        
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.StandardLine, Model.StandardLines, null, htmlAttributes: new { @class = "form-control ", style = "width: 100%" })
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button id="saveButton" type="button" class="btn btn-primary" style="margin:5px;"
+                        onclick="app.view.save();">
+                    Save changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    
+    <script type="text/javascript">
+        var localData = @Html.Raw(ViewBag.Json);
+        var urlApiUpdateAnswer = '@ViewBag.urlApiUpdateAnswer';
+    </script>
+
+    <script src="~/Scripts/app/viewModels/app.vm.updatefb.js"></script>
+    <script src="~/Scripts/app/views/app.vw.updatefb.js"></script>
+
+    
     <script type="text/javascript">
         $("#month").val("@search.Month");
         $("#year").val("@search.Year");
