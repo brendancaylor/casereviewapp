@@ -28,6 +28,7 @@ namespace CaseReview.DataLayer.Models
         public DbSet<SectionCaseReviewType> SectionCaseReviewTypes { get; set; }
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<StandardLine> StandardLines { get; set; }
+        public DbSet<vwCamNotAcepted> vwCamNotAcepteds { get; set; }
         public DbSet<vwNonCompliant> vwNonCompliants { get; set; }
         public DbSet<vwReportStaffSection> vwReportStaffSections { get; set; }
         public DbSet<vwStaffNonCompliantTotal> vwStaffNonCompliantTotals { get; set; }
@@ -46,6 +47,7 @@ namespace CaseReview.DataLayer.Models
             modelBuilder.Configurations.Add(new SectionCaseReviewTypeMap());
             modelBuilder.Configurations.Add(new StaffMap());
             modelBuilder.Configurations.Add(new StandardLineMap());
+            modelBuilder.Configurations.Add(new vwCamNotAceptedMap());
             modelBuilder.Configurations.Add(new vwNonCompliantMap());
             modelBuilder.Configurations.Add(new vwReportStaffSectionMap());
             modelBuilder.Configurations.Add(new vwStaffNonCompliantTotalMap());

@@ -2,3 +2,4 @@ C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessObjects\b
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessObjects\bin\Debug\CaseReview.BusinessObjects.pdb
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessObjects\obj\Debug\CaseReview.BusinessObjects.dll
 C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessObjects\obj\Debug\CaseReview.BusinessObjects.pdb
+C:\BrensDevFiles\$CaseReviewWorkSheet\casereviewapp\CaseReview.BusinessObjects\obj\Debug\CaseReview.BusinessObjects.csprojResolveAssemblyReference.cache

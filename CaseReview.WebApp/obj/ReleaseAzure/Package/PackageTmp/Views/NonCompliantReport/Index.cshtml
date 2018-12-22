@@ -10,78 +10,93 @@
     var search = ViewBag.Search;
 }
 
-<h2>Non compliant answers</h2>
+<div class="row x_title">
+    <div class="col-xs-6">
+        <h3>Non compliant answers</h3>
+    </div>
+    <div class="col-xs-6">
 
-<div class="row">
-    <div class="col-sm-6">
-
-        @using (Html.BeginForm("index", "NonCompliantReport", FormMethod.Get, new { id = "formNonCompliantReport", @class = "form-horizontal" }))
-        {
-            <div class="form-group">
-
-                <label for="surname">search</label>
-
-                <div class="input-group">
-                    <div class="input-group-addon">
-                        <i class="glyphicon glyphicon-search"></i>
-                    </div>
-                    <input type="text" class="form-control" id="surname" name="surname" placeholder="Filter by surname" value="@search.Surname" onchange="$('#formNonCompliantReport').submit();">
-
-                </div>
-            </div>
-            <div class="form-group">
-
-                <div class="input-group">
-                    <div class="input-group-addon">
-                        <i class="glyphicon glyphicon-search"></i>
-                    </div>
-
-                    <select id="month" name="month" onchange="$('#formNonCompliantReport').submit();" class="form-control" style="width: 120px;">
-                        <option value=""> - month - </option>
-
-                        @{
-            var months = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames;
-                        for (int i = 0; i < months.Length; i++)
-                        {
-                    <option value="@(i+1)">@months[i]</option>
-                        }
-                        }
-                    </select>
-                </div>
-
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon">
-                        <i class="glyphicon glyphicon-search"></i>
-                    </div>
-                    <select id="year" name="year" onchange="$('#formNonCompliantReport').submit();" class="form-control" style="width: 120px;">
-                        <option value=""> - year - </option>
-
-                        @{
-                        for (int i = DateTime.Now.Year; i > DateTime.Now.AddYears(-5).Year; i--)
-                        {
-                    <option value="@i">@i</option>
-                        }
-                        }
-                    </select>
-                </div>
-            </div>
-        }
 
     </div>
-
-    <div class="col-sm-6">
-         <canvas id="myChart"></canvas>
-     </div>
 </div>
 
-<br />
+<div class="x_panel">
+    <div class="x_content">
 
-<div class="row">
-    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-6">
 
-        @Html.PagedListPager(Model.NonCompliants, page => Url.Action("Index"
+                @using (Html.BeginForm("index", "NonCompliantReport", FormMethod.Get, new { id = "formNonCompliantReport", @class = "form-horizontal" }))
+                {
+                    <div class="form-group">
+
+                        <label for="surname">search</label>
+
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </div>
+                            <input type="text" class="form-control" id="surname" name="surname" placeholder="Filter by surname" value="@search.Surname" onchange="$('#formNonCompliantReport').submit();">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </div>
+
+                            <select id="month" name="month" onchange="$('#formNonCompliantReport').submit();" class="form-control" style="width: 120px;">
+                                <option value=""> - month - </option>
+
+                                @{
+                                    var months = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames;
+                                    for (int i = 0; i < months.Length; i++)
+                                    {
+                                        <option value="@(i+1)">@months[i]</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </div>
+                            <select id="year" name="year" onchange="$('#formNonCompliantReport').submit();" class="form-control" style="width: 120px;">
+                                <option value=""> - year - </option>
+
+                                @{
+                                    for (int i = DateTime.Now.Year; i > DateTime.Now.AddYears(-5).Year; i--)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                                    }
+
+            </div>
+
+            <div class="col-sm-6">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                @Html.PagedListPager(Model.NonCompliants, page => Url.Action("Index"
     , new
     {
         page,
@@ -90,88 +105,93 @@
         surname = search.Surname,
         pageSize = search.PageSize
     }))
-        <table class="table">
-            <tr>
-                <th>
-                    Staff
-                </th>
-                <th>
-                    Client Ref
-                </th>
-                <th>
-                    Date
-                </th>
-                <th>
-                    Section
-                </th>
-                <th>
-                    Question
-                </th>
-                <th>
-                    Comments
-                </th>
-                <th>
-                    Feedback
-                </th>
-                <th>
-                    Feedback type
-                </th>
-            </tr>
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>
+                            Staff
+                        </th>
+                        <th>
+                            Client Ref
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Section
+                        </th>
+                        <th>
+                            Question
+                        </th>
+                        <th>
+                            Comments
+                        </th>
+                        <th>
+                            Feedback
+                        </th>
+                        <th>
+                            Feedback type
+                        </th>
+                        <th>
+                            Cam confirmed
+                        </th>
 
-            <!-- foreach : Answers -->
+                    </tr>
 
-            <tbody data-bind="foreach : Answers">
-                <tr style="cursor: pointer;"
-                    data-bind="css: IsActive() ? 'active' : '', click: $root.showAnswerModal">
-                    <td data-bind="text: StaffSurname"></td>
-                    <td data-bind="text: ClientRef"></td>
-                    <td data-bind="text: Date"></td>
-                    <td data-bind="text: SectionName"></td>
-                    <td data-bind="text: QuestionName"></td>                   
-                    <td data-bind="html: CommentsFormatted"></td>
-                    <td data-bind="html: FeedbackFormatted"></td>
-                    <td data-bind="html: FeedbackType"></td>
-                </tr>
+                    <!-- foreach : Answers -->
 
-            </tbody>
+                    <tbody data-bind="foreach : Answers">
+                        <tr style="cursor: pointer;"
+                            data-bind="css: IsActive() ? 'active' : '', click: $root.showAnswerModal">
+                            <td data-bind="text: StaffSurname"></td>
+                            <td data-bind="text: ClientRef"></td>
+                            <td data-bind="text: Date"></td>
+                            <td data-bind="text: SectionName"></td>
+                            <td data-bind="text: QuestionName"></td>
+                            <td data-bind="html: CommentsFormatted"></td>
+                            <td data-bind="text: FeedbackFormatted"></td>
+                            <td data-bind="text: FeedbackType"></td>
+                            <td data-bind="text: CamConfirmation() ? moment(CamConfirmation()).format('DD/MM/YYYY') : 'not set'"></td>
+                            
+                        </tr>
 
-            <!-- / foreach : Answers -->
- 
-            @*
-    @foreach (var item in Model)
-    {
-        <tr data-id="@item.Id">
+                    </tbody>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.StaffSurname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClientRef)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Month)/@Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                <small class="small">
-                    @Html.DisplayFor(modelItem => item.SectionName)
-                </small>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuestionName)
-            </td>
-            <td>
-                <small class="small">
-                    @Html.DisplayFor(modelItem => item.Comments)
-                </small>
-            </td>
-        </tr>
-    }
-            *@
-        </table>
+                    <!-- / foreach : Answers -->
+                    @*
+                        @foreach (var item in Model)
+                        {
+                            <tr data-id="@item.Id">
 
-        Page @(Model.NonCompliants.PageCount < Model.NonCompliants.PageNumber ? 0 : Model.NonCompliants.PageNumber) of @Model.NonCompliants.PageCount
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StaffSurname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ClientRef)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Month)/@Html.DisplayFor(modelItem => item.Year)
+                                </td>
+                                <td>
+                                    <small class="small">
+                                        @Html.DisplayFor(modelItem => item.SectionName)
+                                    </small>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.QuestionName)
+                                </td>
+                                <td>
+                                    <small class="small">
+                                        @Html.DisplayFor(modelItem => item.Comments)
+                                    </small>
+                                </td>
+                            </tr>
+                        }
+                    *@
+                </table>
+                <div style="margin: 20px 0 0 0;">
+                    Page @(Model.NonCompliants.PageCount < Model.NonCompliants.PageNumber ? 0 : Model.NonCompliants.PageNumber) of @Model.NonCompliants.PageCount
 
-        @Html.PagedListPager(
+                    @Html.PagedListPager(
 Model.NonCompliants, page => Url.Action("Index"
     , new
     {
@@ -181,9 +201,14 @@ Model.NonCompliants, page => Url.Action("Index"
         surname = search.Surname,
         pageSize = search.PageSize
     }))
+
+                </div>
+
+            </div>
+        </div>
+
     </div>
 </div>
-
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
@@ -191,7 +216,7 @@ Model.NonCompliants, page => Url.Action("Index"
     <div class="modal-dialog" role="document">
 
         <div class="modal-content">
-        
+
             <div class="modal-header">
 
                 <h4 class="modal-title" id="myModalLabel">
@@ -207,7 +232,7 @@ Model.NonCompliants, page => Url.Action("Index"
             <div class="modal-body">
                 <strong>Question - </strong>
                 <span data-bind="text: ModalAnswerIsMandatory"></span>
-                
+
                 <span data-bind="text: ModalAnswerRisk"></span> :
                 <p data-bind="text: ModalAnswerQuestionName"></p>
 
@@ -215,7 +240,7 @@ Model.NonCompliants, page => Url.Action("Index"
                 <div style="height: 60px; overflow: auto;">
                     <p data-bind="text: ModalAnswerComments"></p>
                 </div>
-                <table class="table table-bordered"  data-bind="visible: !TotalsLoading()">
+                <table class="table table-bordered" data-bind="visible: !TotalsLoading()">
                     <tr>
                         <th>
                             Last 6 months
@@ -383,16 +408,16 @@ Model.NonCompliants, page => Url.Action("Index"
 
                     </tr>
 
-                        @*
+                    @*
                         <td>
                             <div data-bind="visible: !TotalsLoading()">
-                                
+
                                 <span class="badge" data-bind="text: '' + FbtTotalQuMan(), visible: ModalAnswerIsMandatory() != ''" style="background-color: #d9534f;"></span>
                                 <span class="badge" data-bind="text: '' + FbtTotalQuNonMan(), visible: ModalAnswerIsMandatory() == ''" style="background-color: #f0ad4e;"></span>
-                                
+
                             </div>
                         </td>
-                        
+
                         <td>
                             <div data-bind="visible: !TotalsLoading()">
                                 <span class="badge" data-bind="text: FbtNaTotalQuMan, visible: ModalAnswerIsMandatory() != ''" style="background-color: #d9534f;"></span>
@@ -411,36 +436,36 @@ Model.NonCompliants, page => Url.Action("Index"
                                 <span class="badge warning" data-bind="text: FbtReTrainTotalQuNonMan, visible: ModalAnswerIsMandatory() == ''" style="background-color: #f0ad4e;"></span>
                             </div>
                         </td>
-                        *@
-                    
+                    *@
+
                     @*
-                    <tr>
-                        <td>All questions</td>
-                        <td>
-                            <div data-bind="visible: !TotalsLoading()">
-                                <span class="badge" data-bind="text: '' + FbtTotalAllMan()" style="background-color: #d9534f;"></span>
-                                <span class="badge" data-bind="text: '' + FbtTotalAllNonMan()" style="background-color: #f0ad4e;"></span>
-                            </div>
-                        </td>
-                        <td>
-                            <div data-bind="visible: !TotalsLoading()">
-                                <span class="badge danger" data-bind="text: FbtNaTotalAllMan" style="background-color: #d9534f;"></span>
-                                <span class="badge warning" data-bind="text: FbtNaTotalAllNonMan" style="background-color: #f0ad4e;"></span>
-                            </div>
-                        </td>
-                        <td>
-                            <div data-bind="visible: !TotalsLoading()">
-                                <span class="badge danger" data-bind="text: FbtDevTotalAllMan" style="background-color: #d9534f;"></span>
-                                <span class="badge warning" data-bind="text: FbtDevTotalAllNonMan" style="background-color: #f0ad4e;"></span>
-                            </div>
-                        </td>
-                        <td>
-                            <div data-bind="visible: !TotalsLoading()">
-                                <span class="badge danger" data-bind="text: FbtReTrainTotalAllMan" style="background-color: #d9534f;"></span>
-                                <span class="badge warning" data-bind="text: FbtReTrainTotalAllNonMan" style="background-color: #f0ad4e;"></span>
-                            </div>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>All questions</td>
+                            <td>
+                                <div data-bind="visible: !TotalsLoading()">
+                                    <span class="badge" data-bind="text: '' + FbtTotalAllMan()" style="background-color: #d9534f;"></span>
+                                    <span class="badge" data-bind="text: '' + FbtTotalAllNonMan()" style="background-color: #f0ad4e;"></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div data-bind="visible: !TotalsLoading()">
+                                    <span class="badge danger" data-bind="text: FbtNaTotalAllMan" style="background-color: #d9534f;"></span>
+                                    <span class="badge warning" data-bind="text: FbtNaTotalAllNonMan" style="background-color: #f0ad4e;"></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div data-bind="visible: !TotalsLoading()">
+                                    <span class="badge danger" data-bind="text: FbtDevTotalAllMan" style="background-color: #d9534f;"></span>
+                                    <span class="badge warning" data-bind="text: FbtDevTotalAllNonMan" style="background-color: #f0ad4e;"></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div data-bind="visible: !TotalsLoading()">
+                                    <span class="badge danger" data-bind="text: FbtReTrainTotalAllMan" style="background-color: #d9534f;"></span>
+                                    <span class="badge warning" data-bind="text: FbtReTrainTotalAllNonMan" style="background-color: #f0ad4e;"></span>
+                                </div>
+                            </td>
+                        </tr>
                     *@
                 </table>
 
@@ -452,9 +477,7 @@ Model.NonCompliants, page => Url.Action("Index"
                                 <textarea class="form-control"
                                           rows="3"
                                           style="max-width: 600px !important; margin: 10px 0 0 0;"
-                                          data-bind="value: ModalAnswerFeedback"
-                                          
-                                          ></textarea>
+                                          data-bind="value: ModalAnswerFeedback"></textarea>
                             </div>
                         </div>
                     </div>
@@ -517,8 +540,8 @@ Model.NonCompliants, page => Url.Action("Index"
                             Discp.
                         </label>
 
-                        
-                        
+
+
                     </div>
 
                     <div class="form-group">
@@ -546,7 +569,7 @@ Model.NonCompliants, page => Url.Action("Index"
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    
+
     <script type="text/javascript">
         var localData = @Html.Raw(ViewBag.Json);
         var urlApiUpdateAnswer = '@ViewBag.urlApiUpdateAnswer';
@@ -555,7 +578,7 @@ Model.NonCompliants, page => Url.Action("Index"
     <script src="~/Scripts/app/viewModels/app.vm.updatefb.js"></script>
     <script src="~/Scripts/app/views/app.vw.updatefb.js"></script>
 
-    
+
     <script type="text/javascript">
         $("#month").val("@search.Month");
         $("#year").val("@search.Year");
@@ -577,7 +600,7 @@ Model.NonCompliants, page => Url.Action("Index"
                 }
             ]
         };
-        
+
 
         var myLineChart = new Chart(ctx, {
             type: 'line',

@@ -10,6 +10,7 @@ namespace CaseReview.WebApp.Models
         public System.Guid id { get; set; }
         public string comments { get; set; }
         public bool? compliant { get; set; }
+        public bool advisory { get; set; }
 
     }
 
@@ -18,6 +19,7 @@ namespace CaseReview.WebApp.Models
         public List<System.Guid> ids { get; set; }
         public string comments { get; set; }
         public bool? compliant { get; set; }
+        public bool advisory { get; set; }
 
     }
 

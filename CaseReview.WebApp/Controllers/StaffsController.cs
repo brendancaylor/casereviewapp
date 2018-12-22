@@ -48,7 +48,7 @@ namespace CaseReview.WebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,StaffFirstname,StaffSurname")] Staff model)
+        public ActionResult Create([Bind(Include = "ID,StaffFirstname,StaffSurname,Email")] Staff model)
         {
             if (ModelState.IsValid)
             {
@@ -56,7 +56,8 @@ namespace CaseReview.WebApp.Controllers
                 {
                     ID = Guid.NewGuid(),
                     StaffFirstname = model.StaffFirstname,
-                    StaffSurname = model.StaffSurname
+                    StaffSurname = model.StaffSurname,
+                    Email = model.Email
                 };
                 staff = new StaffLogic().AddStaff(staff);
                 return RedirectToAction("Index");
@@ -84,7 +85,7 @@ namespace CaseReview.WebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,StaffFirstname,StaffSurname")] Staff model)
+        public ActionResult Edit([Bind(Include = "ID,StaffFirstname,StaffSurname,Email")] Staff model)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +93,8 @@ namespace CaseReview.WebApp.Controllers
                 {
                     ID = model.ID,
                     StaffFirstname = model.StaffFirstname,
-                    StaffSurname = model.StaffSurname
+                    StaffSurname = model.StaffSurname,
+                    Email = model.Email
                 };
                 staff = new StaffLogic().UpdateStaff(staff);
 

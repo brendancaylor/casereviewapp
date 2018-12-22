@@ -8,8 +8,23 @@
         return ((aStaffSurname < bStaffSurname) ? -1 : ((aStaffSurname > bStaffSurname) ? 1 : 0));
     };
 
+    $('#inpAddinpAddStaffFirstname').keypress(function (event) {
+        if (event.keyCode == 13) {
+            if (!app.viewmodel.AddButtonDisabled()) {
+                addNew();
+            }
+        }
+    });
 
     $('#inpAddinpAddStaffSurname').keypress(function (event) {
+        if (event.keyCode == 13) {
+            if (!app.viewmodel.AddButtonDisabled()) {
+                addNew();
+            }
+        }
+    });
+
+    $('#inpAddinpAddEmail').keypress(function (event) {
         if (event.keyCode == 13) {
             if (!app.viewmodel.AddButtonDisabled()) {
                 addNew();
@@ -29,6 +44,7 @@ app.view.update = function (obj) {
         ID: obj.ID(),
         StaffFirstname: obj.StaffFirstname(),
         StaffSurname: obj.StaffSurname(),
+        Email: obj.Email(),
         IsActive: obj.IsActive(),
     };
 
@@ -52,6 +68,7 @@ app.view.addNew = function () {
     vm.AddButtonDisabled(true);
     var staffFirstname = $("#inpAddStaffFirstname").val();
     var staffSurname = $("#inpAddStaffSurname").val();
+    var email = $("#inpAddEmail").val();
 
     if (staffFirstname == "") {
         return;
@@ -60,6 +77,7 @@ app.view.addNew = function () {
         IsActive: true,
         StaffFirstname: staffFirstname,
         StaffSurname: staffSurname,
+        Email: email,
     };
 
     app.api.callApi(data, urlApiAdd, true,
@@ -68,6 +86,7 @@ app.view.addNew = function () {
             var obj = jQuery.parseJSON(callbackData);
             app.viewmodel.add(obj);
             app.helpers.showSavedNotification("Added :-)");
+            $("#inpAddEmail").val("");
             $("#inpAddStaffSurname").val("");
             $("#inpAddStaffFirstname").val("");
             vm.AddButtonDisabled(false);

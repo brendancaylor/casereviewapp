@@ -23,7 +23,8 @@ namespace CaseReview.WebApp.Controllers
             {
                 ID = model.id,
                 Comments = model.comments,
-                Compliant = model.compliant
+                Compliant = model.compliant,
+                Advisory = model.advisory
             };
             new GeneralLogic().UpdateAnswer(answer);
             return Request.CreateResponse(HttpStatusCode.OK, "worked");
@@ -40,7 +41,8 @@ namespace CaseReview.WebApp.Controllers
                 {
                     ID = id,
                     Comments = model.comments,
-                    Compliant = model.compliant
+                    Compliant = model.compliant,
+                    Advisory = model.advisory
                 };
                 new GeneralLogic().UpdateAnswer(answer);
             }

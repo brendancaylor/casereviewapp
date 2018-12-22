@@ -22,6 +22,7 @@ SELECT
 	, Comments
 	, Feedback
 	, FeedbackType
+	, CamConfirmation
 	, CASE WHEN Feedback IS NULL OR Feedback = '' THEN cast(0 AS BIT) ELSE cast(1 AS BIT) END AS HasFeedback
 
 	FROM Answer
@@ -30,4 +31,4 @@ SELECT
 	INNER JOIN Staff ON CaseReviewWorkSheet.StaffID = Staff.ID
 	INNER JOIN Section ON Question.SectionID = Section.ID
 
-	WHERE (Answer.Compliant = 0)
+	WHERE (Answer.Compliant = 0 or Answer.Advisory = 1)

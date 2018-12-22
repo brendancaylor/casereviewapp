@@ -64,6 +64,19 @@
                                                 About
                                             </a>
                                         </li>
+
+@if (this.User.IsInRole("Cam"))
+{
+    <li>
+
+        <a href="@Url.Action("Index", "Cam")">
+            <i class="fa fa-check-square-o" aria-hidden="true"></i>
+            CAM feedback review
+        </a>
+
+    </li>
+}
+
 @if (this.User.IsInRole("Admin") || User.IsInRole("CaseReviewer"))
 {
                                         <li>
@@ -93,6 +106,7 @@
                                         <li>@Html.ActionLink("Case Review Types Sections", "CaseReviewTypeSections", "AdminList")</li>
                                         <li>@Html.ActionLink("Questions", "Questions", "AdminList")</li>
                                         <li>@Html.ActionLink("Staff Members", "Staffs", "AdminList")</li>
+                                        <li>@Html.ActionLink("User admin", "Index", "UserAdmin")</li>
 }
                                         <li>@Html.ActionLink("Standard Lines", "Index", "StandardLines")</li>
                                     </ul>
@@ -119,9 +133,17 @@
                                         <li>
                                             <a href="@Url.Action("Index", "DataExtract")">
                                                 <i class="fa fa-download" aria-hidden="true"></i>
-                                                Data Export 
+                                                Data Export
                                             </a>
                                         </li>
+
+                                        <li>
+                                            <a href="@Url.Action("Report", "Cam")">
+                                                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                                                Cams Not Accpt.
+                                            </a>
+                                        </li>
+
                                     </ul>
                                 </li>
 }

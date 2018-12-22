@@ -23,8 +23,6 @@ var Answer = function (data, sectionID) {
         return formatedComments;
     }, this);
     this.IsActive = ko.observable(false);
-
-
     this.Compliant = ko.observable("");
     if (data.Compliant != null) {
         this.Compliant("0");
@@ -42,6 +40,19 @@ var Answer = function (data, sectionID) {
         }
         return result;
     }, this);
+    this.Advisory = ko.observable(data.Advisory);
+
+    this.AdvisoryText = ko.computed(function () {
+        var result = "";
+        if (this.Advisory() != "") {
+            result = "No";
+            if (this.Advisory() == "1") {
+                result = "Yes";
+            }
+        }
+        return result;
+    }, this);
+
 
     this.QuestionName = data.Question.QuestionName;
     this.IsMandatory = "";
@@ -99,6 +110,7 @@ $(function () {
     vm.ModalAnswerQuestionIDs = ko.observable("");
     vm.ModalAnswerComments = ko.observable("");
     vm.ModalAnswerCompliant = ko.observable("");
+    vm.ModalAnswerAdvisory = ko.observable("");
     vm.showAnswerModal = function (answer) {
         //debugger;
         app.view.showModalForSingleAnswer(answer);

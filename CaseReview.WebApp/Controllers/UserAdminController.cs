@@ -188,6 +188,11 @@ namespace CaseReview.WebApp
 
                 if (Request.Params["SelectedRole_3"] != null)
                 {
+                    roles.Add("Cam");
+                }
+                
+                if (Request.Params["SelectedRole_4"] != null)
+                {
                     roles.Add("Admin");
                 }
 

@@ -50,7 +50,7 @@ app.view.showModalForSingleAnswer = function (answer) {
     app.view.deselectAll();
     answer.IsActive(true);
     var ids = [answer.ID];
-    app.view.showModalCommon(ids, answer.QuestionName, answer.Comments(), answer.Compliant());
+    app.view.showModalCommon(ids, answer.QuestionName, answer.Comments(), answer.Compliant(), answer.Advisory());
 };
 
 app.view.showModalForManyAnswers = function () {
@@ -77,11 +77,12 @@ app.view.showModalForManyAnswers = function () {
     }
 }
 
-app.view.showModalCommon = function (ids, questionName, comments, compliant) {
+app.view.showModalCommon = function (ids, questionName, comments, compliant, advisory) {
     app.viewmodel.ModalAnswerQuestion(questionName);
     app.viewmodel.ModalAnswerQuestionIDs(ids);
     app.viewmodel.ModalAnswerComments(comments);
     app.viewmodel.ModalAnswerCompliant(compliant);
+    app.viewmodel.ModalAnswerAdvisory(advisory);
     $('#myModal').modal('show');
 };
 
@@ -126,6 +127,7 @@ app.view.save = function () {
                         selectedAnswerIds.push(answer.ID);
                         answer.Comments(app.viewmodel.ModalAnswerComments());
                         answer.Compliant(app.viewmodel.ModalAnswerCompliant());
+                        answer.Advisory(app.viewmodel.ModalAnswerAdvisory());
                     }
                 }
             );
@@ -136,7 +138,8 @@ app.view.save = function () {
     var data = {
         ids: selectedAnswerIds,
         comments: app.viewmodel.ModalAnswerComments(),
-        compliant: app.viewmodel.ModalAnswerCompliant() == "" ? null : app.viewmodel.ModalAnswerCompliant() == "1" ? true : false
+        compliant: app.viewmodel.ModalAnswerCompliant() == "" ? null : app.viewmodel.ModalAnswerCompliant() == "1" ? true : false,
+        advisory: app.viewmodel.ModalAnswerAdvisory() == "1" ? true : false
     };
 
     app.api.callApi(data, "/api/saveanswer/savemany", true,

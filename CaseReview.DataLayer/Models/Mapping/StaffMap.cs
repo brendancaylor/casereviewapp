@@ -21,11 +21,16 @@ namespace CaseReview.DataLayer.Models.Mapping
                 .IsRequired()
                 .HasMaxLength(50);
 
+            this.Property(t => t.Email)
+                .IsRequired()
+                .HasMaxLength(256);
+
             // Table & Column Mappings
             this.ToTable("Staff");
             this.Property(t => t.ID).HasColumnName("ID");
             this.Property(t => t.StaffFirstname).HasColumnName("StaffFirstname");
             this.Property(t => t.StaffSurname).HasColumnName("StaffSurname");
+            this.Property(t => t.Email).HasColumnName("Email");
             this.Property(t => t.IsActive).HasColumnName("IsActive");
         }
     }

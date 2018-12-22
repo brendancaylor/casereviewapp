@@ -24,20 +24,22 @@
     <div class="row">
 
 
-        <div class="col-sm-8">
+        <div class="col-sm-12">
 
             <ul class="list-group" data-bind="foreach: Staffs, visible: !$root.isEditMode()">
                 <li class="list-group-item " data-bind="css: {'disabled' : !IsActive() }">
                     <span data-bind="text: StaffFirstname"></span>
                     <span data-bind="text: StaffSurname"></span>
+                    <span data-bind="text: Email"></span>
                 </li>
             </ul>
 
 
             <div class="row" data-bind="visible: $root.isEditMode" style="padding: 3px 20px;">
                 <div class="col-xs-2">Active</div>
-                <div class="col-xs-5">Firstname</div>
-                <div class="col-xs-5">Surname</div>
+                <div class="col-xs-2">Firstname</div>
+                <div class="col-xs-2">Surname</div>
+                <div class="col-xs-6">Email</div>
             </div>
 
             <div class="list-group" style="margin: 10px;" data-bind="visible: $root.isEditMode, foreach: Staffs">
@@ -51,12 +53,16 @@
                         </label>
                     </div>
 
-                    <div class="col-xs-5">
+                    <div class="col-xs-2">
                         <input type="text" data-bind="value: StaffFirstname" class="form-control editInlineInput" />
                     </div>
 
-                    <div class="col-xs-5">
+                    <div class="col-xs-2">
                         <input type="text" data-bind="value: StaffSurname" class="form-control editInlineInput" />
+                    </div>
+
+                    <div class="col-xs-6">
+                        <input type="text" data-bind="value: Email" class="form-control editInlineInput" />
                     </div>
                     
 
@@ -72,6 +78,9 @@
                            data-bind="disable : $root.AddButtonDisabled()">
 
                     <input class="form-control " type="text" id="inpAddStaffSurname" placeholder="Staff Surname"
+                           data-bind="disable : $root.AddButtonDisabled()">
+
+                    <input class="form-control " type="text" id="inpAddEmail" placeholder="Email"
                            data-bind="disable : $root.AddButtonDisabled()">
 
                         <button type="button" class="btn btn-success" onclick="app.view.addNew();" data-bind="disable : $root.AddButtonDisabled()">

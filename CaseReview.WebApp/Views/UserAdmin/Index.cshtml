@@ -1,36 +1,45 @@
-﻿@model IEnumerable<CaseReview.WebApp.Models.ApplicationUser>
+﻿@model IEnumerable<IdentitySample.Models.ApplicationUser>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "User Admin";
 }
 
-<h2>Index</h2>
+<div class="row x_title">
+    <div class="col-xs-6">
+        <h3>@ViewBag.Title</h3>
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
+<div class="x_panel">
+    <div class="x_content">
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
 
-        </th>
-    </tr>
+                </th>
+            </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+
+    </div>
+</div>

@@ -184,6 +184,7 @@
     <Compile Include="Controllers\AdminListController.cs" />
     <Compile Include="Controllers\api\AdminListController.cs" />
     <Compile Include="Controllers\api\NonCompliantTotalsController.cs" />
+    <Compile Include="Controllers\CamController.cs" />
     <Compile Include="Controllers\CaseReviewWorkSheetsController.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -262,15 +263,15 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\nexa_light-webfont.eot" />
     <Content Include="appOffline.htm" />
+    <Content Include="casereviews.PublishSettings" />
     <None Include="Properties\PublishProfiles\brensdev.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\CaseReviewAzureLive.pubxml" />
-    <None Include="Properties\PublishProfiles\casereviews.pubxml" />
+    <None Include="Properties\PublishProfiles\casereviews - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\casereviews - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Release.pubxml" />
     <Content Include="Scripts\app\viewModels\app.vm.base.js" />
     <Content Include="Scripts\casereview.js" />
     <Content Include="Scripts\Chart.js" />
-    <Content Include="Scripts\chartData.js" />
-    <Content Include="Scripts\chartData2.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\datepicker.js" />
     <Content Include="Scripts\app\views\app.vw.updatefb.js" />
@@ -402,6 +403,8 @@
     <Content Include="Views\UserAdmin\Delete.cshtml" />
     <Content Include="Views\UserAdmin\Details.cshtml" />
     <Content Include="Views\UserAdmin\Edit.cshtml" />
+    <Content Include="Views\Cam\Index.cshtml" />
+    <Content Include="Views\Cam\Report.cshtml" />
     <None Include="Web.ReleaseAzure.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -431,6 +434,9 @@
       <Project>{d3a667fd-994c-41c1-9a01-f5d12f84b3ce}</Project>
       <Name>CaseReview.DataLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

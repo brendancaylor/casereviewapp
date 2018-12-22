@@ -162,6 +162,7 @@ namespace CaseReview.DataLayer
                 db.Answers.Attach(answer);
                 db.Entry(answer).Property(x => x.Comments).IsModified = true;
                 db.Entry(answer).Property(x => x.Compliant).IsModified = true;
+                db.Entry(answer).Property(x => x.Advisory).IsModified = true;
                 db.SaveChanges();
             }
         }
@@ -196,6 +197,32 @@ namespace CaseReview.DataLayer
                 qry = qry.OrderBy(o => o.Year).ThenBy(o => o.Month).ThenBy(o => o.SectionOrder).ThenBy(o => o.QuestionOrder);
                 var data = qry.ToList();
                 return data;
+            }
+        }
+
+        public List<Answer> GetCamsAnswers(string email)
+        {
+            using (CaseReviewsContext db = new CaseReviewsContext())
+            {
+                var qry = db.Answers.Where(o => o.CaseReviewWorkSheet.Staff.Email == email
+                && (!o.Compliant.Value || o.Advisory)
+                && !o.CamConfirmation.HasValue
+                && o.Feedback != null).Include(o => o.Question).Include(o => o.Question.Section);
+                qry = qry.OrderBy(o => o.CaseReviewWorkSheet.ReviewedDate);
+                var data = qry.ToList();
+                return data;
+            }
+        }
+
+        public void AcceptNonCompliance(string email)
+        {
+            using (CaseReviewsContext db = new CaseReviewsContext())
+            {
+                db.Answers.Where(o => o.CaseReviewWorkSheet.Staff.Email == email
+                && (!o.Compliant.Value || o.Advisory)
+                && !o.CamConfirmation.HasValue
+                && o.Feedback != null).ToList().ForEach(o => o.CamConfirmation = DateTime.Now);
+                db.SaveChanges();
             }
         }
     }

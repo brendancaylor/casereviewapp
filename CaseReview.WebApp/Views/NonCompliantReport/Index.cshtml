@@ -131,6 +131,10 @@
                         <th>
                             Feedback type
                         </th>
+                        <th>
+                            Cam confirmed
+                        </th>
+
                     </tr>
 
                     <!-- foreach : Answers -->
@@ -144,8 +148,10 @@
                             <td data-bind="text: SectionName"></td>
                             <td data-bind="text: QuestionName"></td>
                             <td data-bind="html: CommentsFormatted"></td>
-                            <td data-bind="html: FeedbackFormatted"></td>
-                            <td data-bind="html: FeedbackType"></td>
+                            <td data-bind="text: FeedbackFormatted"></td>
+                            <td data-bind="text: FeedbackType"></td>
+                            <td data-bind="text: CamConfirmation() ? moment(CamConfirmation()).format('DD/MM/YYYY') : 'not set'"></td>
+                            
                         </tr>
 
                     </tbody>

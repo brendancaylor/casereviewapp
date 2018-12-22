@@ -147,8 +147,11 @@
                                         <th style="width: 55%;">
                                             Comments
                                         </th>
-                                        <th style="width: 10%;">
+                                        <th style="width: 5%;">
                                             Compliant
+                                        </th>
+                                        <th style="width: 5%;">
+                                            Advisory
                                         </th>
                                     </tr>
                                 </thead>
@@ -179,6 +182,7 @@
                                         <td style="cursor: pointer;"
                                             data-bind="click: $root.showAnswerModal, html: CommentsFormatted"></td>
                                         <td data-bind="click: $root.showAnswerModal, text: CompliantText"> </td>
+                                        <td data-bind="click: $root.showAnswerModal, text: AdvisoryText"> </td>
                                         @*
 
 
@@ -208,7 +212,7 @@
             </div>
         </div>
 
-    }
+    
 
 
     </div>
@@ -293,6 +297,35 @@
                                        value="0"
                                        autocomplete="off"
                                        data-bind="checked: ModalAnswerCompliant">
+                                No
+                            </label>
+
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="form-group" style="margin-top:10px;">
+                        <strong>Advisory</strong>
+
+                        <div class="btn-group">
+
+                            <label id="lblAYes" class="btn btn-default" data-bind="css: ModalAnswerAdvisory() == '1' ? 'active': ''">
+                                <input name="advisory"
+                                       class="fakeHide"
+                                       type="radio"
+                                       value="1"
+                                       autocomplete="off"
+                                       data-bind="checked: ModalAnswerAdvisory">
+                                Yes
+                            </label>
+
+                            <label id="lblANo" class="btn btn-default" data-bind="css: ModalAnswerAdvisory() == '0' ? 'active': ''">
+                                <input name="advisory"
+                                       class="fakeHide"
+                                       type="radio"
+                                       value="0"
+                                       autocomplete="off"
+                                       data-bind="checked: ModalAnswerAdvisory">
                                 No
                             </label>
 

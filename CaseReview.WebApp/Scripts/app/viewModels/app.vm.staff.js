@@ -2,12 +2,14 @@
     id,
     staffFirstname,
     staffSurname,
+    email,
     isActive
     ) {
     var self = this;
     self.ID = ko.observable(id);
     self.StaffFirstname = ko.observable(staffFirstname);
     self.StaffSurname = ko.observable(staffSurname);
+    self.Email = ko.observable(email);
     self.IsActive = ko.observable(isActive);
 
     self.IsActive.subscribe(
@@ -21,6 +23,11 @@
         }
     );
     self.StaffSurname.subscribe(
+        function (newValue) {
+            app.view.update(self);
+        }
+    );
+    self.Email.subscribe(
         function (newValue) {
             app.view.update(self);
         }
@@ -53,6 +60,12 @@ $(function () {
                 }
             );
 
+        obj.Email.subscribe(
+                function (newValue) {
+                    app.view.update(obj);
+                }
+            );
+
     });
 
     vm.isEditMode = ko.observable(false);
@@ -72,6 +85,7 @@ $(function () {
             p.ID,
             p.StaffFirstname,
             p.StaffSurname,
+            p.Email,
             p.IsActive)
         );
         vm.Staffs(arr);

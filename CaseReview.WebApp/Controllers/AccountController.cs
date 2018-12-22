@@ -22,6 +22,12 @@ namespace CaseReview.WebApp.Controllers
 
         public AccountController()
         {
+
+        }
+
+        private void Test1()
+        {
+
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )

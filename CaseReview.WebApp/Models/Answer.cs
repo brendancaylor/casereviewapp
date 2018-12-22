@@ -12,5 +12,6 @@ namespace CaseReview.WebApp.Models
         public Nullable<bool> Compliant { get; set; }
         //public virtual CaseReviewWorkSheet CaseReviewWorkSheet { get; set; }
         public virtual Question Question { get; set; }
+        public bool Advisory { get; set; }
     }
 }

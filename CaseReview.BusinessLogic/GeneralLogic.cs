@@ -151,5 +151,17 @@ namespace CaseReview.BusinessLogic
             dbItem.SectionName = model.SectionName;
             bda.Update(dbItem);
         }
+
+        public List<Answer> GetCamsAnswers(string email)
+        {
+            return new GeneralDa().GetCamsAnswers(email);
+        }
+
+        public void AcceptNonCompliance(string email)
+        {
+            new GeneralDa().AcceptNonCompliance(email);
+        }
+
+        
     }
 }

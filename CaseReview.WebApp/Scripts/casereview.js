@@ -62,7 +62,8 @@ function save() {
     var data = {
         id: answerId,
         comments: $("#Comments").val(),
-        compliant: compliant
+        compliant: compliant,
+        advisory: $("#Advisory").is(':checked')
     };
     app.api.callApi(data, "/api/saveanswer/save", false,
         function(callback) {

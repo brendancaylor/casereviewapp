@@ -16,7 +16,7 @@ namespace CaseReview.DataLayer.Models.Mapping
 
             this.Property(t => t.FeedbackType)
                 .HasMaxLength(50);
-
+            
             // Table & Column Mappings
             this.ToTable("Answer");
             this.Property(t => t.ID).HasColumnName("ID");
@@ -26,7 +26,9 @@ namespace CaseReview.DataLayer.Models.Mapping
             this.Property(t => t.Compliant).HasColumnName("Compliant");
             this.Property(t => t.Feedback).HasColumnName("Feedback");
             this.Property(t => t.FeedbackType).HasColumnName("FeedbackType");
-
+            this.Property(t => t.CamConfirmation).HasColumnName("CamConfirmation");
+            this.Property(t => t.Advisory).HasColumnName("Advisory");
+            
             // Relationships
             this.HasRequired(t => t.CaseReviewWorkSheet)
                 .WithMany(t => t.Answers)

@@ -11,124 +11,141 @@
     var search = ViewBag.Search;
 }
 
-<h2>All Cases</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-
-@using (Html.BeginForm("index", "CaseReviewWorkSheets", FormMethod.Get, new { id = "formNonCompliantReport", @class = "form-horizontal" }))
-{
-
-    <div class="form-group">
-
-        <label class="" for="surname">search</label>
-
-        <div class="input-group col-sm-4 ">
-            <div class="input-group-addon">
-                <i class="glyphicon glyphicon-search"></i>
-            </div>
-            <input type="text" class="form-control" id="surname" name="surname" placeholder="Filter by surname" value="@search.Surname" onchange="$('#formNonCompliantReport').submit();">
-
-        </div>
-
-
-        <div class="input-group col-sm-4">
-            <div class="input-group-addon">
-                <i class="glyphicon glyphicon-search"></i>
-            </div>
-
-            <select id="month" name="month" onchange="$('#formNonCompliantReport').submit();" class="form-control" >
-                <option value=""> - month - </option>
-
-                @{
-    var months = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames;
-    for (int i = 0; i < months.Length; i++)
-    {
-        <option value="@(i+1)">@months[i]</option>
-    }
-                }
-            </select>
-        </div>
-
-        <div class="input-group col-sm-4">
-            <div class="input-group-addon">
-                <i class="glyphicon glyphicon-search"></i>
-            </div>
-            <select id="year" name="year" onchange="$('#formNonCompliantReport').submit();" class="form-control" >
-                <option value=""> - year - </option>
-
-                @{
-    for (int i = DateTime.Now.Year; i > DateTime.Now.AddYears(-5).Year; i--)
-    {
-        <option value="@i">@i</option>
-    }
-                }
-            </select>
-        </div>
+<div class="row x_title">
+    <div class="col-xs-6">
+        <h3>
+            All Cases
+        </h3>
     </div>
-}
-<br />
+    <div class="col-xs-6">
+        
 
-<table class="table">
-    <tr>
-        <th>
-            Staff
-        </th>
-        <th>
-            Client Ref
-        </th>
-        <th>
-            Reviewer
-        </th>
-        <th>
-            Reviewed Date
-        </th>
-        <th>
-            Type
-        </th>
-        <th>
-            Completed
-        </th>
-        <th></th>
-    </tr>
+    </div>
+</div>
 
-    @foreach (var item in Model)
+<div class="x_panel">
+    <div class="x_content">
+
+        <h2>Search</h2>
+        @Html.ActionLink("Create New", "Create")
+
+        @using (Html.BeginForm("index", "CaseReviewWorkSheets", FormMethod.Get, new { id = "formNonCompliantReport", @class = "form-horizontal" }))
+        {
+
+            <div class="form-group">
+
+
+                <div class="input-group col-sm-4 ">
+                    <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </div>
+                    <input type="text" class="form-control" id="surname" name="surname" placeholder="Filter by surname" value="@search.Surname" onchange="$('#formNonCompliantReport').submit();">
+
+                </div>
+
+
+                <div class="input-group col-sm-4">
+                    <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </div>
+
+                    <select id="month" name="month" onchange="$('#formNonCompliantReport').submit();" class="form-control">
+                        <option value=""> - month - </option>
+
+                        @{
+                            var months = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames;
+                            for (int i = 0; i < months.Length; i++)
+                            {
+                                <option value="@(i+1)">@months[i]</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="input-group col-sm-4">
+                    <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </div>
+                    <select id="year" name="year" onchange="$('#formNonCompliantReport').submit();" class="form-control">
+                        <option value=""> - year - </option>
+
+                        @{
+                            for (int i = DateTime.Now.Year; i > DateTime.Now.AddYears(-5).Year; i--)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+                            }
+
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+
+
+
+        <table class="table">
+            <tr>
+                <th>
+                    Staff
+                </th>
+                <th>
+                    Client Ref
+                </th>
+                <th>
+                    Reviewer
+                </th>
+                <th>
+                    Reviewed Date
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Completed
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Staff.StaffFirstname)
-                @Html.DisplayFor(modelItem => item.Staff.StaffSurname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClientRef)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Reviewer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReviewedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CaseReviewType.TypeName)                
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsCompleted)
-            </td>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Staff.StaffFirstname)
+            @Html.DisplayFor(modelItem => item.Staff.StaffSurname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClientRef)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reviewer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReviewedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CaseReviewType.TypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsCompleted)
+        </td>
 
-            <td>
-                @Html.ActionLink("Edit", "Update", new { id = item.ID })
-                | @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
+        <td>
+            @Html.ActionLink("Edit", "Update", new { id = item.ID })
+            | @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
     }
 
-</table>
+        </table>
 
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-    @Html.PagedListPager(
+        @Html.PagedListPager(
 Model, page => Url.Action("Index"
     , new
     {
@@ -140,10 +157,13 @@ Model, page => Url.Action("Index"
     }))
 
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-        <script type="text/javascript">
-            $("#month").val("@search.Month");
-            $("#year").val("@search.Year");
-        </script>
-    }
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+            <script type="text/javascript">
+                $("#month").val("@search.Month");
+                $("#year").val("@search.Year");
+            </script>
+        }
+
+    </div>
+</div>

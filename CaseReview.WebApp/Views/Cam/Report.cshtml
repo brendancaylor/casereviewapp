@@ -1,0 +1,31 @@
+﻿@model List<CaseReview.DataLayer.Models.vwCamNotAcepted>
+
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cams not accepted</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Count
+        </th>
+        <th>
+            Who
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountNotAccepted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+    </tr>
+}
+
+</table>

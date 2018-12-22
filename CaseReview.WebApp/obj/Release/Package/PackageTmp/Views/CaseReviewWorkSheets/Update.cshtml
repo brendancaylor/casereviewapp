@@ -6,80 +6,95 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>
-    @Html.DisplayFor(model => model.CaseReviewTypeName)
-</h3>
+
+<div class="row x_title">
+    <div class="col-xs-6">
+        <h3>
+            @Html.DisplayFor(model => model.CaseReviewTypeName)
+        </h3>
+    </div>
+    <div class="col-xs-6">
 
 
+    </div>
+</div>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<div class="x_panel">
+    <div class="x_content">
 
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            <label for="StaffID" class="control-label col-md-2">Staff</label>
+            <div class="form-horizontal">
 
-            <div class="col-md-6">
-                @Html.DropDownListFor(model => model.StaffID, Model.StaffMembers, null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.StaffID, "", new { @class = "text-danger" })
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ID)
+
+                <div class="form-group">
+                    <label for="StaffID" class="control-label col-md-2">Staff</label>
+
+                    <div class="col-md-6">
+                        @Html.DropDownListFor(model => model.StaffID, Model.StaffMembers, null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.StaffID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="control-label col-md-2" for="ClientRef">Client Reference</label>
+
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.ClientRef, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ClientRef, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Reviewer, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Reviewer, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Reviewer, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="ReviewedDate">Reviewed Date</label>
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.ReviewedDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ReviewedDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @Html.HiddenFor(model => model.CaseReviewTypeID)
+
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="IsCompleted">Is Completed</label>
+
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.IsCompleted, new { htmlAttributes = new { @class = "form-control_" } })
+                        @Html.ValidationMessageFor(model => model.IsCompleted, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
+
+                <div>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+
             </div>
-        </div>
+        }
+    </div>
+</div>
 
-        <div class="form-group">
-            
-            <label class="control-label col-md-2" for="ClientRef">Client Reference</label>
+<div class="x_panel">
+    <div class="x_content">
 
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.ClientRef, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ClientRef, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Reviewer, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.Reviewer, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Reviewer, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2" for="ReviewedDate">Reviewed Date</label>
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.ReviewedDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ReviewedDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @Html.HiddenFor(model => model.CaseReviewTypeID)
-
-        <div class="form-group">
-            <label class="control-label col-md-2" for="IsCompleted">Is Completed</label>
-
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.IsCompleted, new { htmlAttributes = new { @class = "form-control_" } })
-                @Html.ValidationMessageFor(model => model.IsCompleted, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-6">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </div>
-
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-        <br />
-
-        <div class="x_panel">
-            <div class="x_content">
 
                 <div class="col-xs-3">
 
@@ -94,14 +109,13 @@
 
 
                 <div class="col-xs-9">
-                    
-                    <!-- Tab panes -->
 
+                    <!-- Tab panes -->
                     <!-- foreach sections -->
                     <div class="tab-content" data-bind="foreach: Sections">
-                        
+
                         <div class="tab-pane " data-bind="attr: {'id': ID}, css: IsActive() == true ? 'active': ''">
-                
+
                             <div class="btn-group" style="margin: 10px 0;">
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Select <span class="caret"></span>
@@ -113,18 +127,19 @@
                                 </ul>
 
                                 <button type="button" class="btn btn-primary"
-                                        onclick="app.view.showModalForManyAnswers();"
-                                        >Answer</button>
+                                        onclick="app.view.showModalForManyAnswers();">
+                                    Answer
+                                </button>
 
                             </div>
-                            
-                            
+
+
 
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr class="success">
                                         <th>
-                    
+
                                         </th>
                                         <th colspan="2" style="width: 30%;">
                                             Question
@@ -132,51 +147,51 @@
                                         <th style="width: 55%;">
                                             Comments
                                         </th>
-                                        <th style="width: 10%;">
+                                        <th style="width: 5%;">
                                             Compliant
+                                        </th>
+                                        <th style="width: 5%;">
+                                            Advisory
                                         </th>
                                     </tr>
                                 </thead>
 
-                            <!-- foreach : Answers -->
+                                <!-- foreach : Answers -->
 
-                            <tbody data-bind="foreach : Answers">
-                                <tr data-bind="css: IsActive() ? 'active' : ''" >
-                                    <td>
-                                        <label class="styled2CheckBoxLabel"
-                                               data-bind="css: IsActive() ? 'on' : '' ">
-                                            <input type="checkbox" data-bind="checked: IsActive" />
-                                        </label>
-                                    </td>
-                                    <td style="cursor: pointer;"
-                                        data-bind="click: $root.showAnswerModal, text: QuestionName"
-                                        > </td>
-                                    <td
-                                        style="cursor: pointer;"
-                                        data-bind="click: $root.showAnswerModal"
-                                        >
-                                        <span data-bind="text: IsMandatory" style="line-height: 14px;">
+                                <tbody data-bind="foreach : Answers">
+                                    <tr data-bind="css: IsActive() ? 'active' : ''">
+                                        <td>
+                                            <label class="styled2CheckBoxLabel"
+                                                    data-bind="css: IsActive() ? 'on' : '' ">
+                                                <input type="checkbox" data-bind="checked: IsActive" />
+                                            </label>
+                                        </td>
+                                        <td style="cursor: pointer;"
+                                            data-bind="click: $root.showAnswerModal, text: QuestionName"></td>
+                                        <td style="cursor: pointer;"
+                                            data-bind="click: $root.showAnswerModal">
+                                            <span data-bind="text: IsMandatory" style="line-height: 14px;">
 
-                                        </span>
+                                            </span>
 
-                                        <span data-bind="text: Risk" style="line-height: 14px;">
+                                            <span data-bind="text: Risk" style="line-height: 14px;">
 
-                                        </span>
-                                    </td>
-                                    
-                                    <td 
-                                        style="cursor: pointer;"
-                                        data-bind="click: $root.showAnswerModal, html: CommentsFormatted"> </td>
-                                    <td data-bind="click: $root.showAnswerModal, text: CompliantText"> </td>
-                            @*
+                                            </span>
+                                        </td>
 
-    
-                            *@
-                                </tr>
+                                        <td style="cursor: pointer;"
+                                            data-bind="click: $root.showAnswerModal, html: CommentsFormatted"></td>
+                                        <td data-bind="click: $root.showAnswerModal, text: CompliantText"> </td>
+                                        <td data-bind="click: $root.showAnswerModal, text: AdvisoryText"> </td>
+                                        @*
 
-                            </tbody>
 
-                            <!-- / foreach : Answers -->
+                                        *@
+                                    </tr>
+
+                                </tbody>
+
+                                <!-- / foreach : Answers -->
 
                             </table>
 
@@ -190,17 +205,18 @@
 
                 <div class="clearfix"></div>
 
-            </div>
-
-        </div>
-
+            
         <div class="form-group">
             <div class="col-md-10">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </div>
+
+    
+
+
     </div>
-                    }
+</div>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -220,21 +236,19 @@
             </div>
             <div class="modal-body">
 
-                
+
 
                 <form>
-                    
+
 
                     <div class="form-horizontal">
 
                         <div class="form-group">
                             <div class="col-md-12">
-                                <textarea 
-                                          class="form-control" 
-                                          rows="7" 
+                                <textarea class="form-control"
+                                          rows="7"
                                           style="max-width: 600px !important"
-                                          data-bind="value: ModalAnswerComments"
-                                          ></textarea>
+                                          data-bind="value: ModalAnswerComments"></textarea>
 
                             </div>
                         </div>
@@ -244,7 +258,7 @@
 
                         <div class="col-md-12">
                             <!--
-                            , onchange = "app.view.addLine(this);"    
+                            , onchange = "app.view.addLine(this);"
                             -->
                             @Html.DropDownListFor(model => model.StandardID, Model.StandardLines, null, htmlAttributes: new { @class = "form-control ", style = "width: 100%" })
                         </div>
@@ -254,7 +268,7 @@
                         <strong>Compliant</strong>
 
                         <div class="btn-group">
-                        
+
                             <label id="lblNotset" class="btn btn-default" data-bind="css: ModalAnswerCompliant() == '' ? 'active': ''">
 
                                 <input name="compliant"
@@ -262,8 +276,7 @@
                                        type="radio"
                                        value=""
                                        autocomplete="off"
-                                       data-bind="checked: ModalAnswerCompliant"
-                                       >
+                                       data-bind="checked: ModalAnswerCompliant">
                                 not answered
                             </label>
 
@@ -290,6 +303,35 @@
                         </div>
                     </div>
 
+                    <div class="clearfix"></div>
+                    <div class="form-group" style="margin-top:10px;">
+                        <strong>Advisory</strong>
+
+                        <div class="btn-group">
+
+                            <label id="lblAYes" class="btn btn-default" data-bind="css: ModalAnswerAdvisory() == '1' ? 'active': ''">
+                                <input name="advisory"
+                                       class="fakeHide"
+                                       type="radio"
+                                       value="1"
+                                       autocomplete="off"
+                                       data-bind="checked: ModalAnswerAdvisory">
+                                Yes
+                            </label>
+
+                            <label id="lblANo" class="btn btn-default" data-bind="css: ModalAnswerAdvisory() == '0' ? 'active': ''">
+                                <input name="advisory"
+                                       class="fakeHide"
+                                       type="radio"
+                                       value="0"
+                                       autocomplete="off"
+                                       data-bind="checked: ModalAnswerAdvisory">
+                                No
+                            </label>
+
+                        </div>
+                    </div>
+
                 </form>
 
             </div>
@@ -306,7 +348,7 @@
 
 
 @section Scripts {
-@Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval")
 
     <script type="text/javascript">
         var localData = @Html.Raw(ViewBag.Json);
@@ -319,5 +361,5 @@
     <script src="~/Scripts/app/viewModels/app.vm.updatecr.js"></script>
     <script src="~/Scripts/app/views/app.vw.updatecr.js"></script>
 
-    
+
 }

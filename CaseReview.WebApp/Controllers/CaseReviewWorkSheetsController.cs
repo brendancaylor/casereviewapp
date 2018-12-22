@@ -203,7 +203,7 @@ namespace CaseReview.WebApp.Controllers
                             CaseReviewWorkSheetID = model.ID,
                             Comments = answer.Comments,
                             Compliant = answer.Compliant,
-
+                            Advisory = answer.Advisory,
                             Question = new Question()
                             {
                                 ID = answer.QuestionID,
@@ -329,7 +329,7 @@ namespace CaseReview.WebApp.Controllers
                         CaseReviewWorkSheetID = model.ID,
                         Comments = answer.Comments,
                         Compliant = answer.Compliant,
-
+                        Advisory = answer.Advisory,
                         Question = new Question()
                         {
                             ID = answer.QuestionID,

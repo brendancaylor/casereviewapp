@@ -113,7 +113,8 @@ namespace CaseReview.WebApp.Controllers
                 ID = x.ID,
                 IsActive = x.IsActive,
                 StaffFirstname = x.StaffFirstname,
-                StaffSurname = x.StaffSurname
+                StaffSurname = x.StaffSurname,
+                Email = x.Email
             });
 
 

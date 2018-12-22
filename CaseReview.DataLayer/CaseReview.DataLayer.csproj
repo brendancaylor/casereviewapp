@@ -79,6 +79,7 @@
     <Compile Include="Models\Mapping\SectionMap.cs" />
     <Compile Include="Models\Mapping\StaffMap.cs" />
     <Compile Include="Models\Mapping\StandardLineMap.cs" />
+    <Compile Include="Models\Mapping\vwCamNotAceptedMap.cs" />
     <Compile Include="Models\Mapping\vwNonCompliantMap.cs" />
     <Compile Include="Models\Mapping\vwReportStaffSectionMap.cs" />
     <Compile Include="Models\Mapping\vwStaffNonCompliantTotalMap.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Models\SectionCaseReviewType.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\StandardLine.cs" />
+    <Compile Include="Models\vwCamNotAcepted.cs" />
     <Compile Include="Models\vwNonCompliant.cs" />
     <Compile Include="Models\vwReportStaffSections.cs" />
     <Compile Include="Models\vwStaffNonCompliantTotal.cs" />

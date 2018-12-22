@@ -201,7 +201,8 @@ namespace CaseReview.WebApp.Controllers.api
                 ID = model.ID,
                 IsActive = model.IsActive,
                 StaffFirstname = model.StaffFirstname,
-                StaffSurname = model.StaffSurname
+                StaffSurname = model.StaffSurname,
+                Email = model.Email
             });
 
             var json = jsonSerializer.Serialize(model);
@@ -219,7 +220,8 @@ namespace CaseReview.WebApp.Controllers.api
                 ID = Guid.Empty,
                 IsActive = model.IsActive,
                 StaffFirstname = model.StaffFirstname,
-                StaffSurname = model.StaffSurname
+                StaffSurname = model.StaffSurname,
+                Email = model.Email
             });
             model.ID = newModel.ID;
             var json = jsonSerializer.Serialize(model);

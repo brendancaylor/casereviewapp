@@ -27,6 +27,6 @@ namespace CaseReview.WebApp.Models
         public string Comments { get; set; }
         public string Feedback { get; set; }
         public string FeedbackType { get; set; }
-        
+        public DateTime? CamConfirmation { get; set; }
     }
 }

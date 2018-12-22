@@ -1,0 +1,113 @@
+﻿@model IEnumerable<CaseReview.DataLayer.Models.Answer>
+
+@{
+    ViewBag.Title = "CAM feedback review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Model.Any())
+{
+
+    <div class="x_panel" style="margin-top: 20px;">
+        <div class="x_title">
+            <h2>CAM feedback review</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+            <p>
+                Please read the feedback for the following non compliance and confirm (at the bottom of the page)
+                your acceptance by clicking on the acceptance below.
+            </p>
+
+        </div>
+    </div>
+
+<table class="table table-bordered">
+    <tr>
+        <th style="width: 40%;">
+            Comments
+        </th>
+        <th style="width: 40%;">
+            Feedback
+        </th>
+        <th style="width: 10%;">
+            Feedback type
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td colspan="3" style="height: 1px; background-color: #666;"></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="font-weight: bold;">
+                @Html.DisplayFor(modelItem => item.Question.Section.SectionName)
+                @Html.DisplayFor(modelItem => item.Question.QuestionName)
+            </td>
+        </tr>
+        <tr style="font-size: 0.9em;">
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Feedback)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeedbackType)
+            </td>
+        </tr>
+    }
+
+</table>
+}
+else
+{
+    <div class="x_panel" style="margin-top: 20px;">
+        <div class="x_title">
+            <h2>CAM feedback review</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+            <p>Thank you for accepting your feedback. You currently have nothing left to accep.</p>
+
+        </div>
+    </div>
+}
+
+@{
+    if (Model.Any())
+    {
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="x_panel" style="margin-top: 20px;">
+                <div class="x_title">
+                    <h2>Acceptance terms </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    I confirm that I have understood the requirements outlined in my feedback, and will make the necessary changes to ensure that I am compliant in this area going forward
+
+                </div>
+            </div>
+
+            <div class="form-horizontal">
+                <hr />
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        I have read my feedback and accept <input type="submit" name="acceptance" id="acceptance" value="Accept" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+
+}

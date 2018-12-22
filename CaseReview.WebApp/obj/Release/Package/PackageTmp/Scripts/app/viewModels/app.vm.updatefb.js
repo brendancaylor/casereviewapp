@@ -50,6 +50,7 @@ var Answer = function (data, sectionID) {
     this.Comments = ko.observable(data.Comments);
     this.Feedback = ko.observable(data.Feedback);
     this.FeedbackType = ko.observable(data.FeedbackType);
+    this.CamConfirmation = ko.observable(data.CamConfirmation);
 
     this.IsActive = ko.observable(false);
 

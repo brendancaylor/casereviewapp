@@ -8,6 +8,7 @@ using CaseReview.WebApp.Models;
 using PagedList;
 using System.Web.Script.Serialization;
 using CaseReview.DataLayer.Models;
+using Newtonsoft.Json;
 
 namespace CaseReview.WebApp.Controllers
 {
@@ -97,17 +98,25 @@ namespace CaseReview.WebApp.Controllers
 
                     Comments = o.Comments,
                     Feedback = o.Feedback,
-                    FeedbackType = o.FeedbackType
+                    FeedbackType = o.FeedbackType,
+                    CamConfirmation = o.CamConfirmation
                 });
             }
             
             model.NonCompliants = nonCompliants.ToPagedList(s.Page, s.PageSize);
-            
+
 
             //GOT HERE !!!
+            var json = JsonConvert.SerializeObject(
+                model.NonCompliants,
+                Formatting.Indented,
+                new JsonSerializerSettings
+                {
+                    DateFormatHandling = DateFormatHandling.IsoDateFormat
+                });
 
-            var jsonSerializer = new JavaScriptSerializer();
-            var json = jsonSerializer.Serialize(model.NonCompliants);
+            //var jsonSerializer = new JavaScriptSerializer();
+            //var json = jsonSerializer.Serialize(model.NonCompliants);
             ViewBag.Json = json;
 
             ViewBag.urlApiUpdate = "api/casereview/update";
